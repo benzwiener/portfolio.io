@@ -8,124 +8,115 @@
     body {
       font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
       margin: 0;
-      padding: 0;
       background: #0f172a;
       color: #e5e7eb;
     }
-    header, main {
-      max-width: 900px;
-      margin: 0 auto;
-      padding: 1.5rem;
+
+    .site-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 2rem;
+      background: #020617;
+      position: sticky;
+      top: 0;
     }
-    header h1 {
-      margin-bottom: 0.25rem;
-    }
-    nav a {
-      margin-right: 1rem;
+
+    .site-header nav a {
+      margin-left: 1rem;
       color: #38bdf8;
       text-decoration: none;
     }
-    .section-title {
-      margin-top: 2rem;
-      margin-bottom: 0.5rem;
-      font-size: 1.3rem;
+
+    .hero {
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+      padding: 3rem 2rem;
     }
-    .project-list {
-      list-style: none;
-      padding: 0;
-      margin: 0;
+
+    .hero .avatar {
+      width: 140px;
+      height: 140px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 3px solid #38bdf8;
     }
-    .project {
+
+    .contact {
+      padding: 2rem;
+    }
+
+    .contact form {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+      max-width: 400px;
+    }
+
+    .contact input,
+    .contact textarea {
+      width: 100%;
+      padding: 0.5rem;
+      border-radius: 0.25rem;
       border: 1px solid #1f2937;
-      border-radius: 0.5rem;
-      padding: 1rem;
-      margin-bottom: 1rem;
       background: #020617;
-    }
-    .project-title {
-      font-weight: 600;
-      margin-bottom: 0.25rem;
-    }
-    .tag {
-      display: inline-block;
-      background: #1d4ed8;
-      padding: 0.15rem 0.45rem;
-      border-radius: 999px;
-      font-size: 0.75rem;
-      margin-right: 0.35rem;
-      margin-top: 0.25rem;
-    }
-    footer {
-      text-align: center;
-      padding: 2rem 1rem;
-      font-size: 0.85rem;
-      color: #9ca3af;
+      color: #e5e7eb;
     }
   </style>
 </head>
+
 <body>
-  <header>
+  <header class="site-header">
     <h1>Your Name</h1>
-    <p>Target role • Main stack (e.g., Full‑stack JS | React • Node • SQL)</p>
     <nav>
-      <a href="#projects">Projects</a>
       <a href="#about">About</a>
+      <a href="projects.html">Projects</a>
+      <a href="resume.pdf" target="_blank">Resume</a>
       <a href="#contact">Contact</a>
     </nav>
   </header>
 
   <main>
-    <section id="projects">
-      <h2 class="section-title">Projects</h2>
-
-      <ul class="project-list">
-        <li class="project">
-          <div class="project-title">Project One</div>
-          <p>1–2 sentence description of what it does and who it’s for.</p>
-          <p>
-            <span class="tag">React</span>
-            <span class="tag">Node</span>
-            <span class="tag">PostgreSQL</span>
+    <!-- About / Hero section -->
+    <section id="about" class="hero">
+      <img src="me.jpg" alt="Photo of Your Name" class="avatar" />
+      <div>
+        <h2>A little about me</h2>
+        <p>I am a mechanical engineer recently graduated from the University of Nebraska-Lincoln specializing in robotics/mechatronics and mechanisms. 
+          My thesis research focused on a novel variable stiffness mechanisms for industrial robotics (thesis), with publications at ASME IDETC conferences and a pending U.S. patent.
+          I also led the project team and the design of a Remote Ultrasound Robot seeking to expand access of specialized healthcare in remote communities.
+          I have hands-on experience in CAD design, FEA simulation, mechatronic prototyping, and manufacturing. 
+          At my recent internship with Relativity Space I desiged a modular gearbox from scratch and performed both hand calcualtions and FEA analysis to verify its structural integrity.
+          Finally, I was able to build, manufacture, and test the modular device of its functionaity and inform future design decisions. 
           </p>
-          <p>
-            <a href="https://github.com/your-username/project-one" target="_blank">Source code</a>
-            ·
-            <a href="https://your-live-demo-url.com" target="_blank">Live demo</a>
-          </p>
-        </li>
-
-        <li class="project">
-          <div class="project-title">Project Two</div>
-          <p>Short description of the problem, your solution, and impact.</p>
-          <p>
-            <span class="tag">Python</span>
-            <span class="tag">Flask</span>
-          </p>
-          <p>
-            <a href="https://github.com/your-username/project-two" target="_blank">Source code</a>
-          </p>
-        </li>
-      </ul>
+      </div>
     </section>
 
-    <section id="about">
-      <h2 class="section-title">About</h2>
-      <p>Brief 2–3 sentence bio: background, what you’re focused on, and what roles you’re seeking.</p>
+
+    <!-- Contact and message page linked to blzwiener@gmial.com -->
+    <section id="contact" class="contact">
+      <h2>Contact</h2>
+
+      <p>
+        Or email me directly:
+        <a href="mailto:blzwiener@gmail.com">blzwiener@gmail.com</a>
+      </p>
+
+      <form>
+        <label>
+          Your email
+          <input type="email" name="email" required />
+        </label>
+        <label>
+          Message
+          <textarea name="message" rows="4" placeholder="Hi Ben! My name is Joe and..." required></textarea>
+        </label>
+        <button type="submit">Send</button>
+      </form>
     </section>
 
-    <section id="contact">
-      <h2 class="section-title">Contact</h2>
-      <p>Email: you@example.com · <a href="https://www.linkedin.com/in/your-handle" target="_blank">LinkedIn</a></p>
-      <p><a href="your-resume-link.pdf" target="_blank">Download resume</a></p>
-    </section>
   </main>
-
-  <footer>
-    © <span id="year"></span> Your Name
-  </footer>
-
-  <script>
-    document.getElementById("year").textContent = new Date().getFullYear();
-  </script>
 </body>
+
 </html>
