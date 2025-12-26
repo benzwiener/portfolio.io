@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Your Name | Portfolio</title>
+  <title>Ben Zwiener | Portfolio</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <style>
     body {
@@ -13,19 +13,26 @@
     }
 
     .site-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 1rem 2rem;
-      background: #020617;
-      position: sticky;
-      top: 0;
+      display: flex;                  /* put h1 and nav in a row */
+      justify-content: space-between; /* name on left, nav on right */
+      align-items: center;            /* vertical centering */
+      padding: 1rem 2rem;             /* space around the header */
+      position: sticky;               /* optional: keep it at top when scrolling */
+      top: 0;                         /* stick to very top */
+      background: #fb3640;          /* header background color */
     }
 
+    /* Navigation inside the header */
+    .site-header nav {
+      display: flex;                 /* lay out links horizontally */
+      gap: 1.5rem;                   /* spacing between links */
+      font-size: 1rem;               /* change to 1.2rem, 1.3rem, etc. for bigger links */
+    }
+
+    /* Individual links */
     .site-header nav a {
-      margin-left: 1rem;
-      color: #38bdf8;
-      text-decoration: none;
+      color: #38bdf8;              /* link color */
+      text-decoration: none;         /* remove underline */
     }
 
     .hero {
@@ -36,8 +43,8 @@
     }
 
     .hero .avatar {
-      width: 200px;
-      height: 160px;
+      width: 800px;
+      height: 600px;
       border-radius: 50%;
       object-fit: cover;
       border: 3px solid #38bdf8;
@@ -80,7 +87,7 @@
   <main>
     <!-- About / Hero section -->
     <section id="about" class="hero">
-      <img src="me.jpg" alt="Ben Zwiener - Mechanical Engineer" class="avatar" />
+      <img src="me.JPG" alt="Ben Zwiener - Mechanical Engineer" class="avatar" />
       <div>
         <h2>A little about me</h2>
         <p>I am a mechanical engineer recently graduated from the University of Nebraska-Lincoln specializing in robotics/mechatronics and mechanisms. 
