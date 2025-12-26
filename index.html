@@ -1,126 +1,160 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html> <!-- Tell the browser its a HTML5 document -->
+<html lang="en"> <!-- Root element; lang="en" helps accessibility and SEO -->
 <head>
-  <meta charset="UTF-8" />
-  <title>Ben Zwiener | Portfolio</title>
+  <meta charset="UTF-8" /> <!-- Use UTF‑8 character encoding for the page -->
+  <title>Ben Zwiener | Portfolio</title> <!-- Text shown in the browser tab and search results -->
   <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <!-- Make layout responsive: width matches device width, initial zoom = 1 -->
+
   <style>
+    /* ===== Global page styles ===== */
     body {
       font-family: "Adobe Myungjo Std M", "Segoe UI", system-ui, sans-serif;
-      margin: 0;
+      /* Try these fonts (works if user has them downloaded); failsafe is generic sans-serif */
+
+      margin: 1;
+      /* Remove default margin around the body so content touches the screen edge */
+
       background: #e2e2e2;
+      /* Light gray background color for the whole page */
+
       color: #222222;
+      /* Dark gray text color (easier on eyes than pure black) */
     }
 
+    /* ===== Header (name + nav bar at top) ===== */
     .site-header {
-      display: flex;                  /* put h1 and nav in a row */
-      flex-direction: column;         /* name on left, nav on right */
-      align-items: center;            /* vertical centering */
-      padding: 1rem 2rem;             /* space around the header */
-      position: sticky;               /* keep header at top when scrolling */
-      top: 0;                         /* stick to very top */
-      background: #fb3640;            /* header color */
+      display: flex;                 /* Lay out children (h1 and nav) using flexbox */
+      flex-direction: column;        /* Stack name and nav vertically */
+      align-items: center;           /* Center them horizontally in the header */
+      padding: 1rem 2rem;            /* Add space inside header (top/bottom, left/right) */
+      position: sticky;              /* Keep header visible when scrolling */
+      top: 0;                        /* Stick the header to the very top of the viewport */
+      background: #fb3640;           /* Red header background color */
     }
 
     .site-header h1 {
-      margin: 0 0 0.5rem 0;     /* remove default top margin, add a little bottom */
+      margin: 0 0 0.5rem 0;          /* Remove top margin, add small bottom margin under name */
     }
 
     .site-header nav {
-      display: flex;
-      gap: 1.5rem;
-      font-size: 1rem;
+      display: flex;                 /* Put nav links in a horizontal row */
+      gap: 1.5rem;                   /* Space between each nav link */
+      font-size: 1rem;               /* Base font size for nav links */
     }
 
+    /* ===== Hero / about section ===== */
     .hero {
-      display: flex;
-      align-items: center;
-      gap: 2rem;
-      padding: 3rem 2rem;
+      display: flex;                 /* Put photo and text side‑by‑side */
+      align-items: center;           /* Vertically align photo and text block */
+      gap: 2rem;                     /* Space between photo and text */
+      padding: 3rem 2rem;            /* Space around the hero section */
     }
 
     .hero .avatar {
-      width: 700px;
-      height: 500px;
-      border-radius: 50%;
-      object-fit: cover;
-      border: 3px solid #222222;
+      width: 700px;                  /* Display width of the avatar image */
+      height: 500px;                 /* Display height of the avatar image */
+      border-radius: 50%;            /* Make image appear circular/oval */
+      object-fit: cover;             /* Crop image so it fills width/height without distortion */
+      border: 3px solid #222222;     /* Dark border around the photo */
     }
 
+    /* ===== Contact section ===== */
     .contact {
-      padding: 2rem;
+      padding: 2rem;                 /* Space inside the contact section */
     }
 
     .contact form {
-      display: flex;
-      flex-direction: column;
-      gap: 0.75rem;
-      max-width: 400px;
+      display: flex;                 /* Use flex layout for the form fields */
+      flex-direction: column;        /* Stack labels/inputs vertically */
+      gap: 0.75rem;                  /* Space between form rows */
+      max-width: 400px;              /* Limit form width for readability */
     }
 
     .contact input,
     .contact textarea {
-      width: 100%;
-      padding: 0.5rem;
-      border-radius: 0.25rem;
-      border: 1px solid #1f2937;
-      background: #020617;
-      color: #e5e7eb;
+      width: 100%;                   /* Input fields take full form width */
+      padding: 0.5rem;               /* Inner padding for better touch targets */
+      border-radius: 0.25rem;        /* Slightly rounded corners */
+      border: 1px solid #1f2937;     /* Dark border around inputs */
+      background: #020617;           /* Very dark background color for inputs */
+      color: #e5e7eb;                /* Light text color inside inputs */
     }
   </style>
 </head>
 
-<body>
+<body> <!-- Visible content of the page starts here -->
   <header class="site-header">
-    <h1>Ben Zwiener</h1>
+    <h1>Ben Zwiener</h1> <!-- Your name, main heading at top of page -->
+
     <nav>
-      <a href="#about">About</a>
-      <a href="projects.html">Projects</a>
+      <!-- Navigation links: jump to sections or other pages -->
+      <a href="#about">About</a>           <!-- Scrolls to the section with id="about" -->
+      <a href="projects.html">Projects</a> <!-- Opens your projects page -->
       <a href="resume.pdf" target="_blank">Resume</a>
-      <a href="#contact">Contact</a>
+      <!-- Opens your resume PDF in a new tab -->
+      <a href="#contact">Contact</a>       <!-- Scrolls to the section with id="contact" -->
     </nav>
   </header>
 
-  <main>
+  <main> <!-- Main content area of the page -->
+
     <!-- About / Hero section -->
     <section id="about" class="hero">
-      <img src="me.JPG" alt="Ben Zwiener - Mechanical Engineer" class="avatar" />
+      <!-- Your profile photo -->
+      <img src="me.JPG"
+           alt="Ben Zwiener - Mechanical Engineer"
+           class="avatar" />
+      <!-- alt text is read by screen readers and used if the image fails to load -->
+
       <div>
-        <h2>A little about me</h2>
-        <p>I am a mechanical engineer recently graduated from the University of Nebraska-Lincoln specializing in robotics/mechatronics and mechanisms. 
+        <h2>A little about me</h2> <!-- Section heading for the about text -->
+        <p>
+          I am a mechanical engineer recently graduated from the University of Nebraska-Lincoln specializing in robotics/mechatronics and mechanisms.
           My thesis research focused on a novel variable stiffness mechanisms for industrial robotics (thesis), with publications at ASME IDETC conferences and a pending U.S. patent.
           I also led the project team and the design of a Remote Ultrasound Robot seeking to expand access of specialized healthcare in remote communities.
-          I have hands-on experience in CAD design, FEA simulation, mechatronic prototyping, and manufacturing. 
+          I have hands-on experience in CAD design, FEA simulation, mechatronic prototyping, and manufacturing.
           At my recent internship with Relativity Space I desiged a modular gearbox from scratch and performed both hand calcualtions and FEA analysis to verify its structural integrity.
-          Finally, I was able to build, manufacture, and test the modular device of its functionaity and provide critical data for informing future design decisions. 
-          </p>
+          Finally, I was able to build, manufacture, and test the modular device of its functionaity and provide critical data for informing future design decisions.
+        </p>
       </div>
     </section>
 
-
-    <!-- Contact and message page linked to blzwiener@gmial.com -->
+    <!-- Contact and message page linked to email -->
     <section id="contact" class="contact">
-      <h2>Contact</h2>
+      <h2>Contact</h2> <!-- Heading for contact section -->
 
       <p>
         Or email me directly:
         <a href="mailto:blzwiener@gmail.com">blzwiener@gmail.com</a>
+        <!-- mailto link opens the visitor’s email app with your address prefilled -->
       </p>
 
       <form>
+        <!-- Label + input for sender email -->
         <label>
           Your email
           <input type="email" name="email" required />
+          <!-- type="email" gives basic email validation; required prevents empty submit -->
         </label>
+
+        <!-- Label + textarea for message body -->
         <label>
           Message
-          <textarea name="message" rows="4" placeholder="Hi Ben! My name is Joe and..." required></textarea>
+          <textarea
+            name="message"
+            rows="4"
+            placeholder="Hi Ben! My name is Joe and..."
+            required></textarea>
+          <!-- placeholder shows example text; required prevents empty submit -->
         </label>
+
         <button type="submit">Send</button>
+        <!-- Submit button for the form (currently no backend, so it just reloads) -->
       </form>
     </section>
 
   </main>
 </body>
-
 </html>
+
