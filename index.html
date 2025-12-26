@@ -9,12 +9,12 @@
       font-family: "Adobe Myungjo Std M", "Segoe UI", system-ui, sans-serif;
       margin: 0;
       background: #e2e2e2;
-      color: #605f5e;
+      color: #222222;
     }
 
     .site-header {
       display: flex;                  /* put h1 and nav in a row */
-      justify-content: space-between; /* name on left, nav on right */
+      flex-direction: column;         /* name on left, nav on right */
       align-items: center;            /* vertical centering */
       padding: 1rem 2rem;             /* space around the header */
       position: sticky;               /* keep header at top when scrolling */
@@ -22,17 +22,14 @@
       background: #fb3640;            /* header color */
     }
 
-    /* Navigation inside the header */
-    .site-header nav {
-      display: flex;                 /* lay out links horizontally */
-      gap: 1.5rem;                   /* spacing between links */
-      font-size: 1rem;               /* change to 1.2rem, 1.3rem, etc. for bigger links */
+    .site-header h1 {
+      margin: 0 0 0.5rem 0;     /* remove default top margin, add a little bottom */
     }
 
-    /* Individual links */
-    .site-header nav a {
-      color: #38bdf8;              /* link color */
-      text-decoration: none;         /* remove underline */
+    .site-header nav {
+      display: flex;
+      gap: 1.5rem;
+      font-size: 1rem;
     }
 
     .hero {
@@ -47,7 +44,7 @@
       height: 500px;
       border-radius: 50%;
       object-fit: cover;
-      border: 3px solid #38bdf8;
+      border: 3px solid #222222;
     }
 
     .contact {
