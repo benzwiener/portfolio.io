@@ -1,0 +1,32 @@
+# Notes from setting up inital project portfolio 
+
+# Step 1
+Create github repo and name (benzwiener/portfolio.io), enable pages, make it public 
+
+# Step 2 
+Create a starter page (index.html, code taken form perplexity.ai suggestion), turn it into a live page with the following commands (also install git first). Post these from terminal while folder in VScode is open
+
+    # Creates git repo in the folder and the first "commit" 
+    git init
+    git add index.html
+    git commit -m "Initial portfolio page" 
+
+    # renames code to main (commonly used and expected in github)
+    git branch -M main
+    git remote add origin https://github.com/your-username/your-repo-name.git
+
+    # Push commands to github
+    git push -u origin main
+
+then in github go to repo settings->pages and choose branch:main, folder:root and save changes 
+
+# Side Step
+    # Tells git your username and email and then helps to connect your git account to github
+    git config --global user.name "Your Name"
+    git config --global user.email "your-email@example.com"
+
+    
+
+
+
+
