@@ -47,22 +47,30 @@
     .site-header nav {
       display: flex;
       align-items: center;
-      gap: 1.2rem;
+      gap: 0.75rem;
       font-size: 1rem;
     }
 
-    .nav-link {
+    /* pill-style neutral nav button (Projects) */
+    .nav-pill {
       text-decoration: none;
-      color: #111827;
-      padding: 0.45rem 1rem;
+      padding: 0.6rem 1.7rem;
       border-radius: 999px;
-      transition: background 0.15s ease, color 0.15s ease;
+      background: #fde7df;       /* soft oval behind text */
+      color: #111827;
+      border: none;
+      font-size: 0.98rem;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
     }
 
-    .nav-link:hover {
-      background: #f3f4f6;
+    .nav-pill:hover {
+      background: #fbd2c3;
     }
 
+    /* red CTAs (LinkedIn, Contact, Resume) */
     .nav-cta {
       text-decoration: none;
       padding: 0.7rem 2.1rem;
@@ -84,10 +92,10 @@
     /* ===== Hero / about section ===== */
     .hero {
       display: grid;
-      grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr);
+      grid-template-columns: minmax(0, 1.6fr) minmax(0, 1fr);
       align-items: center;
       gap: 3rem;
-      padding: 4rem 3.5rem;
+      padding: 4rem 6rem 4rem 3.5rem; /* a bit more right padding to pull image inward */
       background: #f5e1dd;
       min-height: calc(100vh - 64px);
     }
@@ -99,17 +107,17 @@
     }
 
     .hero-left p {
-      font-family: "Playfair Display", "Times New Roman", serif; /* new bio font */
+      font-family: "Playfair Display", "Times New Roman", serif;
       font-size: 1.05rem;
-      line-height: 1.7;
-      max-width: 32rem;
+      line-height: 1.8;
+      max-width: 40rem;       /* let text span more space */
       margin: 0;
     }
 
     /* ===== Hero image card ===== */
     .hero-right {
       display: flex;
-      justify-content: center;
+      justify-content: flex-start;   /* move image closer to center */
     }
 
     .hero-card {
@@ -120,7 +128,7 @@
       align-items: center;
       justify-content: center;
       width: 100%;
-      max-width: 360px;
+      max-width: 340px;
       aspect-ratio: 4 / 5;
     }
 
@@ -210,7 +218,7 @@
     }
 
     /* ===== Mobile tweaks ===== */
-    @media (max-width: 800px) {
+    @media (max-width: 900px) {
       .site-header {
         padding: 0.75rem 1.25rem;
       }
@@ -226,6 +234,11 @@
 
       .hero-right {
         order: -1;
+        justify-content: center;
+      }
+
+      .hero-left p {
+        max-width: 100%;
       }
     }
   </style>
@@ -237,8 +250,18 @@
     <h1>Ben Zwiener</h1>
 
     <nav>
-      <!-- Projects now styled similarly to other items but not red -->
-      <a href="projects.html" class="nav-link">Projects</a>
+      <!-- Projects with oval background -->
+      <a href="projects.html" class="nav-pill">Projects</a>
+
+      <!-- Resume PDF button -->
+      <a
+        href="resume.pdf"
+        class="nav-cta"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        Resume
+      </a>
 
       <!-- LinkedIn button -->
       <a
@@ -261,14 +284,15 @@
     <!-- Hero / About section -->
     <section id="about" class="hero">
       <div class="hero-left">
-        <h2>Hey, I’m Ben.</h2>
+        <h2>A little about me</h2>
         <p>
-          I am a mechanical engineer recently graduated from the University of Nebraska-Lincoln specializing in robotics/mechatronics and mechanisms.
-          My thesis research focused on a novel variable stiffness mechanisms for industrial robotics (thesis), with publications at ASME IDETC conferences and a pending U.S. patent.
-          I also led the project team and the design of a Remote Ultrasound Robot seeking to expand access of specialized healthcare in remote communities.
-          I have hands-on experience in CAD design, FEA simulation, mechatronic prototyping, and manufacturing.
-          At my recent internship with Relativity Space I desiged a modular gearbox from scratch and performed both hand calcualtions and FEA analysis to verify its structural integrity.
-          Finally, I was able to build, manufacture, and test the modular device of its functionaity and provide critical data for informing future design decisions.
+          I am a mechanical engineer recently graduated from the University of Nebraska–Lincoln, specializing in robotics, mechatronics, and mechanisms. 
+          My thesis research focused on a novel variable stiffness mechanism for industrial robotics, resulting in publications at ASME IDETC conferences and a pending U.S. patent. 
+          I also led the design and project team for a Remote Ultrasound Robot aimed at expanding access to specialized healthcare in remote communities.
+
+          I have hands-on experience in CAD design, FEA simulation, mechatronic prototyping, and manufacturing. 
+          During my internship at Relativity Space, I designed a modular gearbox from scratch, performing both hand calculations and FEA to verify structural integrity, and ultimately built, 
+          tested, and validated the device to inform future design decisions.
         </p>
       </div>
 
@@ -325,5 +349,7 @@
   </script>
 </body>
 </html>
+
+
 
 
