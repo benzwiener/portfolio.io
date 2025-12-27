@@ -7,154 +7,261 @@
   <!-- Make layout responsive: width matches device width, initial zoom = 1 -->
 
   <style>
-    /* ===== Global page styles ===== */
-    body {
-      font-family: "Adobe Myungjo Std M", "Segoe UI", system-ui, sans-serif;
-      /* Try these fonts (works if user has them downloaded); failsafe is generic sans-serif */
-
-      margin: 1;
-      /* Remove default margin around the body so content touches the screen edge */
-
-      background: #e2e2e2;
-      /* Light gray background color for the whole page */
-
-      color: #222222;
-      /* Dark gray text color (easier on eyes than pure black) */
+    /* ===== Reset-ish ===== */
+    * {
+      box-sizing: border-box;
     }
 
-    /* ===== Header (name + nav bar at top) ===== */
+    /* ===== Global page styles ===== */
+    body {
+      margin: 0;
+      font-family: "Adobe Myungjo Std M", "Segoe UI", system-ui, -apple-system,
+        BlinkMacSystemFont, sans-serif;
+      background: #f5e1dd; /* soft pink-ish background similar to reference */
+      color: #1d1d1f;
+    }
+
+    /* ===== Top navigation bar ===== */
     .site-header {
-      display: flex;                 /* Lay out children (h1 and nav) using flexbox */
-      flex-direction: column;        /* Stack name and nav vertically */
-      align-items: center;           /* Center them horizontally in the header */
-      padding: 1rem 2rem;            /* Add space inside header (top/bottom, left/right) */
-      position: sticky;              /* Keep header visible when scrolling */
-      top: 0;                        /* Stick the header to the very top of the viewport */
-      background: #fb3640;           /* Red header background color */
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      background: #ffffff;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.75rem 3.5rem;
+      border-bottom: 1px solid #f1d5cf;
     }
 
     .site-header h1 {
-      margin: 0 0 0.5rem 0;          /* Remove top margin, add small bottom margin under name */
+      margin: 0;
+      font-size: 1.25rem;
+      font-weight: 600;
     }
 
     .site-header nav {
-      display: flex;                 /* Put nav links in a horizontal row */
-      gap: 1.5rem;                   /* Space between each nav link */
-      font-size: 1rem;               /* Base font size for nav links */
+      display: flex;
+      align-items: center;
+      gap: 1.75rem;
+      font-size: 0.95rem;
+    }
+
+    .site-header a {
+      text-decoration: none;
+      color: #111827;
+    }
+
+    /* pill-style button in header */
+    .nav-cta {
+      padding: 0.55rem 1.8rem;
+      border-radius: 999px;
+      background: #ff3b30;
+      color: #ffffff;
+      border: none;
+      font-size: 0.95rem;
     }
 
     /* ===== Hero / about section ===== */
     .hero {
-      display: flex;                 /* Put photo and text side‑by‑side */
-      align-items: center;           /* Vertically align photo and text block */
-      gap: 2rem;                     /* Space between photo and text */
-      padding: 3rem 2rem;            /* Space around the hero section */
+      display: grid;
+      grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr);
+      align-items: center;
+      gap: 3rem;
+      padding: 4rem 3.5rem;
+      background: #f5e1dd;
     }
 
-    .hero .avatar {
-      width: 700px;                  /* Display width of the avatar image */
-      height: 500px;                 /* Display height of the avatar image */
-      border-radius: 50%;            /* Make image appear circular/oval */
-      object-fit: cover;             /* Crop image so it fills width/height without distortion */
-      border: 3px solid #222222;     /* Dark border around the photo */
+    .hero-left h2 {
+      font-size: 3rem;
+      line-height: 1.1;
+      margin: 0 0 1.5rem 0;
+    }
+
+    .hero-left p {
+      font-size: 1rem;
+      line-height: 1.6;
+      max-width: 32rem;
+      margin: 0 0 2rem 0;
+    }
+
+    /* main CTA button in hero */
+    .hero-main-button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0.9rem 2.5rem;
+      border-radius: 999px;
+      background: #ff3b30;
+      color: #ffffff;
+      border: none;
+      font-size: 1rem;
+      text-decoration: none;
+      cursor: pointer;
+    }
+
+    /* ===== Hero image card ===== */
+    .hero-right {
+      display: flex;
+      justify-content: center;
+    }
+
+    .hero-card {
+      background: #f6cbbf; /* slightly deeper peach card behind image */
+      border-radius: 2.5rem;
+      padding: 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      max-width: 360px;
+      aspect-ratio: 4 / 5;
+    }
+
+    .hero-card img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 2rem;
     }
 
     /* ===== Contact section ===== */
     .contact {
-      padding: 2rem;                 /* Space inside the contact section */
+      padding: 3rem 3.5rem 4rem;
+      background: #ffffff;
+    }
+
+    .contact h2 {
+      margin-top: 0;
+    }
+
+    .contact p {
+      margin-bottom: 1.5rem;
     }
 
     .contact form {
-      display: flex;                 /* Use flex layout for the form fields */
-      flex-direction: column;        /* Stack labels/inputs vertically */
-      gap: 0.75rem;                  /* Space between form rows */
-      max-width: 400px;              /* Limit form width for readability */
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+      max-width: 400px;
     }
 
     .contact input,
     .contact textarea {
-      width: 100%;                   /* Input fields take full form width */
-      padding: 0.5rem;               /* Inner padding for better touch targets */
-      border-radius: 0.25rem;        /* Slightly rounded corners */
-      border: 1px solid #1f2937;     /* Dark border around inputs */
-      background: #020617;           /* Very dark background color for inputs */
-      color: #e5e7eb;                /* Light text color inside inputs */
+      width: 100%;
+      padding: 0.5rem;
+      border-radius: 0.25rem;
+      border: 1px solid #1f2937;
+      background: #020617;
+      color: #e5e7eb;
+    }
+
+    .contact button[type="submit"] {
+      width: fit-content;
+      padding: 0.6rem 1.6rem;
+      border-radius: 999px;
+      border: none;
+      background: #ff3b30;
+      color: #ffffff;
+      cursor: pointer;
+      font-size: 0.95rem;
+    }
+
+    /* ===== Mobile tweaks ===== */
+    @media (max-width: 800px) {
+      .site-header {
+        padding: 0.75rem 1.25rem;
+      }
+
+      .hero {
+        grid-template-columns: 1fr;
+        padding: 3rem 1.25rem;
+      }
+
+      .hero-left h2 {
+        font-size: 2.3rem;
+      }
+
+      .hero-right {
+        order: -1; /* show image above text on mobile */
+      }
+
+      .contact {
+        padding: 2.5rem 1.25rem 3rem;
+      }
     }
   </style>
 </head>
 
-<body> <!-- Visible content of the page starts here -->
+<body>
+  <!-- Top navigation / branding -->
   <header class="site-header">
-    <h1>Ben Zwiener</h1> <!-- Your name, main heading at top of page -->
+    <h1>Ben Zwiener</h1>
 
     <nav>
-      <!-- Navigation links: jump to sections or other pages -->
-      <a href="#about">About</a>           <!-- Scrolls to the section with id="about" -->
-      <a href="projects.html">Projects</a> <!-- Opens your projects page -->
-      <a href="resume.pdf" target="_blank">Resume</a>
-      <!-- Opens your resume PDF in a new tab -->
-      <a href="#contact">Contact</a>       <!-- Scrolls to the section with id="contact" -->
+      <a href="projects.html">Projects</a>
+      <a href="#contact" class="nav-cta">Contact</a>
     </nav>
   </header>
 
-  <main> <!-- Main content area of the page -->
-
-    <!-- About / Hero section -->
+  <main>
+    <!-- Hero / About section -->
     <section id="about" class="hero">
-      <!-- Your profile photo -->
-      <img src="me.JPG"
-           alt="Ben Zwiener - Mechanical Engineer"
-           class="avatar" />
-      <!-- alt text is read by screen readers and used if the image fails to load -->
-
-      <div>
-        <h2>A little about me</h2> <!-- Section heading for the about text -->
+      <!-- Left side: text -->
+      <div class="hero-left">
+        <h2>Hey, I’m Ben.</h2>
         <p>
-          I am a mechanical engineer recently graduated from the University of Nebraska-Lincoln specializing in robotics/mechatronics and mechanisms.
-          My thesis research focused on a novel variable stiffness mechanisms for industrial robotics (thesis), with publications at ASME IDETC conferences and a pending U.S. patent.
-          I also led the project team and the design of a Remote Ultrasound Robot seeking to expand access of specialized healthcare in remote communities.
-          I have hands-on experience in CAD design, FEA simulation, mechatronic prototyping, and manufacturing.
-          At my recent internship with Relativity Space I desiged a modular gearbox from scratch and performed both hand calcualtions and FEA analysis to verify its structural integrity.
-          Finally, I was able to build, manufacture, and test the modular device of its functionaity and provide critical data for informing future design decisions.
+          I am a mechanical engineer recently graduated from the University of
+          Nebraska–Lincoln specializing in robotics, mechatronics, and mechanisms.
+          My work focuses on designing and prototyping practical robotic systems
+          for manufacturing, healthcare, and space applications.
         </p>
+        <a href="projects.html" class="hero-main-button">
+          View My Projects
+        </a>
+      </div>
+
+      <!-- Right side: image card -->
+      <div class="hero-right">
+        <div class="hero-card">
+          <img
+            src="me.JPG"
+            alt="Ben Zwiener - Mechanical Engineer"
+          />
+        </div>
       </div>
     </section>
 
-    <!-- Contact and message page linked to email -->
+    <!-- Contact and message section -->
     <section id="contact" class="contact">
-      <h2>Contact</h2> <!-- Heading for contact section -->
+      <h2>Contact</h2>
 
       <p>
         Or email me directly:
         <a href="mailto:blzwiener@gmail.com">blzwiener@gmail.com</a>
-        <!-- mailto link opens the visitor’s email app with your address prefilled -->
       </p>
 
       <form>
-        <!-- Label + input for sender email -->
         <label>
           Your email
           <input type="email" name="email" required />
-          <!-- type="email" gives basic email validation; required prevents empty submit -->
         </label>
 
-        <!-- Label + textarea for message body -->
         <label>
           Message
           <textarea
             name="message"
             rows="4"
             placeholder="Hi Ben! My name is Joe and..."
-            required></textarea>
-          <!-- placeholder shows example text; required prevents empty submit -->
+            required
+          ></textarea>
         </label>
 
         <button type="submit">Send</button>
-        <!-- Submit button for the form (currently no backend, so it just reloads) -->
       </form>
     </section>
-
   </main>
 </body>
 </html>
+
 
