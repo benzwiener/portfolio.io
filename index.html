@@ -1,23 +1,20 @@
-<!DOCTYPE html> <!-- Tell the browser its a HTML5 document -->
-<html lang="en"> <!-- Root element; lang="en" helps accessibility and SEO -->
+<!DOCTYPE html>
+<html lang="en">
 <head>
-  <meta charset="UTF-8" /> <!-- Use UTF‑8 character encoding for the page -->
-  <title>Ben Zwiener | Portfolio</title> <!-- Text shown in the browser tab and search results -->
+  <meta charset="UTF-8" />
+  <title>Ben Zwiener | Portfolio</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <!-- Make layout responsive: width matches device width, initial zoom = 1 -->
 
   <style>
-    /* ===== Reset-ish ===== */
     * {
       box-sizing: border-box;
     }
 
-    /* ===== Global page styles ===== */
     body {
       margin: 0;
       font-family: "Adobe Myungjo Std M", "Segoe UI", system-ui, -apple-system,
         BlinkMacSystemFont, sans-serif;
-      background: #f5e1dd; /* soft pink-ish background similar to reference */
+      background: #f5e1dd;
       color: #1d1d1f;
     }
 
@@ -36,15 +33,16 @@
 
     .site-header h1 {
       margin: 0;
-      font-size: 1.25rem;
+      font-size: 1.6rem;        /* increased size */
+      font-style: italic;       /* italicized name */
       font-weight: 600;
     }
 
     .site-header nav {
       display: flex;
       align-items: center;
-      gap: 1.75rem;
-      font-size: 0.95rem;
+      gap: 1.9rem;              /* slightly more space */
+      font-size: 1rem;          /* slightly larger nav text */
     }
 
     .site-header a {
@@ -52,14 +50,14 @@
       color: #111827;
     }
 
-    /* pill-style button in header */
+    /* pill-style button in header (Contact + LinkedIn) */
     .nav-cta {
-      padding: 0.55rem 1.8rem;
+      padding: 0.7rem 2.1rem;   /* bigger buttons */
       border-radius: 999px;
       background: #ff3b30;
       color: #ffffff;
       border: none;
-      font-size: 0.95rem;
+      font-size: 1rem;
     }
 
     /* ===== Hero / about section ===== */
@@ -82,22 +80,7 @@
       font-size: 1rem;
       line-height: 1.6;
       max-width: 32rem;
-      margin: 0 0 2rem 0;
-    }
-
-    /* main CTA button in hero */
-    .hero-main-button {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      padding: 0.9rem 2.5rem;
-      border-radius: 999px;
-      background: #ff3b30;
-      color: #ffffff;
-      border: none;
-      font-size: 1rem;
-      text-decoration: none;
-      cursor: pointer;
+      margin: 0;                /* no extra margin below since button removed */
     }
 
     /* ===== Hero image card ===== */
@@ -107,7 +90,7 @@
     }
 
     .hero-card {
-      background: #f6cbbf; /* slightly deeper peach card behind image */
+      background: #f6cbbf;
       border-radius: 2.5rem;
       padding: 1.5rem;
       display: flex;
@@ -183,7 +166,7 @@
       }
 
       .hero-right {
-        order: -1; /* show image above text on mobile */
+        order: -1;
       }
 
       .contact {
@@ -199,7 +182,20 @@
     <h1>Ben Zwiener</h1>
 
     <nav>
+      <!-- Projects link, slightly larger now via nav font-size -->
       <a href="projects.html">Projects</a>
+
+      <!-- LinkedIn button -->
+      <a
+        href="https://www.linkedin.com/in/YOUR-LINKEDIN-HANDLE"
+        class="nav-cta"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        LinkedIn
+      </a>
+
+      <!-- Contact button -->
       <a href="#contact" class="nav-cta">Contact</a>
     </nav>
   </header>
@@ -207,21 +203,19 @@
   <main>
     <!-- Hero / About section -->
     <section id="about" class="hero">
-      <!-- Left side: text -->
       <div class="hero-left">
         <h2>Hey, I’m Ben.</h2>
         <p>
-          I am a mechanical engineer recently graduated from the University of
-          Nebraska–Lincoln specializing in robotics, mechatronics, and mechanisms.
-          My work focuses on designing and prototyping practical robotic systems
-          for manufacturing, healthcare, and space applications.
+          I am a mechanical engineer recently graduated from the University of Nebraska-Lincoln specializing in robotics/mechatronics and mechanisms.
+          My thesis research focused on a novel variable stiffness mechanisms for industrial robotics (thesis), with publications at ASME IDETC conferences and a pending U.S. patent.
+          I also led the project team and the design of a Remote Ultrasound Robot seeking to expand access of specialized healthcare in remote communities.
+          I have hands-on experience in CAD design, FEA simulation, mechatronic prototyping, and manufacturing.
+          At my recent internship with Relativity Space I desiged a modular gearbox from scratch and performed both hand calcualtions and FEA analysis to verify its structural integrity.
+          Finally, I was able to build, manufacture, and test the modular device of its functionaity and provide critical data for informing future design decisions.
         </p>
-        <a href="projects.html" class="hero-main-button">
-          View My Projects
-        </a>
+        <!-- hero-main-button removed as requested -->
       </div>
 
-      <!-- Right side: image card -->
       <div class="hero-right">
         <div class="hero-card">
           <img
@@ -263,5 +257,4 @@
   </main>
 </body>
 </html>
-
 
