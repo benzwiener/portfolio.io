@@ -5,6 +5,12 @@
   <title>Ben Zwiener | Portfolio</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
+  <!-- Fancier but professional serif for bio -->
+  <link
+    rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500&display=swap"
+  />
+
   <style>
     * {
       box-sizing: border-box;
@@ -22,7 +28,7 @@
     .site-header {
       position: sticky;
       top: 0;
-      z-index: 10;
+      z-index: 20;
       background: #ffffff;
       display: flex;
       align-items: center;
@@ -33,31 +39,46 @@
 
     .site-header h1 {
       margin: 0;
-      font-size: 1.6rem;        /* increased size */
-      font-style: italic;       /* italicized name */
+      font-size: 1.6rem;
+      font-style: italic;
       font-weight: 600;
     }
 
     .site-header nav {
       display: flex;
       align-items: center;
-      gap: 1.9rem;              /* slightly more space */
-      font-size: 1rem;          /* slightly larger nav text */
+      gap: 1.2rem;
+      font-size: 1rem;
     }
 
-    .site-header a {
+    .nav-link {
       text-decoration: none;
       color: #111827;
+      padding: 0.45rem 1rem;
+      border-radius: 999px;
+      transition: background 0.15s ease, color 0.15s ease;
     }
 
-    /* pill-style button in header (Contact + LinkedIn) */
+    .nav-link:hover {
+      background: #f3f4f6;
+    }
+
     .nav-cta {
-      padding: 0.7rem 2.1rem;   /* bigger buttons */
+      text-decoration: none;
+      padding: 0.7rem 2.1rem;
       border-radius: 999px;
       background: #ff3b30;
       color: #ffffff;
       border: none;
       font-size: 1rem;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .nav-cta:hover {
+      filter: brightness(0.95);
     }
 
     /* ===== Hero / about section ===== */
@@ -68,6 +89,7 @@
       gap: 3rem;
       padding: 4rem 3.5rem;
       background: #f5e1dd;
+      min-height: calc(100vh - 64px);
     }
 
     .hero-left h2 {
@@ -77,10 +99,11 @@
     }
 
     .hero-left p {
-      font-size: 1rem;
-      line-height: 1.6;
+      font-family: "Playfair Display", "Times New Roman", serif; /* new bio font */
+      font-size: 1.05rem;
+      line-height: 1.7;
       max-width: 32rem;
-      margin: 0;                /* no extra margin below since button removed */
+      margin: 0;
     }
 
     /* ===== Hero image card ===== */
@@ -108,40 +131,76 @@
       border-radius: 2rem;
     }
 
-    /* ===== Contact section ===== */
-    .contact {
-      padding: 3rem 3.5rem 4rem;
+    /* ===== Contact modal ===== */
+    .modal-backdrop {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.3);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 30;
+    }
+
+    .modal {
       background: #ffffff;
+      border-radius: 1.5rem;
+      padding: 2rem 2.25rem;
+      width: 100%;
+      max-width: 420px;
+      box-shadow: 0 18px 40px rgba(15, 23, 42, 0.25);
     }
 
-    .contact h2 {
+    .modal-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1rem;
+    }
+
+    .modal-header h3 {
+      margin: 0;
+      font-size: 1.4rem;
+    }
+
+    .modal-close {
+      border: none;
+      background: transparent;
+      font-size: 1.3rem;
+      cursor: pointer;
+      line-height: 1;
+    }
+
+    .modal p {
       margin-top: 0;
+      margin-bottom: 1rem;
+      font-size: 0.95rem;
     }
 
-    .contact p {
-      margin-bottom: 1.5rem;
-    }
-
-    .contact form {
+    .modal form {
       display: flex;
       flex-direction: column;
       gap: 0.75rem;
-      max-width: 400px;
     }
 
-    .contact input,
-    .contact textarea {
+    .modal input,
+    .modal textarea {
       width: 100%;
-      padding: 0.5rem;
-      border-radius: 0.25rem;
-      border: 1px solid #1f2937;
-      background: #020617;
-      color: #e5e7eb;
+      padding: 0.55rem;
+      border-radius: 0.35rem;
+      border: 1px solid #d1d5db;
+      font-size: 0.95rem;
     }
 
-    .contact button[type="submit"] {
-      width: fit-content;
-      padding: 0.6rem 1.6rem;
+    .modal textarea {
+      resize: vertical;
+      min-height: 90px;
+    }
+
+    .modal button[type="submit"] {
+      align-self: flex-start;
+      margin-top: 0.25rem;
+      padding: 0.65rem 1.8rem;
       border-radius: 999px;
       border: none;
       background: #ff3b30;
@@ -168,10 +227,6 @@
       .hero-right {
         order: -1;
       }
-
-      .contact {
-        padding: 2.5rem 1.25rem 3rem;
-      }
     }
   </style>
 </head>
@@ -182,8 +237,8 @@
     <h1>Ben Zwiener</h1>
 
     <nav>
-      <!-- Projects link, slightly larger now via nav font-size -->
-      <a href="projects.html">Projects</a>
+      <!-- Projects now styled similarly to other items but not red -->
+      <a href="projects.html" class="nav-link">Projects</a>
 
       <!-- LinkedIn button -->
       <a
@@ -195,8 +250,10 @@
         LinkedIn
       </a>
 
-      <!-- Contact button -->
-      <a href="#contact" class="nav-cta">Contact</a>
+      <!-- Contact opens modal -->
+      <button type="button" class="nav-cta" id="contact-open">
+        Contact
+      </button>
     </nav>
   </header>
 
@@ -213,7 +270,6 @@
           At my recent internship with Relativity Space I desiged a modular gearbox from scratch and performed both hand calcualtions and FEA analysis to verify its structural integrity.
           Finally, I was able to build, manufacture, and test the modular device of its functionaity and provide critical data for informing future design decisions.
         </p>
-        <!-- hero-main-button removed as requested -->
       </div>
 
       <div class="hero-right">
@@ -225,36 +281,49 @@
         </div>
       </div>
     </section>
+  </main>
 
-    <!-- Contact and message section -->
-    <section id="contact" class="contact">
-      <h2>Contact</h2>
-
+  <!-- Contact modal -->
+  <div class="modal-backdrop" id="contact-modal">
+    <div class="modal">
+      <div class="modal-header">
+        <h3>Contact Ben</h3>
+        <button class="modal-close" id="contact-close" aria-label="Close contact form">
+          &times;
+        </button>
+      </div>
       <p>
-        Or email me directly:
-        <a href="mailto:blzwiener@gmail.com">blzwiener@gmail.com</a>
+        Fill this out to send a quick message. You can also email me directly at
+        <a href="mailto:blzwiener@gmail.com">blzwiener@gmail.com</a>.
       </p>
-
       <form>
-        <label>
-          Your email
-          <input type="email" name="email" required />
-        </label>
-
-        <label>
-          Message
-          <textarea
-            name="message"
-            rows="4"
-            placeholder="Hi Ben! My name is Joe and..."
-            required
-          ></textarea>
-        </label>
-
+        <input type="email" name="email" placeholder="Your email" required />
+        <textarea name="message" placeholder="Hi Ben! My name is..." required></textarea>
         <button type="submit">Send</button>
       </form>
-    </section>
-  </main>
+    </div>
+  </div>
+
+  <script>
+    const openBtn = document.getElementById("contact-open");
+    const closeBtn = document.getElementById("contact-close");
+    const modal = document.getElementById("contact-modal");
+
+    openBtn.addEventListener("click", () => {
+      modal.style.display = "flex";
+    });
+
+    closeBtn.addEventListener("click", () => {
+      modal.style.display = "none";
+    });
+
+    modal.addEventListener("click", (e) => {
+      if (e.target === modal) {
+        modal.style.display = "none";
+      }
+    });
+  </script>
 </body>
 </html>
+
 
