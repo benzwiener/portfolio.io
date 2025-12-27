@@ -2,32 +2,366 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Your Name | Projects</title>
+  <title>Ben Zwiener | Projects</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <link rel="stylesheet" href="styles.css" />
+
+  <!-- Same fonts as index -->
+  <link
+    rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500&display=swap"
+  />
+  <link
+    rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600&display=swap"
+  />
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+        sans-serif;
+      background: #e7eaee; /* match index */
+      color: #1d1f23;
+    }
+
+    /* ===== Header (copied from index, but with Home button) ===== */
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      background: #2e3a4a;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.9rem 3.5rem;
+      border-bottom: 1px solid #222a36;
+    }
+
+    .site-header h1 {
+      margin: 0;
+      font-family: "Poppins", system-ui, sans-serif;
+      font-size: 1.9rem;
+      font-style: italic;
+      font-weight: 600;
+      color: #f9fafb;
+    }
+
+    .site-header nav {
+      display: flex;
+      align-items: center;
+      gap: 0.85rem;
+      font-size: 1.02rem;
+    }
+
+    .nav-pill {
+      font-family: "Poppins", system-ui, sans-serif;
+      text-decoration: none;
+      padding: 0.7rem 1.9rem;
+      border-radius: 999px;
+      background: #42526b;
+      color: #f9fafb;
+      border: none;
+      font-size: 1.02rem;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.15s ease, transform 0.1s ease;
+    }
+
+    .nav-pill:hover {
+      background: #556582;
+      transform: translateY(-1px);
+    }
+
+    .nav-cta {
+      font-family: "Poppins", system-ui, sans-serif;
+      text-decoration: none;
+      padding: 0.8rem 2.3rem;
+      border-radius: 999px;
+      background: #1f7aa7;
+      color: #ffffff;
+      border: none;
+      font-size: 1.05rem;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.15s ease, transform 0.1s ease;
+    }
+
+    .nav-cta:hover {
+      background: #155777;
+      transform: translateY(-1px);
+    }
+
+    /* ===== Projects page layout ===== */
+    .projects-main {
+      max-width: 1100px;
+      margin: 2.5rem auto 3.5rem;
+      padding: 0 1.5rem;
+    }
+
+    .projects-main h2 {
+      font-size: 2.4rem;
+      margin: 0 0 1.25rem 0;
+      color: #111827;
+    }
+
+    .projects-intro {
+      font-family: "Playfair Display", "Times New Roman", serif;
+      font-size: 1.02rem;
+      line-height: 1.7;
+      color: #262a32;
+      margin: 0 0 2.2rem 0;
+      max-width: 42rem;
+    }
+
+    .project-list {
+      display: flex;
+      flex-direction: column;
+      gap: 2.5rem;
+      margin-bottom: 2.5rem;
+    }
+
+    .project-card {
+      background: #f3f5f8;
+      border-radius: 1.75rem;
+      padding: 1.5rem 1.75rem;
+      box-shadow: 0 12px 24px rgba(15, 23, 42, 0.12);
+    }
+
+    .project-title {
+      font-size: 1.5rem;
+      margin: 0 0 1rem 0;
+      color: #111827;
+      font-family: "Poppins", system-ui, sans-serif;
+    }
+
+    .project-content {
+      display: grid;
+      grid-template-columns: minmax(0, 1.2fr) minmax(0, 1.4fr);
+      gap: 1.5rem;
+      align-items: start;
+    }
+
+    .project-media {
+      border-radius: 1.25rem;
+      overflow: hidden;
+      background: #c2c9d3;
+    }
+
+    .project-media img,
+    .project-media video {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .project-text p {
+      margin: 0 0 0.75rem 0;
+      font-size: 0.98rem;
+      line-height: 1.7;
+      color: #333741;
+      font-family: "Playfair Display", "Times New Roman", serif;
+    }
+
+    .project-meta {
+      font-size: 0.9rem;
+      margin-bottom: 0.7rem;
+    }
+
+    .project-links a {
+      font-size: 0.9rem;
+      text-decoration: none;
+      color: #1f7aa7;
+      margin-right: 0.5rem;
+    }
+
+    .project-links a:hover {
+      text-decoration: underline;
+    }
+
+    /* ===== Responsive ===== */
+    @media (max-width: 800px) {
+      .site-header {
+        padding: 0.8rem 1.25rem;
+      }
+
+      .projects-main {
+        margin-top: 2rem;
+      }
+
+      .project-content {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
 </head>
 <body>
   <header class="site-header">
-    <h1>Projects</h1>
+    <h1>Ben Zwiener</h1>
+
     <nav>
-      <a href="index.html#about">About</a>
-      <a href="index.html">Home</a>
+      <!-- Home instead of Projects here -->
+      <a href="index.html" class="nav-pill">Home</a>
+
+      <a
+        href="resume.pdf"
+        class="nav-cta"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        Resume
+      </a>
+
+      <a
+        href="https://www.linkedin.com/in/benjamin-zwiener-3621591a0"
+        class="nav-cta"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        LinkedIn
+      </a>
+
+      <!-- Contact can just jump back to the modal trigger on index -->
+      <a href="index.html#contact" class="nav-cta">
+        Contact
+      </a>
     </nav>
   </header>
 
-  <main style="padding: 2rem;">
-    <article class="project">
-      <h2>Project One</h2>
-      <p>1–2 sentence description of what the project does and what makes it interesting.</p>
-      <p><strong>Tech:</strong> React, Node, PostgreSQL</p>
-      <p>
-        <a href="https://github.com/your-username/project-one" target="_blank">Source</a>
-        ·
-        <a href="https://your-demo-url.com" target="_blank">Live demo</a>
-      </p>
-    </article>
+  <main class="projects-main">
+    <h2>Selected projects</h2>
+    <p class="projects-intro">
+      A few of the engineering and robotics projects that reflect my interests in
+      mechanisms, variable stiffness systems, and practical mechatronic design.
+    </p>
 
-    <!-- Duplicate <article> blocks for more projects -->
+    <section class="project-list">
+
+      <!-- Project 1 -->
+      <article class="project-card">
+        <h3 class="project-title">Variable Stiffness Robot Joint</h3>
+        <div class="project-content">
+          <div class="project-media">
+            <!-- Replace src with your GIF or MP4 -->
+            <video src="media/vsrj-demo.mp4" autoplay loop muted playsinline></video>
+          </div>
+          <div class="project-text">
+            <p>
+              Research prototype of a variable stiffness joint for industrial robots,
+              designed to adapt compliance in real time for safety and performance.
+            </p>
+            <p class="project-meta">
+              <strong>Tech:</strong> CAD, FEA, embedded control, rapid prototyping
+            </p>
+            <p class="project-links">
+              <a href="https://github.com/your-username/vsrj" target="_blank">Source</a>
+              ·
+              <a href="#" target="_blank">Paper / slides</a>
+            </p>
+          </div>
+        </div>
+      </article>
+
+      <!-- Project 2 -->
+      <article class="project-card">
+        <h3 class="project-title">Remote Ultrasound Robot</h3>
+        <div class="project-content">
+          <div class="project-media">
+            <video src="media/ultrasound-robot.mp4" autoplay loop muted playsinline></video>
+          </div>
+          <div class="project-text">
+            <p>
+              Teleoperated robot that positions an ultrasound probe, aimed at expanding
+              access to specialized imaging in remote or underserved communities.
+            </p>
+            <p class="project-meta">
+              <strong>Tech:</strong> Mechanism design, mechatronics, ROS, teleoperation
+            </p>
+            <p class="project-links">
+              <a href="https://github.com/your-username/ultrasound-robot" target="_blank">Source</a>
+              ·
+              <a href="#" target="_blank">Demo video</a>
+            </p>
+          </div>
+        </div>
+      </article>
+
+      <!-- Project 3 -->
+      <article class="project-card">
+        <h3 class="project-title">Modular Gearbox for Launch Vehicle</h3>
+        <div class="project-content">
+          <div class="project-media">
+            <video src="media/gearbox.mp4" autoplay loop muted playsinline></video>
+          </div>
+          <div class="project-text">
+            <p>
+              Modular gearbox designed during an internship to simplify integration
+              and testing, validated with hand calculations and FEA against mission loads.
+            </p>
+            <p class="project-meta">
+              <strong>Tech:</strong> Gear design, ANSYS/FEA, DFM, testing
+            </p>
+            <p class="project-links">
+              <a href="#" target="_blank">Design summary</a>
+            </p>
+          </div>
+        </div>
+      </article>
+
+      <!-- Project 4 -->
+      <article class="project-card">
+        <h3 class="project-title">Robotics Mechanism Prototypes</h3>
+        <div class="project-content">
+          <div class="project-media">
+            <video src="media/mechanism-prototypes.mp4" autoplay loop muted playsinline></video>
+          </div>
+          <div class="project-text">
+            <p>
+              Series of bench‑top mechanisms exploring motion transmission, compliance,
+              and compact actuation for future robotics applications.
+            </p>
+            <p class="project-meta">
+              <strong>Tech:</strong> 3D printing, rapid prototyping, experiment design
+            </p>
+            <p class="project-links">
+              <a href="https://github.com/your-username/mechanism-prototypes" target="_blank">Source</a>
+            </p>
+          </div>
+        </div>
+      </article>
+
+      <!-- Project 5 -->
+      <article class="project-card">
+        <h3 class="project-title">Analysis Tools for Mechanism Design</h3>
+        <div class="project-content">
+          <div class="project-media">
+            <video src="media/analysis-tools.mp4" autoplay loop muted playsinline></video>
+          </div>
+          <div class="project-text">
+            <p>
+              Small suite of scripts and tools for kinematic analysis, stiffness
+              estimation, and design iteration of novel mechanisms.
+            </p>
+            <p class="project-meta">
+              <strong>Tech:</strong> Python, MATLAB, numerical methods
+            </p>
+            <p class="project-links">
+              <a href="https://github.com/your-username/mech-analysis-tools" target="_blank">Source</a>
+            </p>
+          </div>
+        </div>
+      </article>
+
+    </section>
   </main>
 </body>
 </html>
+
