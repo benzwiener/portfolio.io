@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Ben Zwiener | Portfolio</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <!-- Bio serif font -->
+  <link
+    rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500&display=swap"
+  />
+  <!-- Header + buttons sans-serif font -->
+  <link
+    rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600&display=swap"
+  />
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+        sans-serif;
+      background: #e7eaee;       /* softer, slightly cool light gray */
+      color: #1d1f23;
+    }
+
+    /* ===== Top navigation bar ===== */
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      background: #2e3a4a;      /* blue‑gray */
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.9rem 3.5rem;
+      border-bottom: 1px solid #222a36;
+    }
+
+    .site-header h1 {
+      margin: 0;
+      font-family: "Poppins", system-ui, sans-serif;
+      font-size: 1.9rem;        /* bigger name */
+      font-style: italic;
+      font-weight: 600;
+      color: #f9fafb;
+    }
+
+    .site-header nav {
+      display: flex;
+      align-items: center;
+      gap: 0.85rem;
+      font-size: 1.02rem;
+    }
+
+    /* neutral pill (Projects) */
+    .nav-pill {
+      font-family: "Poppins", system-ui, sans-serif;
+      text-decoration: none;
+      padding: 0.7rem 1.9rem;   /* bigger pill */
+      border-radius: 999px;
+      background: #42526b;      /* desaturated blue‑gray */
+      color: #f9fafb;
+      border: none;
+      font-size: 1.02rem;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.15s ease, transform 0.1s ease;
+    }
+
+    .nav-pill:hover {
+      background: #556582;
+      transform: translateY(-1px);
+    }
+
+    /* primary CTAs (Resume, LinkedIn, Contact) */
+    .nav-cta {
+      font-family: "Poppins", system-ui, sans-serif;
+      text-decoration: none;
+      padding: 0.8rem 2.3rem;
+      border-radius: 999px;
+      background: #1f7aa7;      /* accent blue */
+      color: #ffffff;
+      border: none;
+      font-size: 1.05rem;       /* slightly larger */
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.15s ease, transform 0.1s ease;
+    }
+
+    .nav-cta:hover {
+      background: #155777;
+      transform: translateY(-1px);
+    }
+
+    /* ===== Hero / about section ===== */
+    .hero {
+      display: grid;
+      grid-template-columns: minmax(0, 1.7fr) minmax(0, 1fr); /* a bit more space for text */
+      align-items: center;
+      gap: 3rem;
+      padding: 2.5rem 6rem 3rem 3.5rem; /* less top padding so content sits higher */
+      background: #e7eaee;
+      min-height: calc(100vh - 72px);
+    }
+
+    .hero-left h2 {
+      font-size: 3rem;
+      line-height: 1.1;
+      margin: 0 0 1.5rem 0;
+      color: #111827;
+    }
+
+    .hero-left p {
+      font-family: "Playfair Display", "Times New Roman", serif;
+      font-size: 1.06rem;
+      line-height: 1.8;
+      max-width: 44rem;  /* was 40rem */
+      margin: 0;
+      color: #262a32;
+    }
+
+    /* ===== Hero image card ===== */
+    .hero-right {
+      display: flex;
+      justify-content: flex-start;
+    }
+
+    .hero-card {
+      background: #c2c9d3;      /* lighter blue‑gray card */
+      border-radius: 2.5rem;
+      padding: 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      max-width: 340px;
+      aspect-ratio: 4 / 5;
+      box-shadow: 0 16px 30px rgba(15, 23, 42, 0.25);
+    }
+
+    .hero-card img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 2rem;
+    }
+
+    /* ===== Contact modal ===== */
+    .modal-backdrop {
+      position: fixed;
+      inset: 0;
+      background: rgba(15, 23, 42, 0.35);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 30;
+    }
+
+    .modal {
+      background: #ffffff;
+      border-radius: 1.5rem;
+      padding: 2rem 2.25rem;
+      width: 100%;
+      max-width: 420px;
+      box-shadow: 0 18px 40px rgba(15, 23, 42, 0.35);
+    }
+
+    .modal-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1rem;
+    }
+
+    .modal-header h3 {
+      margin: 0;
+      font-size: 1.4rem;
+      font-family: "Poppins", system-ui, sans-serif;
+      color: #111827;
+    }
+
+    .modal-close {
+      border: none;
+      background: transparent;
+      font-size: 1.3rem;
+      cursor: pointer;
+      line-height: 1;
+    }
+
+    .modal p {
+      margin-top: 0;
+      margin-bottom: 1rem;
+      font-size: 0.95rem;
+    }
+
+    .modal form {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+
+    .modal input,
+    .modal textarea {
+      width: 100%;
+      padding: 0.55rem;
+      border-radius: 0.35rem;
+      border: 1px solid #d1d5db;
+      font-size: 0.95rem;
+    }
+
+    .modal textarea {
+      resize: vertical;
+      min-height: 90px;
+    }
+
+    .modal button[type="submit"] {
+      align-self: flex-start;
+      margin-top: 0.25rem;
+      padding: 0.65rem 1.8rem;
+      border-radius: 999px;
+      border: none;
+      background: #1f7aa7;
+      color: #ffffff;
+      cursor: pointer;
+      font-size: 0.95rem;
+      font-family: "Poppins", system-ui, sans-serif;
+    }
+
+    /* ===== Mobile tweaks ===== */
+    @media (max-width: 900px) {
+      .site-header {
+        padding: 0.75rem 1.25rem;
+      }
+
+      .hero {
+        grid-template-columns: 1fr;
+        padding: 3rem 1.25rem;
+      }
+
+      .hero-left h2 {
+        font-size: 2.3rem;
+      }
+
+      .hero-right {
+        order: -1;
+        justify-content: center;
+      }
+
+      .hero-left p {
+        max-width: 100%;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Top navigation / branding -->
+  <header class="site-header">
+    <h1>Ben Zwiener</h1>
+
+    <nav>
+      <!-- Projects pill -->
+      <a href="projects.html" class="nav-pill">Projects</a>
+
+      <!-- Resume PDF button -->
+      <a
+        href="resume.pdf"
+        class="nav-cta"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        Resume
+      </a>
+
+      <!-- LinkedIn button -->
+      <a
+        href="https://www.linkedin.com/in/benjamin-zwiener-3621591a0"
+        class="nav-cta"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        LinkedIn
+      </a>
+
+      <!-- Contact opens modal -->
+      <button type="button" class="nav-cta" id="contact-open">
+        Contact
+      </button>
+    </nav>
+  </header>
+
+  <main>
+    <!-- Hero / About section -->
+    <section id="about" class="hero">
+      <div class="hero-left">
+        <h2>A little about me</h2>
+        <p>
+          I am a mechanical engineer recently graduated from the University of Nebraska–Lincoln, specializing in robotics, mechatronics, and mechanisms. 
+          My thesis research focused on a novel variable stiffness mechanism for industrial robotics, resulting in publications at ASME IDETC conferences and a pending U.S. patent. 
+          I also led the design and project team for a Remote Ultrasound Robot aimed at expanding access to specialized healthcare in remote communities.
+          I have hands-on experience in CAD design, FEA simulation, mechatronic prototyping, and manufacturing. 
+          During my internship at Relativity Space, I designed a modular gearbox from scratch, performing both hand calculations and FEA to verify structural integrity, and ultimately built, 
+          tested, and validated the device to inform future design decisions.
+        </p>
+      </div>
+
+      <div class="hero-right">
+        <div class="hero-card">
+          <img
+            src="me.JPG"
+            alt="Ben Zwiener - Mechanical Engineer"
+          />
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Contact modal -->
+  <div class="modal-backdrop" id="contact-modal">
+    <div class="modal">
+      <div class="modal-header">
+        <h3>Contact Ben</h3>
+        <button class="modal-close" id="contact-close" aria-label="Close contact form">
+          &times;
+        </button>
+      </div>
+      <p>
+        Fill this out to send a quick message. You can also email me directly at
+        <a href="mailto:blzwiener@gmail.com">blzwiener@gmail.com</a>.
+      </p>
+      <form>
+        <input type="email" name="email" placeholder="Your email" required />
+        <textarea name="message" placeholder="Hi Ben! My name is..." required></textarea>
+        <button type="submit">Send</button>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    const openBtn = document.getElementById("contact-open");
+    const closeBtn = document.getElementById("contact-close");
+    const modal = document.getElementById("contact-modal");
+
+    openBtn.addEventListener("click", () => {
+      modal.style.display = "flex";
+    });
+
+    closeBtn.addEventListener("click", () => {
+      modal.style.display = "none";
+    });
+
+    modal.addEventListener("click", (e) => {
+      if (e.target === modal) {
+        modal.style.display = "none";
+      }
+    });
+  </script>
+</body>
+</html>
+
+
+

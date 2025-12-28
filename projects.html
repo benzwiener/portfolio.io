@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Ben Zwiener | Projects</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <!-- Same fonts as index -->
+  <link
+    rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500&display=swap"
+  />
+  <link
+    rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600&display=swap"
+  />
+
+  <style>
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+        sans-serif;
+      background: #e7eaee;
+      color: #1d1f23;
+    }
+
+    /* ===== Header ===== */
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      background: #2e3a4a;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.9rem 3.5rem;
+      border-bottom: 1px solid #222a36;
+    }
+
+    .site-header h1 {
+      margin: 0;
+      font-family: "Poppins", system-ui, sans-serif;
+      font-size: 1.9rem;
+      font-style: italic;
+      font-weight: 600;
+      color: #f9fafb;
+    }
+
+    .site-header nav {
+      display: flex;
+      align-items: center;
+      gap: 0.85rem;
+      font-size: 1.02rem;
+    }
+
+    .nav-pill {
+      font-family: "Poppins", system-ui, sans-serif;
+      text-decoration: none;
+      padding: 0.7rem 1.9rem;
+      border-radius: 999px;
+      background: #42526b;
+      color: #f9fafb;
+      border: none;
+      font-size: 1.02rem;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.15s ease, transform 0.1s ease;
+    }
+
+    .nav-pill:hover {
+      background: #556582;
+      transform: translateY(-1px);
+    }
+
+    .nav-cta {
+      font-family: "Poppins", system-ui, sans-serif;
+      text-decoration: none;
+      padding: 0.8rem 2.3rem;
+      border-radius: 999px;
+      background: #1f7aa7;
+      color: #ffffff;
+      border: none;
+      font-size: 1.05rem;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.15s ease, transform 0.1s ease;
+    }
+
+    .nav-cta:hover {
+      background: #155777;
+      transform: translateY(-1px);
+    }
+
+    /* ===== Projects page layout ===== */
+    .projects-main {
+      max-width: 1100px;
+      margin: 2.5rem auto 3.5rem;
+      padding: 0 1.5rem;
+    }
+
+    .projects-main h2 {
+      font-size: 2.4rem;
+      margin: 0 0 1.25rem 0;
+      color: #111827;
+    }
+
+    .projects-intro {
+      font-family: "Playfair Display", "Times New Roman", serif;
+      font-size: 1.02rem;
+      line-height: 1.7;
+      color: #262a32;
+      margin: 0 0 2.2rem 0;
+      max-width: 42rem;
+    }
+
+    .project-list {
+      display: flex;
+      flex-direction: column;
+      gap: 2.5rem;
+      margin-bottom: 2.5rem;
+    }
+
+    /* clickable card wrapper */
+    .project-link {
+      text-decoration: none;
+      color: inherit;
+      display: block;
+      border-radius: 1.75rem; /* match inner card for smooth outline */
+    }
+
+    .project-card {
+      background: #f3f5f8;
+      border-radius: 1.75rem;
+      padding: 1.5rem 1.75rem;
+      box-shadow: 0 12px 24px rgba(15, 23, 42, 0.12);
+      transition: transform 0.12s ease, box-shadow 0.12s ease,
+                  background 0.12s ease;
+      position: relative;
+    }
+
+    /* hover/focus states so it feels like a button */
+    .project-link:hover .project-card,
+    .project-link:focus-visible .project-card {
+      transform: translateY(-2px);
+      box-shadow: 0 16px 28px rgba(15, 23, 42, 0.2);
+      background: #f8fafc;
+    }
+
+    .project-title {
+      font-size: 1.5rem;
+      margin: 0 0 1rem 0;
+      color: #111827;
+      font-family: "Poppins", system-ui, sans-serif;
+    }
+
+    .project-content {
+      display: grid;
+      grid-template-columns: minmax(0, 1.2fr) minmax(0, 1.4fr);
+      gap: 1.5rem;
+      align-items: start;
+    }
+
+    .project-media {
+      border-radius: 1.25rem;
+      overflow: hidden;
+      background: #c2c9d3;
+    }
+
+    .project-media img,
+    .project-media video {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .project-text p {
+      margin: 0 0 0.75rem 0;
+      font-size: 0.98rem;
+      line-height: 1.7;
+      color: #333741;
+      font-family: "Playfair Display", "Times New Roman", serif;
+    }
+
+    .project-meta {
+      font-size: 0.9rem;
+      margin-bottom: 0.7rem;
+    }
+
+    .project-links a {
+      font-size: 0.9rem;
+      text-decoration: none;
+      color: #1f7aa7;
+      margin-right: 0.5rem;
+    }
+
+    .project-links a:hover {
+      text-decoration: underline;
+    }
+
+    /* keep inner links clickable without triggering whole-card navigation */
+    .project-links a {
+      position: relative;
+      z-index: 2;
+    }
+
+    @media (max-width: 800px) {
+      .site-header { padding: 0.8rem 1.25rem; }
+
+      .projects-main { margin-top: 2rem; }
+
+      .project-content { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <h1>Ben Zwiener</h1>
+
+    <nav>
+      <a href="index.html" class="nav-pill">Home</a>
+
+      <a
+        href="resume.pdf"
+        class="nav-cta"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        Resume
+      </a>
+
+      <a
+        href="https://www.linkedin.com/in/benjamin-zwiener-3621591a0"
+        class="nav-cta"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        LinkedIn
+      </a>
+
+      <a href="index.html#contact" class="nav-cta">
+        Contact
+      </a>
+    </nav>
+  </header>
+
+  <main class="projects-main">
+    <h2>Highlighted Projects</h2>
+    <p class="projects-intro">
+      Below are a few of the engineering and robotics projects that reflect my work and interests. 
+      Projects labeled "I" and "G" reflect individual or group efforts, respectively.
+    </p>
+
+    <section class="project-list">
+
+      <!-- Project 1 -->
+      <a class="project-link" href="project-capstan.html">
+        <article class="project-card">
+          <h3 class="project-title">Capstan Driven Robotic Manipulator (I)</h3>
+          <div class="project-content">
+            <div class="project-media">
+              <video src="media/Capstan 5Bar/homing.MOV" autoplay loop muted playsinline></video>
+            </div>
+            <div class="project-text">
+              <p>
+                Capstan drives are a special type of reducer offering low inertia, high stiffness, and high precision.
+                This project examines the design and utility of capstan reducers in robotic applications and demonstrates them in a 5‑bar manipulator.
+              </p>
+              <p class="project-meta">
+                <strong>Skills:</strong> SolidWorks, 3D printing, Arduino, MATLAB, wiring & soldering
+              </p>
+            </div>
+          </div>
+        </article>
+      </a>
+
+      <!-- Project 2 -->
+      <a class="project-link" href="project-cvsm.html">
+        <article class="project-card">
+          <h3 class="project-title">Cartesian Variable Stiffness Mechanism (I)</h3>
+          <div class="project-content">
+            <div class="project-media">
+              <video src="media/CVSM/testingExpandedView.MOV" autoplay loop muted playsinline></video>
+            </div>
+            <div class="project-text">
+              <p>
+                Compact compliant mechanism designed to reduce energy use and wear in industrial robots by providing adjustable stiffness.
+                The prototype demonstrated full 3D translation and a tunable stiffness from compliant to rigid for pick‑and‑place tasks.
+              </p>
+              <p class="project-meta">
+                <strong>Skills:</strong> CNC mill, manual lathe, 3D printing, Arduino, MATLAB
+              </p>
+            </div>
+          </div>
+        </article>
+      </a>
+
+      <!-- Project 3 -->
+      <a class="project-link" href="project-rur.html">
+        <article class="project-card">
+          <h3 class="project-title">Remote Ultrasound Robot (G)</h3>
+          <div class="project-content">
+            <div class="project-media">
+              <video src="media/RUR/J5rotating.MOV" autoplay loop muted playsinline></video>
+            </div>
+            <div class="project-text">
+              <p>
+                Teleoperated robot that sweeps and positions an ultrasound probe, aimed at expanding access to specialized imaging in remote communities.
+              </p>
+              <p class="project-meta">
+                <strong>Skills:</strong> Mechanism design, mechatronics, control, system integration
+              </p>
+            </div>
+          </div>
+        </article>
+      </a>
+
+      <!-- Project 4 -->
+      <a class="project-link" href="project-pendulum.html">
+        <article class="project-card">
+          <h3 class="project-title">Inverted Pendulum (G)</h3>
+          <div class="project-content">
+            <div class="project-media">
+              <video src="media/Inverted Pendulum/PendulumInvertsItself_clip.mp4" autoplay loop muted playsinline></video>
+            </div>
+            <div class="project-text">
+              <p>
+                Team project building and commissioning an inverted pendulum on a cart.
+                The system balances, maintains its center position, and swings itself up into the upright configuration.
+              </p>
+              <p class="project-meta">
+                <strong>Skills:</strong> Control design, embedded implementation, mechanical integration
+              </p>
+            </div>
+          </div>
+        </article>
+      </a>
+
+      <!-- Project 5 -->
+      <a class="project-link" href="project-roboextinguishinator.html">
+        <article class="project-card">
+          <h3 class="project-title">Roboextinguishinator 5000 (G)</h3>
+          <div class="project-content">
+            <div class="project-media">
+              <video src="media/Roboextinguishinator5000/extinguishClip.mp4" autoplay loop muted playsinline></video>
+            </div>
+            <div class="project-text">
+              <p>
+                Five‑DOF robot programmed to autonomously locate and extinguish small fires.
+              </p>
+              <p class="project-meta">
+                <strong>Skills:</strong> Motion planning, embedded programming, sensor integration
+              </p>
+              <p class="project-links">
+                <a href="https://www.youtube.com/watch?v=ybAFYYkyADs" target="_blank">YouTube video</a>
+              </p>
+            </div>
+          </div>
+        </article>
+      </a>
+
+    </section>
+  </main>
+</body>
+</html>
+
+

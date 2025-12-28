@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Project Title | Ben Zwiener</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <!-- Same fonts as other pages -->
+  <link
+    rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500&display=swap"
+  />
+  <link
+    rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600&display=swap"
+  />
+
+  <style>
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: #e7eaee;
+      color: #1d1f23;
+    }
+
+    /* ===== Shared header (same as index/projects) ===== */
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      background: #2e3a4a;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.9rem 3.5rem;
+      border-bottom: 1px solid #222a36;
+    }
+
+    .site-header h1 {
+      margin: 0;
+      font-family: "Poppins", system-ui, sans-serif;
+      font-size: 1.9rem;
+      font-style: italic;
+      font-weight: 600;
+      color: #f9fafb;
+    }
+
+    .site-header nav {
+      display: flex;
+      align-items: center;
+      gap: 0.85rem;
+      font-size: 1.02rem;
+    }
+
+    .nav-pill,
+    .nav-cta {
+      font-family: "Poppins", system-ui, sans-serif;
+      text-decoration: none;
+      border-radius: 999px;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.15s ease, transform 0.1s ease;
+    }
+
+    .nav-pill {
+      padding: 0.7rem 1.9rem;
+      background: #42526b;
+      color: #f9fafb;
+      border: none;
+      font-size: 1.02rem;
+    }
+    .nav-pill:hover { background: #556582; transform: translateY(-1px); }
+
+    .nav-cta {
+      padding: 0.8rem 2.3rem;
+      background: #1f7aa7;
+      color: #ffffff;
+      border: none;
+      font-size: 1.05rem;
+    }
+    .nav-cta:hover { background: #155777; transform: translateY(-1px); }
+
+    /* ===== Page container ===== */
+    .page {
+      max-width: 1100px;
+      margin: 2.5rem auto 3.5rem;
+      padding: 0 1.5rem;
+    }
+
+    /* ===== Title + dates ===== */
+    .project-header {
+      margin-bottom: 2rem;
+    }
+
+    .project-title {
+      font-family: "Poppins", system-ui, sans-serif;
+      font-size: 2.6rem;
+      margin: 0 0 0.5rem 0;
+      color: #111827;
+    }
+
+    .project-dates {
+      font-size: 0.95rem;
+      color: #4b5563;
+      letter-spacing: 0.03em;
+      text-transform: uppercase;
+    }
+
+    /* ===== Motivation / objectives ===== */
+    .section-title {
+      font-family: "Poppins", system-ui, sans-serif;
+      font-size: 1.3rem;
+      margin: 0 0 1rem 0;
+      color: #111827;
+    }
+
+    .motivation-block {
+      background: #f3f5f8;
+      border-radius: 1.75rem;
+      padding: 1.75rem 1.9rem;
+      box-shadow: 0 12px 24px rgba(15, 23, 42, 0.12);
+      margin-bottom: 2rem;
+    }
+
+    .motivation-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.2fr) minmax(0, 1.4fr);
+      gap: 1.75rem;
+      align-items: center;
+    }
+
+    .motivation-image {
+      border-radius: 1.25rem;
+      overflow: hidden;
+      background: #c2c9d3;
+    }
+
+    .motivation-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .motivation-text p {
+      font-family: "Playfair Display", "Times New Roman", serif;
+      font-size: 1.02rem;
+      line-height: 1.8;
+      margin: 0;
+      color: #262a32;
+    }
+
+    /* ===== Contributions / outcomes ===== */
+    .contrib-block {
+      background: #f3f5f8;
+      border-radius: 1.75rem;
+      padding: 1.75rem 1.9rem;
+      box-shadow: 0 12px 24px rgba(15, 23, 42, 0.12);
+      margin-bottom: 2.5rem;
+    }
+
+    .contrib-columns {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 2rem;
+    }
+
+    .contrib-columns h3 {
+      font-family: "Poppins", system-ui, sans-serif;
+      font-size: 1.1rem;
+      margin: 0 0 0.75rem 0;
+    }
+
+    .contrib-columns ul {
+      margin: 0;
+      padding-left: 1.1rem;
+      font-size: 0.98rem;
+      line-height: 1.8;
+    }
+
+    /* ===== Horizontal gallery with auto-scroll ===== */
+    .gallery-block {
+      margin-top: 0.5rem;
+    }
+
+    .gallery-strip-wrapper {
+      position: relative;
+      overflow: hidden;
+      border-radius: 1.5rem;
+      background: #f3f5f8;
+      box-shadow: 0 12px 24px rgba(15, 23, 42, 0.12);
+      padding: 1rem 0;
+    }
+
+    .gallery-strip {
+      --gap: 1rem;
+      display: flex;
+      gap: var(--gap);
+      padding-inline: 1.5rem;
+      /* horizontal scrolling */
+      overflow-x: auto;
+      scroll-behavior: smooth;
+      scrollbar-width: thin;
+      scrollbar-color: #9ca3af transparent;
+    }
+
+    .gallery-strip::-webkit-scrollbar {
+      height: 6px;
+    }
+    .gallery-strip::-webkit-scrollbar-track {
+      background: transparent;
+    }
+    .gallery-strip::-webkit-scrollbar-thumb {
+      background: #9ca3af;
+      border-radius: 999px;
+    }
+
+    .gallery-item {
+      flex: 0 0 260px;
+      border-radius: 1.25rem;
+      overflow: hidden;
+      background: #c2c9d3;
+      box-shadow: 0 6px 14px rgba(15, 23, 42, 0.18);
+    }
+
+    .gallery-item img,
+    .gallery-item video {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+      display: block;
+    }
+
+    .gallery-caption {
+      padding: 0.55rem 0.75rem 0.75rem;
+      font-size: 0.86rem;
+      color: #374151;
+      font-family: "Playfair Display", "Times New Roman", serif;
+    }
+
+    /* simple auto-scroll animation (CSS only) */
+    @keyframes gallery-scroll {
+      from { transform: translateX(0); }
+      to   { transform: translateX(-50%); }
+    }
+
+    /* optional: duplicated strip for infinite effect
+       if you want true infinite marquee, adjust markup & animation further */
+    .gallery-auto {
+      animation: gallery-scroll 40s linear infinite;
+    }
+
+    @media (max-width: 900px) {
+      .site-header { padding: 0.8rem 1.25rem; }
+      .motivation-grid { grid-template-columns: 1fr; }
+      .contrib-columns { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <!-- Shared header -->
+  <header class="site-header">
+    <h1>Ben Zwiener</h1>
+
+    <nav>
+      <a href="index.html" class="nav-pill">Home</a>
+      <a href="projects.html" class="nav-pill">Projects</a>
+
+      <a
+        href="resume.pdf"
+        class="nav-cta"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        Resume
+      </a>
+
+      <a
+        href="https://www.linkedin.com/in/benjamin-zwiener-3621591a0"
+        class="nav-cta"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        LinkedIn
+      </a>
+    </nav>
+  </header>
+
+  <main class="page">
+    <!-- Title + dates -->
+    <section class="project-header">
+      <h2 class="project-title">Variable Stiffness Robot Joint</h2>
+      <p class="project-dates">January 2023 – May 2024</p>
+    </section>
+
+    <!-- Motivation & objectives -->
+    <section class="motivation-block">
+      <h3 class="section-title">Motivation & Objectives</h3>
+      <div class="motivation-grid">
+        <div class="motivation-image">
+          <!-- Replace with a large hero image for the project -->
+          <img src="media/vsrj-hero.jpg" alt="Variable stiffness robot joint prototype" />
+        </div>
+        <div class="motivation-text">
+          <p>
+            Short paragraph describing why you pursued this project, the problem
+            it addresses, and the main technical or research objectives. Mention
+            the context, such as industrial robots operating near humans, and how
+            variable stiffness helps balance safety and performance.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contributions & outcomes -->
+    <section class="contrib-block">
+      <h3 class="section-title">Contributions & Outcomes</h3>
+      <div class="contrib-columns">
+        <div>
+          <h3>Your contributions</h3>
+          <ul>
+            <li>Designed the joint architecture and sized springs/gearing for target stiffness range.</li>
+            <li>Developed CAD models, FEA studies, and manufacturing drawings.</li>
+            <li>Implemented embedded control and data acquisition for stiffness experiments.</li>
+          </ul>
+        </div>
+        <div>
+          <h3>Project outcomes</h3>
+          <ul>
+            <li>Demonstrated variable stiffness behavior over N:1 range in bench‑top tests.</li>
+            <li>Produced a conference paper and poster for ASME IDETC.</li>
+            <li>Informed a pending patent and follow‑on research on human‑robot interaction.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- Project gallery -->
+    <section class="gallery-block">
+      <h3 class="section-title">Project Gallery</h3>
+      <p style="font-size:0.95rem; color:#4b5563; margin-bottom:0.75rem;">
+        Scroll horizontally or let the gallery move automatically to see key stages of the build and testing.
+      </p>
+
+      <div class="gallery-strip-wrapper">
+        <!-- The strip is horizontally scrollable by the user.
+             If you want it to auto-scroll continuously, add class "gallery-auto"
+             and duplicate the items for a seamless loop. -->
+        <div class="gallery-strip">
+          <figure class="gallery-item">
+            <img src="media/vsrj-cad.jpg" alt="CAD rendering of the joint" />
+            <figcaption class="gallery-caption">Early CAD layout of the variable stiffness joint.</figcaption>
+          </figure>
+
+          <figure class="gallery-item">
+            <img src="media/vsrj-prototype.jpg" alt="Prototype on bench" />
+            <figcaption class="gallery-caption">First assembled prototype on the test bench.</figcaption>
+          </figure>
+
+          <figure class="gallery-item">
+            <video src="media/vsrj-demo.mp4" autoplay loop muted playsinline></video>
+            <figcaption class="gallery-caption">Demo of the joint changing stiffness under load.</figcaption>
+          </figure>
+
+          <figure class="gallery-item">
+            <img src="media/vsrj-test-setup.jpg" alt="Test setup with sensors" />
+            <figcaption class="gallery-caption">Test setup with torque sensor and data logging.</figcaption>
+          </figure>
+
+          <figure class="gallery-item">
+            <img src="media/vsrj-results.png" alt="Plot of stiffness results" />
+            <figcaption class="gallery-caption">Experimental stiffness vs. deflection results.</figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+  </main>
+</body>
+</html>
