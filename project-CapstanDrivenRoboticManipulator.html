@@ -456,7 +456,23 @@
           
           // Determine if image or video
           if (mediaSrc.endsWith('.mp4') || mediaSrc.endsWith('.mov') || mediaSrc.endsWith('.MOV')) {
-            modalMedia.innerHTML = `<video controls autoplay loop style="max-height: 70vh;"><source src="${mediaSrc}" type="video/mp4"></video>`;
+            const video = document.createElement('video');
+            video.src = mediaSrc;
+            video.controls = true;
+            video.autoplay = true;
+            video.loop = true;
+            video.muted = true;  // Force muted
+            video.style.maxHeight = '70vh';
+            video.style.width = 'auto';
+            video.style.height = 'auto';
+            
+            // Ensure it stays muted even if user interacts
+            video.addEventListener('volumechange', function() {
+              this.muted = true;
+            });
+            
+            modalMedia.innerHTML = '';
+            modalMedia.appendChild(video);
           } else {
             modalMedia.innerHTML = `<img src="${mediaSrc}" alt="${caption}">`;
           }
@@ -473,6 +489,7 @@
       });
     });
   </script>
+
 </body>
 </html>
 
