@@ -293,8 +293,8 @@
   <main class="page">
     <!-- Title + dates -->
     <section class="project-header">
-      <h2 class="project-title">Variable Stiffness Robot Joint</h2>
-      <p class="project-dates">January 2023 – May 2024</p>
+      <h2 class="project-title">Capstan Driven Robotic Manipulator</h2>
+      <p class="project-dates">December 2025 - Present</p>
     </section>
 
     <!-- Motivation & objectives -->
@@ -303,37 +303,38 @@
       <div class="motivation-grid">
         <div class="motivation-image">
           <!-- Replace with a large hero image for the project -->
-          <img src="media/vsrj-hero.jpg" alt="Variable stiffness robot joint prototype" />
+          <img src="media/Capstan 5Bar/FiveBarRealIsometricVIew.jpg" alt="Realized Capstan 5-bar" />
         </div>
         <div class="motivation-text">
           <p>
-            Short paragraph describing why you pursued this project, the problem
-            it addresses, and the main technical or research objectives. Mention
-            the context, such as industrial robots operating near humans, and how
-            variable stiffness helps balance safety and performance.
+            Cable, or Capstan, drives are a special reducer which implement cables and rigid links to transmit motion and torque for the desired application. 
+            Typical advantages of these systems are high stiffness, low backlash, low inertia, and simple design lending themselves to be a compelling option for robotic actuators. 
+            In the interest of gaining hand-on experience with Capstans, this project was undertaken to better understand which features are most critical and how design requirements may impact its configuration.
           </p>
         </div>
       </div>
     </section>
 
-    <!-- Contributions & outcomes -->
+    <!-- Goals & Outcomes -->
     <section class="contrib-block">
-      <h3 class="section-title">Contributions & Outcomes</h3>
       <div class="contrib-columns">
         <div>
-          <h3>Your contributions</h3>
+          <h3>Goals</h3>
           <ul>
-            <li>Designed the joint architecture and sized springs/gearing for target stiffness range.</li>
-            <li>Developed CAD models, FEA studies, and manufacturing drawings.</li>
-            <li>Implemented embedded control and data acquisition for stiffness experiments.</li>
+            <li>Transmit motion and torque to the output drum.</li>
+            <li>Achieve the sought 10:1 reduction.</li>
+            <li>Implement Capstan reducers to create a symmetric 5-bar linkage. </li>
+            <li>Demonstrate precise movement by spelling out a word/phrase. </li>
           </ul>
         </div>
         <div>
-          <h3>Project outcomes</h3>
+          <h3>Outcomes</h3>
           <ul>
-            <li>Demonstrated variable stiffness behavior over N:1 range in bench‑top tests.</li>
-            <li>Produced a conference paper and poster for ASME IDETC.</li>
-            <li>Informed a pending patent and follow‑on research on human‑robot interaction.</li>
+            <li>Successfully built and operated an experimental Capstan test stand.<li>
+            <li>Derived Forward and Inverse Kineamtics</li>         
+            <li>Created a successfull homing sequence to find the Capstan's range of motion with closed loop control.</li>
+            <li>Performed torque testing showing 30-50% efficiency</li>
+            <li>Constructed an operable symmetric 5-bar linakge/robotic manipualtor</li>
           </ul>
         </div>
       </div>
@@ -342,39 +343,46 @@
     <!-- Project gallery -->
     <section class="gallery-block">
       <h3 class="section-title">Project Gallery</h3>
-      <p style="font-size:0.95rem; color:#4b5563; margin-bottom:0.75rem;">
-        Scroll horizontally or let the gallery move automatically to see key stages of the build and testing.
-      </p>
-
       <div class="gallery-strip-wrapper">
         <!-- The strip is horizontally scrollable by the user.
              If you want it to auto-scroll continuously, add class "gallery-auto"
              and duplicate the items for a seamless loop. -->
         <div class="gallery-strip">
           <figure class="gallery-item">
-            <img src="media/vsrj-cad.jpg" alt="CAD rendering of the joint" />
-            <figcaption class="gallery-caption">Early CAD layout of the variable stiffness joint.</figcaption>
+            <img src="media/Capstan 5Bar/CapstanTestStandCADwithLabels.png" alt="Capstan CAD and Components" />
+            <figcaption class="gallery-caption">Capstan CAD and Components</figcaption>
           </figure>
 
           <figure class="gallery-item">
-            <img src="media/vsrj-prototype.jpg" alt="Prototype on bench" />
-            <figcaption class="gallery-caption">First assembled prototype on the test bench.</figcaption>
+            <img src="media/Capstan 5Bar/CapstanTestStandReal.jpg" alt="Realized Capstan Test Stand" />
+            <figcaption class="gallery-caption">Realized Capstan Test Stand</figcaption>
           </figure>
 
           <figure class="gallery-item">
-            <video src="media/vsrj-demo.mp4" autoplay loop muted playsinline></video>
-            <figcaption class="gallery-caption">Demo of the joint changing stiffness under load.</figcaption>
+            <img src="media/Capstan 5Bar/FiveBarCADDouble.png" alt="Capstan 5-bar CAD" />
+            <figcaption class="gallery-caption">Capstan 5-bar CAD</figcaption>
           </figure>
 
           <figure class="gallery-item">
-            <img src="media/vsrj-test-setup.jpg" alt="Test setup with sensors" />
-            <figcaption class="gallery-caption">Test setup with torque sensor and data logging.</figcaption>
+            <img src="media/Capstan 5Bar/FiveBarRealTopDown.jpg" alt="Realized Capstan 5-bar CAD (Top-Down View)" />
+            <figcaption class="gallery-caption">Realized Capstan 5-bar CAD (Top-Down View)</figcaption>
           </figure>
 
           <figure class="gallery-item">
-            <img src="media/vsrj-results.png" alt="Plot of stiffness results" />
-            <figcaption class="gallery-caption">Experimental stiffness vs. deflection results.</figcaption>
+            <img src="media/Capstan 5Bar/FiveBarRealSideView.jpg" alt="Realized Capstan 5-bar CAD (Side View)" />
+            <figcaption class="gallery-caption">Realized Capstan 5-bar CAD (Side View)</figcaption>
           </figure>
+
+          <figure class="gallery-item">
+            <img src="media/Capstan 5Bar/homing.MOV" alt="Homing Program Video" />
+            <figcaption class="gallery-caption">Homing Program Video</figcaption>
+          </figure>
+
+          <figure class="gallery-item">
+            <img src="media/Capstan 5Bar/TorqueTesting.MOV" alt="Torque Testing Video" />
+            <figcaption class="gallery-caption">Torque Testing Video</figcaption>
+          </figure>
+
         </div>
       </div>
     </section>
