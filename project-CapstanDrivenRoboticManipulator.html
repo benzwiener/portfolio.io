@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Project Title | Ben Zwiener</title>
+  <title>Capstan Driven Robotic Manipulator | Ben Zwiener</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <!-- Same fonts as other pages -->
@@ -225,6 +225,12 @@
       overflow: hidden;
       background: #c2c9d3;
       box-shadow: 0 6px 14px rgba(15, 23, 42, 0.18);
+      cursor: pointer;
+      transition: transform 0.2s ease;
+    }
+
+    .gallery-item:hover {
+      transform: scale(1.02);
     }
 
     .gallery-item img,
@@ -242,17 +248,60 @@
       font-family: "Playfair Display", "Times New Roman", serif;
     }
 
-    /* simple auto-scroll animation (CSS only) */
-    @keyframes gallery-scroll {
-      from { transform: translateX(0); }
-      to   { transform: translateX(-50%); }
+    /* Modal styles */
+    .modal {
+      position: fixed;
+      z-index: 1000;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.9);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem;
     }
 
-    /* optional: duplicated strip for infinite effect
-       if you want true infinite marquee, adjust markup & animation further */
-    .gallery-auto {
-      animation: gallery-scroll 40s linear infinite;
+    .modal-content {
+      max-width: 90vw;
+      max-height: 90vh;
+      position: relative;
+      text-align: center;
     }
+
+    .modal-media {
+      max-width: 100%;
+      max-height: 70vh;
+    }
+
+    .modal-media img,
+    .modal-media video {
+      max-width: 100%;
+      max-height: 70vh;
+      object-fit: contain;
+    }
+
+    .modal-caption {
+      color: white;
+      font-family: "Playfair Display", serif;
+      font-size: 1.1rem;
+      margin-top: 1rem;
+      padding: 0 1rem;
+    }
+
+    .close {
+      position: absolute;
+      top: -4rem;
+      right: 0;
+      color: white;
+      font-size: 2.5rem;
+      font-weight: bold;
+      cursor: pointer;
+      line-height: 1;
+    }
+
+    .close:hover { color: #ccc; }
 
     @media (max-width: 900px) {
       .site-header { padding: 0.8rem 1.25rem; }
@@ -302,7 +351,6 @@
       <h3 class="section-title">Motivation & Objectives</h3>
       <div class="motivation-grid">
         <div class="motivation-image">
-          <!-- Replace with a large hero image for the project -->
           <img src="media/Capstan 5Bar/FiveBarRealIsometricVIew.jpg" alt="Realized Capstan 5-bar" />
         </div>
         <div class="motivation-text">
@@ -330,11 +378,11 @@
         <div>
           <h3>Outcomes</h3>
           <ul>
-            <li>Successfully built and operated an experimental Capstan test stand.<li>
-            <li>Derived Forward and Inverse Kineamtics</li>         
-            <li>Created a successfull homing sequence to find the Capstan's range of motion with closed loop control.</li>
+            <li>Successfully built and operated an experimental Capstan test stand.</li>
+            <li>Derived Forward and Inverse Kinematics</li>         
+            <li>Created a successful homing sequence to find the Capstan's range of motion with closed loop control.</li>
             <li>Performed torque testing showing 30-50% efficiency</li>
-            <li>Constructed an operable symmetric 5-bar linakge/robotic manipualtor</li>
+            <li>Constructed an operable symmetric 5-bar linkage/robotic manipulator</li>
           </ul>
         </div>
       </div>
@@ -344,48 +392,87 @@
     <section class="gallery-block">
       <h3 class="section-title">Project Gallery</h3>
       <div class="gallery-strip-wrapper">
-        <!-- The strip is horizontally scrollable by the user.
-             If you want it to auto-scroll continuously, add class "gallery-auto"
-             and duplicate the items for a seamless loop. -->
         <div class="gallery-strip">
-          <figure class="gallery-item">
+          <figure class="gallery-item" data-media="media/Capstan 5Bar/CapstanTestStandCADwithLabels.png" data-caption="Capstan CAD and Components">
             <img src="media/Capstan 5Bar/CapstanTestStandCADwithLabels.png" alt="Capstan CAD and Components" />
             <figcaption class="gallery-caption">Capstan CAD and Components</figcaption>
           </figure>
 
-          <figure class="gallery-item">
+          <figure class="gallery-item" data-media="media/Capstan 5Bar/CapstanTestStandReal.jpg" data-caption="Realized Capstan Test Stand">
             <img src="media/Capstan 5Bar/CapstanTestStandReal.jpg" alt="Realized Capstan Test Stand" />
             <figcaption class="gallery-caption">Realized Capstan Test Stand</figcaption>
           </figure>
 
-          <figure class="gallery-item">
+          <figure class="gallery-item" data-media="media/Capstan 5Bar/FiveBarCADDouble.png" data-caption="Capstan 5-bar CAD">
             <img src="media/Capstan 5Bar/FiveBarCADDouble.png" alt="Capstan 5-bar CAD" />
             <figcaption class="gallery-caption">Capstan 5-bar CAD</figcaption>
           </figure>
 
-          <figure class="gallery-item">
-            <img src="media/Capstan 5Bar/FiveBarRealTopDown.jpg" alt="Realized Capstan 5-bar CAD (Top-Down View)" />
-            <figcaption class="gallery-caption">Realized Capstan 5-bar CAD (Top-Down View)</figcaption>
+          <figure class="gallery-item" data-media="media/Capstan 5Bar/FiveBarRealTopDown.jpg" data-caption="Realized Capstan 5-bar (Top-Down View)">
+            <img src="media/Capstan 5Bar/FiveBarRealTopDown.jpg" alt="Realized Capstan 5-bar (Top-Down View)" />
+            <figcaption class="gallery-caption">Realized Capstan 5-bar (Top-Down View)</figcaption>
           </figure>
 
-          <figure class="gallery-item">
-            <img src="media/Capstan 5Bar/FiveBarRealSideView.jpg" alt="Realized Capstan 5-bar CAD (Side View)" />
-            <figcaption class="gallery-caption">Realized Capstan 5-bar CAD (Side View)</figcaption>
+          <figure class="gallery-item" data-media="media/Capstan 5Bar/FiveBarRealSideView.jpg" data-caption="Realized Capstan 5-bar (Side View)">
+            <img src="media/Capstan 5Bar/FiveBarRealSideView.jpg" alt="Realized Capstan 5-bar (Side View)" />
+            <figcaption class="gallery-caption">Realized Capstan 5-bar (Side View)</figcaption>
           </figure>
 
-          <figure class="gallery-item">
-            <img src="media/Capstan 5Bar/homing.MOV" alt="Homing Program Video" />
+          <figure class="gallery-item" data-media="media/Capstan 5Bar/homing.MOV" data-caption="Homing Program Video">
+            <video src="media/Capstan 5Bar/homing.MOV" autoplay loop muted playsinline preload="metadata"></video>
             <figcaption class="gallery-caption">Homing Program Video</figcaption>
           </figure>
 
-          <figure class="gallery-item">
-            <img src="media/Capstan 5Bar/TorqueTesting.MOV" alt="Torque Testing Video" />
+          <figure class="gallery-item" data-media="media/Capstan 5Bar/TorqueTesting.MOV" data-caption="Torque Testing Video">
+            <video src="media/Capstan 5Bar/TorqueTesting.MOV" autoplay loop muted playsinline preload="metadata"></video>
             <figcaption class="gallery-caption">Torque Testing Video</figcaption>
           </figure>
-
         </div>
       </div>
     </section>
   </main>
+
+  <!-- Modal overlay for expanded media -->
+  <div id="media-modal" class="modal">
+    <div class="modal-content">
+      <span class="close">&times;</span>
+      <div class="modal-media"></div>
+      <p class="modal-caption"></p>
+    </div>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const modal = document.getElementById('media-modal');
+      const modalMedia = document.querySelector('.modal-media');
+      const modalCaption = document.querySelector('.modal-caption');
+      const closeBtn = document.querySelector('.close');
+      
+      // Click gallery item to open modal
+      document.querySelectorAll('.gallery-item').forEach(item => {
+        item.addEventListener('click', function() {
+          const mediaSrc = this.dataset.media;
+          const caption = this.dataset.caption;
+          
+          // Determine if image or video
+          if (mediaSrc.endsWith('.mp4') || mediaSrc.endsWith('.mov') || mediaSrc.endsWith('.MOV')) {
+            modalMedia.innerHTML = `<video controls autoplay loop style="max-height: 70vh;"><source src="${mediaSrc}" type="video/mp4"></video>`;
+          } else {
+            modalMedia.innerHTML = `<img src="${mediaSrc}" alt="${caption}">`;
+          }
+          
+          modalCaption.textContent = caption;
+          modal.style.display = 'flex';
+        });
+      });
+      
+      // Close modal
+      closeBtn.addEventListener('click', () => modal.style.display = 'none');
+      modal.addEventListener('click', (e) => {
+        if (e.target === modal) modal.style.display = 'none';
+      });
+    });
+  </script>
 </body>
 </html>
+
