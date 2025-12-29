@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Project Title | Ben Zwiener</title>
+  <title>Inverted Pendulum | Ben Zwiener</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <!-- Same fonts as other pages -->
@@ -293,8 +293,8 @@
   <main class="page">
     <!-- Title + dates -->
     <section class="project-header">
-      <h2 class="project-title">Variable Stiffness Robot Joint</h2>
-      <p class="project-dates">January 2023 – May 2024</p>
+      <h2 class="project-title">Inverted Pendulum</h2>
+      <p class="project-dates">August 2023 - December 2023</p>
     </section>
 
     <!-- Motivation & objectives -->
@@ -303,14 +303,13 @@
       <div class="motivation-grid">
         <div class="motivation-image">
           <!-- Replace with a large hero image for the project -->
-          <img src="media/vsrj-hero.jpg" alt="Variable stiffness robot joint prototype" />
+          <img src="media/Inverted Pendulum/RealizedInvertedPendulum.png" alt="Physical Inverted Pendulum" />
         </div>
         <div class="motivation-text">
           <p>
-            Short paragraph describing why you pursued this project, the problem
-            it addresses, and the main technical or research objectives. Mention
-            the context, such as industrial robots operating near humans, and how
-            variable stiffness helps balance safety and performance.
+            When studying control systems and dynamics, inverted pendulums are a classic non-linear problem used to increased a student's understanding.
+            Often they are made with a pendulum attached to a cart and driven via a pulley and motor to change its postion and thus maintain balance.
+            For this project we were tasked to design, model, build, and impelemnt the physical inverted pendulum system and analyze possible control strategies.
           </p>
         </div>
       </div>
@@ -318,22 +317,24 @@
 
     <!-- Contributions & outcomes -->
     <section class="contrib-block">
-      <h3 class="section-title">Contributions & Outcomes</h3>
       <div class="contrib-columns">
         <div>
-          <h3>Your contributions</h3>
+          <h3>Contributions</h3>
           <ul>
-            <li>Designed the joint architecture and sized springs/gearing for target stiffness range.</li>
-            <li>Developed CAD models, FEA studies, and manufacturing drawings.</li>
-            <li>Implemented embedded control and data acquisition for stiffness experiments.</li>
+            <li>Supported analytical derivation with free body diagrams and linearized equations of motion converted to transfer functions</li>
+            <li>Designed CAD and 3D printed components</li>
+            <li>Created root locus plots to inform approriate changes for improving the transient response</li>
+            <li>Assisted in mechatronic setup</li>
           </ul>
         </div>
         <div>
-          <h3>Project outcomes</h3>
+          <h3>Outcomes</h3>
           <ul>
-            <li>Demonstrated variable stiffness behavior over N:1 range in bench‑top tests.</li>
-            <li>Produced a conference paper and poster for ASME IDETC.</li>
-            <li>Informed a pending patent and follow‑on research on human‑robot interaction.</li>
+            <li>Analytically modeled the pendulum system via free body body diagrams and a linearized system of equations based on the system's transfer functions </li>
+            <li>Designed and built the Pendulum system</li>
+            <li>Implemented a PID controller to balance the pendulum upright</li>
+            <li>Extra Credit: Showed the system can maintain and return to its position while experiencing disturbances</li>
+            <li>Extra Credit: Proved the system can swing itself upright and maintain balance</li>
           </ul>
         </div>
       </div>
@@ -351,29 +352,25 @@
              If you want it to auto-scroll continuously, add class "gallery-auto"
              and duplicate the items for a seamless loop. -->
         <div class="gallery-strip">
+
           <figure class="gallery-item">
-            <img src="media/vsrj-cad.jpg" alt="CAD rendering of the joint" />
-            <figcaption class="gallery-caption">Early CAD layout of the variable stiffness joint.</figcaption>
+            <img src="media/Inverted Pendulum/component layout.png" alt="Inverted Pendulum Detailed Layout" />
+            <figcaption class="gallery-caption">Inverted Pendulum Detailed Layout</figcaption>
           </figure>
 
           <figure class="gallery-item">
-            <img src="media/vsrj-prototype.jpg" alt="Prototype on bench" />
-            <figcaption class="gallery-caption">First assembled prototype on the test bench.</figcaption>
+            <img src="media/Inverted Pendulum/invertedPendulumCAD.png" alt="Inverted Pendulum CAD Concept" />
+            <figcaption class="gallery-caption">Inverted Pendulum CAD Concept</figcaption>
           </figure>
 
           <figure class="gallery-item">
-            <video src="media/vsrj-demo.mp4" autoplay loop muted playsinline></video>
-            <figcaption class="gallery-caption">Demo of the joint changing stiffness under load.</figcaption>
+            <video src="media/Inverted Pendulum/PendulumInvertsItself_clip.mp4" autoplay loop muted playsinline></video>
+            <figcaption class="gallery-caption">Pendulum Inverts Itself</figcaption>
           </figure>
 
           <figure class="gallery-item">
-            <img src="media/vsrj-test-setup.jpg" alt="Test setup with sensors" />
-            <figcaption class="gallery-caption">Test setup with torque sensor and data logging.</figcaption>
-          </figure>
-
-          <figure class="gallery-item">
-            <img src="media/vsrj-results.png" alt="Plot of stiffness results" />
-            <figcaption class="gallery-caption">Experimental stiffness vs. deflection results.</figcaption>
+            <img src="media/Inverted Pendulum/RealizedInvertedPendulum.png" alt="" />
+            <figcaption class="gallery-caption">Realzied Inverted Pendulum and setup</figcaption>
           </figure>
         </div>
       </div>

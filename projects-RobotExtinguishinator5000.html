@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Project Title | Ben Zwiener</title>
+  <title>Robot Extinguishinator 5000 | Ben Zwiener</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <!-- Same fonts as other pages -->
@@ -293,8 +293,8 @@
   <main class="page">
     <!-- Title + dates -->
     <section class="project-header">
-      <h2 class="project-title">Variable Stiffness Robot Joint</h2>
-      <p class="project-dates">January 2023 – May 2024</p>
+      <h2 class="project-title">Robot Extinguishinator 5000</h2>
+      <p class="project-dates">August 2022 - December 2022</p>
     </section>
 
     <!-- Motivation & objectives -->
@@ -303,14 +303,13 @@
       <div class="motivation-grid">
         <div class="motivation-image">
           <!-- Replace with a large hero image for the project -->
-          <img src="media/vsrj-hero.jpg" alt="Variable stiffness robot joint prototype" />
+          <img src="media/Roboextinguishinator5000/robotAndGroupPicture.png" alt="Team Picture" />
         </div>
         <div class="motivation-text">
           <p>
-            Short paragraph describing why you pursued this project, the problem
-            it addresses, and the main technical or research objectives. Mention
-            the context, such as industrial robots operating near humans, and how
-            variable stiffness helps balance safety and performance.
+            As commonly known, unexpected fires can cause extensive damage and even cost lives. 
+            But while modern day solutions like sprinklers and traditional extinguishers can mitgate fire damage, they too can lead to other damages and are not always able to provide an immediate response.
+            For these reasons, we introduce the RoboExtingusihinator 5000, to automatically sense, aim, and eject a stream of water to quell any alarming heat signature within its effective range.
           </p>
         </div>
       </div>
@@ -321,19 +320,20 @@
       <h3 class="section-title">Contributions & Outcomes</h3>
       <div class="contrib-columns">
         <div>
-          <h3>Your contributions</h3>
+          <h3>Contributions</h3>
           <ul>
-            <li>Designed the joint architecture and sized springs/gearing for target stiffness range.</li>
-            <li>Developed CAD models, FEA studies, and manufacturing drawings.</li>
-            <li>Implemented embedded control and data acquisition for stiffness experiments.</li>
+            <li>Developed supporting components in CAD</li>
+            <li>Designed the water ejection system</li>
+            <li>Commisioned both a thermal and camera sensor</li>
+            <li>Implemented sensor(s) and aiming function in Arduino</li>
           </ul>
         </div>
         <div>
-          <h3>Project outcomes</h3>
+          <h3>Outcomes</h3>
           <ul>
-            <li>Demonstrated variable stiffness behavior over N:1 range in bench‑top tests.</li>
-            <li>Produced a conference paper and poster for ASME IDETC.</li>
-            <li>Informed a pending patent and follow‑on research on human‑robot interaction.</li>
+            <li>Derived inverse kinematics via Product of Exponentials to control the robot's movement</li>
+            <li>Developed four operating states for the robot including Sentry, Detect, Aim, and Extinguish programmed in Arduino</li>
+            <li>Repeatedly proved its effectivness in testing with signatures placed at different distances and locations, without needing to re-initialize</li>
           </ul>
         </div>
       </div>
@@ -352,29 +352,35 @@
              and duplicate the items for a seamless loop. -->
         <div class="gallery-strip">
           <figure class="gallery-item">
-            <img src="media/vsrj-cad.jpg" alt="CAD rendering of the joint" />
-            <figcaption class="gallery-caption">Early CAD layout of the variable stiffness joint.</figcaption>
+            <img src="media/Roboextinguishinator5000/robotDetailedLayout.png" alt="Detailed Layout" />
+            <figcaption class="gallery-caption">Detailed Layout</figcaption>
           </figure>
 
           <figure class="gallery-item">
-            <img src="media/vsrj-prototype.jpg" alt="Prototype on bench" />
-            <figcaption class="gallery-caption">First assembled prototype on the test bench.</figcaption>
+            <img src="media/Roboextinguishinator5000/robotExperimentalSetup.png" alt="Experimental Setup"/>
+            <figcaption class="gallery-caption">Experimental Setu</figcaption>
           </figure>
 
           <figure class="gallery-item">
-            <video src="media/vsrj-demo.mp4" autoplay loop muted playsinline></video>
-            <figcaption class="gallery-caption">Demo of the joint changing stiffness under load.</figcaption>
+            <video src="media/Roboextinguishinator5000/sentryDetectAimClip.mp4" autoplay loop muted playsinline></video>
+            <figcaption class="gallery-caption">Sentry, Detect, and Aim Video</figcaption>
           </figure>
 
           <figure class="gallery-item">
-            <img src="media/vsrj-test-setup.jpg" alt="Test setup with sensors" />
-            <figcaption class="gallery-caption">Test setup with torque sensor and data logging.</figcaption>
+            <video src="media/Roboextinguishinator5000/extinguishClip.mp4" autoplay loop muted playsinline></video>
+            <figcaption class="gallery-caption">Extinguish Clip</figcaption>
           </figure>
 
           <figure class="gallery-item">
-            <img src="media/vsrj-results.png" alt="Plot of stiffness results" />
-            <figcaption class="gallery-caption">Experimental stiffness vs. deflection results.</figcaption>
+            <img src="media/Roboextinguishinator5000/robotFrontView.png" alt="Robot Front View"/>
+            <figcaption class="gallery-caption">Robot Front View</figcaption>
           </figure>
+
+          <figure class="gallery-item">
+            <img src="media/Roboextinguishinator5000/robotpump.png" alt="Pump close-up" />
+            <figcaption class="gallery-caption">Pump close-up</figcaption>
+          </figure>
+
         </div>
       </div>
     </section>
