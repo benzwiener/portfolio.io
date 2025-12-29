@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Project Title | Ben Zwiener</title>
+  <title>Cartesian Variable Stiffness Mechanism | Ben Zwiener</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <!-- Same fonts as other pages -->
@@ -225,6 +225,12 @@
       overflow: hidden;
       background: #c2c9d3;
       box-shadow: 0 6px 14px rgba(15, 23, 42, 0.18);
+      cursor: pointer;
+      transition: transform 0.2s ease;
+    }
+
+    .gallery-item:hover {
+      transform: scale(1.02);
     }
 
     .gallery-item img,
@@ -242,17 +248,60 @@
       font-family: "Playfair Display", "Times New Roman", serif;
     }
 
-    /* simple auto-scroll animation (CSS only) */
-    @keyframes gallery-scroll {
-      from { transform: translateX(0); }
-      to   { transform: translateX(-50%); }
+    /* Modal styles */
+    .modal {
+      position: fixed;
+      z-index: 1000;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.9);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem;
     }
 
-    /* optional: duplicated strip for infinite effect
-       if you want true infinite marquee, adjust markup & animation further */
-    .gallery-auto {
-      animation: gallery-scroll 40s linear infinite;
+    .modal-content {
+      max-width: 90vw;
+      max-height: 90vh;
+      position: relative;
+      text-align: center;
     }
+
+    .modal-media {
+      max-width: 100%;
+      max-height: 70vh;
+    }
+
+    .modal-media img,
+    .modal-media video {
+      max-width: 100%;
+      max-height: 70vh;
+      object-fit: contain;
+    }
+
+    .modal-caption {
+      color: white;
+      font-family: "Playfair Display", serif;
+      font-size: 1.1rem;
+      margin-top: 1rem;
+      padding: 0 1rem;
+    }
+
+    .close {
+      position: absolute;
+      top: -4rem;
+      right: 0;
+      color: white;
+      font-size: 2.5rem;
+      font-weight: bold;
+      cursor: pointer;
+      line-height: 1;
+    }
+
+    .close:hover { color: #ccc; }
 
     @media (max-width: 900px) {
       .site-header { padding: 0.8rem 1.25rem; }
@@ -293,8 +342,8 @@
   <main class="page">
     <!-- Title + dates -->
     <section class="project-header">
-      <h2 class="project-title">Variable Stiffness Robot Joint</h2>
-      <p class="project-dates">January 2023 – May 2024</p>
+      <h2 class="project-title">Cartesian Variable Stiffness Mechanism</h2>
+      <p class="project-dates">August 2023 - December 2025</p>
     </section>
 
     <!-- Motivation & objectives -->
@@ -302,38 +351,39 @@
       <h3 class="section-title">Motivation & Objectives</h3>
       <div class="motivation-grid">
         <div class="motivation-image">
-          <!-- Replace with a large hero image for the project -->
-          <img src="media/vsrj-hero.jpg" alt="Variable stiffness robot joint prototype" />
+          <img src="media/Capstan 5Bar/FiveBarRealIsometricVIew.jpg" alt="Realized Capstan 5-bar" />
         </div>
         <div class="motivation-text">
           <p>
-            Short paragraph describing why you pursued this project, the problem
-            it addresses, and the main technical or research objectives. Mention
-            the context, such as industrial robots operating near humans, and how
-            variable stiffness helps balance safety and performance.
+            In industrial manufacutring, robots accel at pick-and-place tasks and handling large heavy loads, however, these applications also cause exacerbated wear due to the high inertial loads.
+            To mitigate this, we introduce the design of a novel cartesian varaible stiffness mechanism placed between the robot arm and its end effector aimed to reduce these forces and provide extended capabilites.
+            In this work, we developed several concepts for tuning stiffness and present a working prototype with a demonstrated use case in a pick-place scenario. 
           </p>
         </div>
       </div>
     </section>
 
-    <!-- Contributions & outcomes -->
+    <!-- Goals & Outcomes -->
     <section class="contrib-block">
-      <h3 class="section-title">Contributions & Outcomes</h3>
       <div class="contrib-columns">
         <div>
-          <h3>Your contributions</h3>
+          <h3>Goals</h3>
           <ul>
-            <li>Designed the joint architecture and sized springs/gearing for target stiffness range.</li>
-            <li>Developed CAD models, FEA studies, and manufacturing drawings.</li>
-            <li>Implemented embedded control and data acquisition for stiffness experiments.</li>
+            <li>Investigate possible VSM designs to compare their reachable stiffnesses and which features offer increased compactness and stiffness resolution</li>
+            <li>Analytcially characterize each concept's stiffness profile and support with FEA and physical testing</li>
+            <li>Design an inital prototype to inform future design decisions</li>
+            <li>If possible, simulate a pick-and-place sceanrio and test the device's efficacy</li>
           </ul>
         </div>
         <div>
-          <h3>Project outcomes</h3>
+          <h3>Outcomes</h3>
           <ul>
-            <li>Demonstrated variable stiffness behavior over N:1 range in bench‑top tests.</li>
-            <li>Produced a conference paper and poster for ASME IDETC.</li>
-            <li>Informed a pending patent and follow‑on research on human‑robot interaction.</li>
+            <li>Analytically derived several stiffness models based on differnt VSM concepts</li>
+            <li>Verified stiffness behavior uisng Finite Element Analysis and performed physical testing</li>         
+            <li>Built a working protoype with independently tunable stiffnesses for both the XY and Z stages</li>
+            <li>Created an open loop control program to actuate between different levels of stiffness</li>
+            <li>Commisioned a UR5 robot out of the box and mounted the CVSM for faciliated testing</li>
+            <li>Successfully demonstrated its ability to aid in pick-and-place/assembly operations and protect the robot from potential crashes</li>
           </ul>
         </div>
       </div>
@@ -342,42 +392,144 @@
     <!-- Project gallery -->
     <section class="gallery-block">
       <h3 class="section-title">Project Gallery</h3>
-      <p style="font-size:0.95rem; color:#4b5563; margin-bottom:0.75rem;">
-        Scroll horizontally or let the gallery move automatically to see key stages of the build and testing.
-      </p>
-
       <div class="gallery-strip-wrapper">
-        <!-- The strip is horizontally scrollable by the user.
-             If you want it to auto-scroll continuously, add class "gallery-auto"
-             and duplicate the items for a seamless loop. -->
         <div class="gallery-strip">
-          <figure class="gallery-item">
-            <img src="media/vsrj-cad.jpg" alt="CAD rendering of the joint" />
-            <figcaption class="gallery-caption">Early CAD layout of the variable stiffness joint.</figcaption>
+          <figure class="gallery-item" data-media="media/CVSM/CVSM_CAD_opaque.png" data-caption="CVSM CAD Design">
+            <img src="media/CVSM/CVSM_CAD_opaque.png" alt="CVSM CAD Design" />
+            <figcaption class="gallery-caption">CVSM Conceptual Design</figcaption>
           </figure>
 
-          <figure class="gallery-item">
-            <img src="media/vsrj-prototype.jpg" alt="Prototype on bench" />
-            <figcaption class="gallery-caption">First assembled prototype on the test bench.</figcaption>
+          <figure class="gallery-item" data-media="media/CVSM/CVSMandWeight.jpg" data-caption="Realized CVSM and weight">
+            <img src="media/CVSM/CVSMandWeight.jpg" alt="Realized CVSM and weight"/>
+            <figcaption class="gallery-caption">Realized CVSM and weight</figcaption>
           </figure>
 
-          <figure class="gallery-item">
-            <video src="media/vsrj-demo.mp4" autoplay loop muted playsinline></video>
-            <figcaption class="gallery-caption">Demo of the joint changing stiffness under load.</figcaption>
+          <figure class="gallery-item" data-media="media/CVSM/PhysicalWiringSetup.jpg" data-caption="Realized CVSM and wiring setup">
+            <img src="media/CVSM/PhysicalWiringSetup.jpg" alt="Realized CVSM and wiring setup"/>
+            <figcaption class="gallery-caption">Realized CVSM and wiring setup</figcaption>
           </figure>
 
-          <figure class="gallery-item">
-            <img src="media/vsrj-test-setup.jpg" alt="Test setup with sensors" />
-            <figcaption class="gallery-caption">Test setup with torque sensor and data logging.</figcaption>
+          <figure class="gallery-item" data-media="media/CVSM/testingExpandedView.MOV" data-caption="CVSM pick-and-place testing">
+            <video src="media/CVSM/testingExpandedView.MOV" autoplay loop muted playsinline preload="metadata"></video>
+            <figcaption class="gallery-caption">CVSM pick-and-place testing</figcaption>
           </figure>
 
-          <figure class="gallery-item">
-            <img src="media/vsrj-results.png" alt="Plot of stiffness results" />
-            <figcaption class="gallery-caption">Experimental stiffness vs. deflection results.</figcaption>
+          <figure class="gallery-item" data-media="media/CVSM/CenteringTestFromBack.MOV" data-caption="CVSM pick-and-place testing (close-up)">
+            <video src="media/CVSM/CenteringTestFromBack.MOV" autoplay loop muted playsinline preload="metadata"></video>
+            <figcaption class="gallery-caption">CVSM pick-and-place testing (close-up)</figcaption>
+          </figure>
+
+          <figure class="gallery-item" data-media="media/CVSM/CrashTestingVideo.MOV" data-caption="CVSM crash testing">
+            <video src="media/CVSM/CrashTestingVideo.MOV" autoplay loop muted playsinline preload="metadata"></video>
+            <figcaption class="gallery-caption">CVSM crash testing</figcaption>
+          </figure>
+
+          <figure class="gallery-item" data-media="media/CVSM/XYStiffnessTestingClipped.mp4" data-caption="CVSM XY Stiffness Testing">
+            <video src="media/CVSM/XYStiffnessTestingClipped.mp4" autoplay loop muted playsinline preload="metadata"></video>
+            <figcaption class="gallery-caption">CVSM XY Stiffness Testing</figcaption>
+          </figure> 
+
+          <figure class="gallery-item" data-media="mmedia/CVSM/ZStiffnessTestingClipped.mp4" data-caption="CVSM Z Stiffness Testing">
+            <video src="media/CVSM/ZStiffnessTestingClipped.mp4" autoplay loop muted playsinline preload="metadata"></video>
+            <figcaption class="gallery-caption">CVSM Z Stiffness Testing</figcaption>
+          </figure>
+
+          <figure class="gallery-item" data-media="media/CVSM/DiscsCutoutClip.MOV" data-caption="Output and Stiffness Discs Machining">
+            <video src="media/CVSM/DiscsCutoutClip.MOV" autoplay loop muted playsinline preload="metadata"></video>
+            <figcaption class="gallery-caption">Output and Stiffness Discs Machining</figcaption>
+          </figure>
+
+          <figure class="gallery-item" data-media="media/CVSM/XYkeyFinishingVideo.MOV" data-caption="XY Key Machined">
+            <video src="media/CVSM/XYkeyFinishingVideo.MOV" autoplay loop muted playsinline preload="metadata"></video>
+            <figcaption class="gallery-caption">XY Key Machined</figcaption>
+          </figure>
+
+          <figure class="gallery-item" data-media="media/CVSM/XYkey.jpg" data-caption="XY Roller Machined">
+            <img src="media/CVSM/XYkey.jpg" alt="XY Roller Machined" />
+            <figcaption class="gallery-caption">XY Roller Machined</figcaption>
+          </figure>
+
+          <figure class="gallery-item" data-media="media/CVSM/discs.jpg" data-caption="Output and Stiffness Ring Machined">
+            <img src="media/CVSM/discs.jpg" alt="Output and Stiffness Ring Machined" />
+            <figcaption class="gallery-caption">Output and Stiffness Ring Machined</figcaption>
+          </figure>
+
+          <figure class="gallery-item" data-media="media/CVSM/OutputShaft.jpg" data-caption="Output Shaft Machined">
+            <img src="media/CVSM/OutputShaft.jpg" alt="Output Shaft Machined" />
+            <figcaption class="gallery-caption">Output Shaft Machined</figcaption>
+          </figure>
+
+          <figure class="gallery-item" data-media="media/CVSM/XYkey.jpg" data-caption="XY Key Machined">
+            <img src="media/CVSM/XYkey.jpg" alt="XY Key Machined" />
+            <figcaption class="gallery-caption">XY Key Machined</figcaption>
+          </figure>
+
+          <figure class="gallery-item" data-media="media/CVSM/balltransfer.jpg" data-caption="Miniature Ball Transfer">
+            <img src="media/CVSM/balltransfer.jpg" alt="Miniature Ball Transfer" />
+            <figcaption class="gallery-caption">Miniature Ball Transfer</figcaption>
           </figure>
         </div>
       </div>
     </section>
   </main>
+
+  <!-- Modal overlay for expanded media -->
+  <div id="media-modal" class="modal">
+    <div class="modal-content">
+      <span class="close">&times;</span>
+      <div class="modal-media"></div>
+      <p class="modal-caption"></p>
+    </div>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const modal = document.getElementById('media-modal');
+      const modalMedia = document.querySelector('.modal-media');
+      const modalCaption = document.querySelector('.modal-caption');
+      const closeBtn = document.querySelector('.close');
+      
+      // Click gallery item to open modal
+      document.querySelectorAll('.gallery-item').forEach(item => {
+        item.addEventListener('click', function() {
+          const mediaSrc = this.dataset.media;
+          const caption = this.dataset.caption;
+          
+          // Determine if image or video
+          if (mediaSrc.endsWith('.mp4') || mediaSrc.endsWith('.mov') || mediaSrc.endsWith('.MOV')) {
+            const video = document.createElement('video');
+            video.src = mediaSrc;
+            video.controls = true;
+            video.autoplay = true;
+            video.loop = true;
+            video.muted = true;  // Force muted
+            video.style.maxHeight = '70vh';
+            video.style.width = 'auto';
+            video.style.height = 'auto';
+            
+            // Ensure it stays muted even if user interacts
+            video.addEventListener('volumechange', function() {
+              this.muted = true;
+            });
+            
+            modalMedia.innerHTML = '';
+            modalMedia.appendChild(video);
+          } else {
+            modalMedia.innerHTML = `<img src="${mediaSrc}" alt="${caption}">`;
+          }
+          
+          modalCaption.textContent = caption;
+          modal.style.display = 'flex';
+        });
+      });
+      
+      // Close modal
+      closeBtn.addEventListener('click', () => modal.style.display = 'none');
+      modal.addEventListener('click', (e) => {
+        if (e.target === modal) modal.style.display = 'none';
+      });
+    });
+  </script>
+
 </body>
 </html>
