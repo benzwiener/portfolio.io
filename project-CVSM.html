@@ -128,20 +128,23 @@
 
     .motivation-grid {
       display: grid;
-      grid-template-columns: minmax(0, 1.2fr) minmax(0, 1.4fr);
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1.4fr);
       gap: 1.75rem;
       align-items: center;
     }
 
+    /* ✅ #2: Make motivation image smaller */
     .motivation-image {
       border-radius: 1.25rem;
       overflow: hidden;
       background: #c2c9d3;
+      max-height: 300px;
     }
 
     .motivation-image img {
       width: 100%;
       height: 100%;
+      max-height: 300px;
       object-fit: cover;
       display: block;
     }
@@ -182,70 +185,53 @@
       line-height: 1.8;
     }
 
-    /* ===== Horizontal gallery with auto-scroll ===== */
+    /* ===== ✅ #1: New 2-column vertical gallery (no horizontal scroll) ===== */
     .gallery-block {
-      margin-top: 0.5rem;
-    }
-
-    .gallery-strip-wrapper {
-      position: relative;
-      overflow: hidden;
-      border-radius: 1.5rem;
       background: #f3f5f8;
+      border-radius: 1.75rem;
+      padding: 1.75rem 1.9rem;
       box-shadow: 0 12px 24px rgba(15, 23, 42, 0.12);
-      padding: 1rem 0;
+      margin-bottom: 2.5rem;
     }
 
-    .gallery-strip {
-      --gap: 1rem;
-      display: flex;
-      gap: var(--gap);
-      padding-inline: 1.5rem;
-      /* horizontal scrolling */
-      overflow-x: auto;
-      scroll-behavior: smooth;
-      scrollbar-width: thin;
-      scrollbar-color: #9ca3af transparent;
-    }
-
-    .gallery-strip::-webkit-scrollbar {
-      height: 6px;
-    }
-    .gallery-strip::-webkit-scrollbar-track {
-      background: transparent;
-    }
-    .gallery-strip::-webkit-scrollbar-thumb {
-      background: #9ca3af;
-      border-radius: 999px;
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.25rem;
     }
 
     .gallery-item {
-      flex: 0 0 260px;
       border-radius: 1.25rem;
       overflow: hidden;
       background: #c2c9d3;
       box-shadow: 0 6px 14px rgba(15, 23, 42, 0.18);
       cursor: pointer;
-      transition: transform 0.2s ease;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      display: flex;
+      flex-direction: column;
     }
 
     .gallery-item:hover {
-      transform: scale(1.02);
+      transform: translateY(-2px);
+      box-shadow: 0 12px 24px rgba(15, 23, 42, 0.25);
     }
 
     .gallery-item img,
     .gallery-item video {
       width: 100%;
-      height: 180px;
+      height: 220px;
       object-fit: cover;
       display: block;
     }
 
     .gallery-caption {
-      padding: 0.55rem 0.75rem 0.75rem;
-      font-size: 0.86rem;
+      padding: 0.75rem;
+      font-size: 0.9rem;
       color: #374151;
       font-family: "Playfair Display", "Times New Roman", serif;
+      flex-grow: 1;
+      display: flex;
+      align-items: center;
     }
 
     /* Modal styles */
@@ -307,6 +293,7 @@
       .site-header { padding: 0.8rem 1.25rem; }
       .motivation-grid { grid-template-columns: 1fr; }
       .contrib-columns { grid-template-columns: 1fr; }
+      .gallery-grid { grid-template-columns: 1fr; } /* Stack on mobile */
     }
   </style>
 </head>
@@ -355,8 +342,8 @@
         </div>
         <div class="motivation-text">
           <p>
-            In industrial manufacutring, robots accel at pick-and-place tasks and handling large heavy loads, however, these applications also cause exacerbated wear due to the high inertial loads.
-            To mitigate this, we introduce the design of a novel cartesian varaible stiffness mechanism placed between the robot arm and its end effector aimed to reduce these forces and provide extended capabilites.
+            In industrial manufacturing, robots excel at pick-and-place tasks and handling large heavy loads, however, these applications also cause exacerbated wear due to the high inertial loads.
+            To mitigate this, we introduce the design of a novel cartesian variable stiffness mechanism placed between the robot arm and its end effector aimed to reduce these forces and provide extended capabilities.
             In this work, we developed several concepts for tuning stiffness and present a working prototype with a demonstrated use case in a pick-place scenario. 
           </p>
         </div>
@@ -370,105 +357,98 @@
           <h3>Goals</h3>
           <ul>
             <li>Investigate possible VSM designs to compare their reachable stiffnesses and which features offer increased compactness and stiffness resolution</li>
-            <li>Analytcially characterize each concept's stiffness profile and support with FEA and physical testing</li>
-            <li>Design an inital prototype to inform future design decisions</li>
-            <li>If possible, simulate a pick-and-place sceanrio and test the device's efficacy</li>
+            <li>Analytically characterize each concept's stiffness profile and support with FEA and physical testing</li>
+            <li>Design an initial prototype to inform future design decisions</li>
+            <li>If possible, simulate a pick-and-place scenario and test the device's efficacy</li>
           </ul>
         </div>
         <div>
           <h3>Outcomes</h3>
           <ul>
-            <li>Analytically derived several stiffness models based on differnt VSM concepts</li>
-            <li>Verified stiffness behavior uisng Finite Element Analysis and performed physical testing</li>         
-            <li>Built a working protoype with independently tunable stiffnesses for both the XY and Z stages</li>
+            <li>Analytically derived several stiffness models based on different VSM concepts</li>
+            <li>Verified stiffness behavior using Finite Element Analysis and performed physical testing</li>         
+            <li>Built a working prototype with independently tunable stiffnesses for both the XY and Z stages</li>
             <li>Created an open loop control program to actuate between different levels of stiffness</li>
-            <li>Commisioned a UR5 robot out of the box and mounted the CVSM for faciliated testing</li>
+            <li>Commissioned a UR5 robot out of the box and mounted the CVSM for facilitated testing</li>
             <li>Successfully demonstrated its ability to aid in pick-and-place/assembly operations and protect the robot from potential crashes</li>
           </ul>
         </div>
       </div>
     </section>
 
-    <!-- Project gallery -->
+    <!-- ✅ #1: New 2-column gallery -->
     <section class="gallery-block">
       <h3 class="section-title">Project Gallery</h3>
-      <div class="gallery-strip-wrapper">
-        <div class="gallery-strip">
-          <figure class="gallery-item" data-media="media/CVSM/CVSM_CAD_opaque.png" data-caption="CVSM CAD Design">
-            <img src="media/CVSM/CVSM_CAD_opaque.png" alt="CVSM CAD Design" />
-            <figcaption class="gallery-caption">CVSM Conceptual Design</figcaption>
-          </figure>
+      <div class="gallery-grid">
+        <figure class="gallery-item" data-media="media/CVSM/CVSM_CAD_opaque.png" data-caption="CVSM CAD Design">
+          <img src="media/CVSM/CVSM_CAD_opaque.png" alt="CVSM CAD Design" />
+          <figcaption class="gallery-caption">CVSM Conceptual Design</figcaption>
+        </figure>
 
-          <figure class="gallery-item" data-media="media/CVSM/CVSMandWeight.jpg" data-caption="Realized CVSM and weight">
-            <img src="media/CVSM/CVSMandWeight.jpg" alt="Realized CVSM and weight"/>
-            <figcaption class="gallery-caption">Realized CVSM and weight</figcaption>
-          </figure>
+        <figure class="gallery-item" data-media="media/CVSM/CVSMandWeight.jpg" data-caption="Realized CVSM and weight">
+          <img src="media/CVSM/CVSMandWeight.jpg" alt="Realized CVSM and weight" />
+          <figcaption class="gallery-caption">Realized CVSM and weight</figcaption>
+        </figure>
 
-          <figure class="gallery-item" data-media="media/CVSM/PhysicalWiringSetup.jpg" data-caption="Realized CVSM and wiring setup">
-            <img src="media/CVSM/PhysicalWiringSetup.jpg" alt="Realized CVSM and wiring setup"/>
-            <figcaption class="gallery-caption">Realized CVSM and wiring setup</figcaption>
-          </figure>
+        <figure class="gallery-item" data-media="media/CVSM/PhysicalWiringSetup.jpg" data-caption="Realized CVSM and wiring setup">
+          <img src="media/CVSM/PhysicalWiringSetup.jpg" alt="Realized CVSM and wiring setup" />
+          <figcaption class="gallery-caption">Realized CVSM and wiring setup</figcaption>
+        </figure>
 
-          <figure class="gallery-item" data-media="media/CVSM/testingExpandedView.MOV" data-caption="CVSM pick-and-place testing">
-            <video src="media/CVSM/testingExpandedView.MOV" autoplay loop muted playsinline preload="metadata"></video>
-            <figcaption class="gallery-caption">CVSM pick-and-place testing</figcaption>
-          </figure>
+        <figure class="gallery-item" data-media="media/CVSM/testingExpandedView.MOV" data-caption="CVSM pick-and-place testing">
+          <video src="media/CVSM/testingExpandedView.MOV" autoplay loop muted playsinline preload="metadata"></video>
+          <figcaption class="gallery-caption">CVSM pick-and-place testing</figcaption>
+        </figure>
 
-          <figure class="gallery-item" data-media="media/CVSM/CenteringTestFromBack.MOV" data-caption="CVSM pick-and-place testing (close-up)">
-            <video src="media/CVSM/CenteringTestFromBack.MOV" autoplay loop muted playsinline preload="metadata"></video>
-            <figcaption class="gallery-caption">CVSM pick-and-place testing (close-up)</figcaption>
-          </figure>
+        <figure class="gallery-item" data-media="media/CVSM/CenteringTestFromBack.MOV" data-caption="CVSM pick-and-place testing (close-up)">
+          <video src="media/CVSM/CenteringTestFromBack.MOV" autoplay loop muted playsinline preload="metadata"></video>
+          <figcaption class="gallery-caption">CVSM pick-and-place testing (close-up)</figcaption>
+        </figure>
 
-          <figure class="gallery-item" data-media="media/CVSM/CrashTestingVideo.MOV" data-caption="CVSM crash testing">
-            <video src="media/CVSM/CrashTestingVideo.MOV" autoplay loop muted playsinline preload="metadata"></video>
-            <figcaption class="gallery-caption">CVSM crash testing</figcaption>
-          </figure>
+        <figure class="gallery-item" data-media="media/CVSM/CrashTestingVideo.MOV" data-caption="CVSM crash testing">
+          <video src="media/CVSM/CrashTestingVideo.MOV" autoplay loop muted playsinline preload="metadata"></video>
+          <figcaption class="gallery-caption">CVSM crash testing</figcaption>
+        </figure>
 
-          <figure class="gallery-item" data-media="media/CVSM/XYStiffnessTestingClipped.mp4" data-caption="CVSM XY Stiffness Testing">
-            <video src="media/CVSM/XYStiffnessTestingClipped.mp4" autoplay loop muted playsinline preload="metadata"></video>
-            <figcaption class="gallery-caption">CVSM XY Stiffness Testing</figcaption>
-          </figure> 
+        <figure class="gallery-item" data-media="media/CVSM/XYStiffnessTestingClipped.mp4" data-caption="CVSM XY Stiffness Testing">
+          <video src="media/CVSM/XYStiffnessTestingClipped.mp4" autoplay loop muted playsinline preload="metadata"></video>
+          <figcaption class="gallery-caption">CVSM XY Stiffness Testing</figcaption>
+        </figure>
 
-          <figure class="gallery-item" data-media="mmedia/CVSM/ZStiffnessTestingClipped.mp4" data-caption="CVSM Z Stiffness Testing">
-            <video src="media/CVSM/ZStiffnessTestingClipped.mp4" autoplay loop muted playsinline preload="metadata"></video>
-            <figcaption class="gallery-caption">CVSM Z Stiffness Testing</figcaption>
-          </figure>
+        <figure class="gallery-item" data-media="media/CVSM/ZStiffnessTestingClipped.mp4" data-caption="CVSM Z Stiffness Testing">
+          <video src="media/CVSM/ZStiffnessTestingClipped.mp4" autoplay loop muted playsinline preload="metadata"></video>
+          <figcaption class="gallery-caption">CVSM Z Stiffness Testing</figcaption>
+        </figure>
 
-          <figure class="gallery-item" data-media="media/CVSM/DiscsCutoutClip.MOV" data-caption="Output and Stiffness Discs Machining">
-            <video src="media/CVSM/DiscsCutoutClip.MOV" autoplay loop muted playsinline preload="metadata"></video>
-            <figcaption class="gallery-caption">Output and Stiffness Discs Machining</figcaption>
-          </figure>
+        <figure class="gallery-item" data-media="media/CVSM/DiscsCutoutClip.MOV" data-caption="Output and Stiffness Discs Machining">
+          <video src="media/CVSM/DiscsCutoutClip.MOV" autoplay loop muted playsinline preload="metadata"></video>
+          <figcaption class="gallery-caption">Output and Stiffness Discs Machining</figcaption>
+        </figure>
 
-          <figure class="gallery-item" data-media="media/CVSM/XYkeyFinishingVideo.MOV" data-caption="XY Key Machined">
-            <video src="media/CVSM/XYkeyFinishingVideo.MOV" autoplay loop muted playsinline preload="metadata"></video>
-            <figcaption class="gallery-caption">XY Key Machined</figcaption>
-          </figure>
+        <figure class="gallery-item" data-media="media/CVSM/XYkeyFinishingVideo.MOV" data-caption="XY Key Machined">
+          <video src="media/CVSM/XYkeyFinishingVideo.MOV" autoplay loop muted playsinline preload="metadata"></video>
+          <figcaption class="gallery-caption">XY Key Machined</figcaption>
+        </figure>
 
-          <figure class="gallery-item" data-media="media/CVSM/XYkey.jpg" data-caption="XY Roller Machined">
-            <img src="media/CVSM/XYkey.jpg" alt="XY Roller Machined" />
-            <figcaption class="gallery-caption">XY Roller Machined</figcaption>
-          </figure>
+        <figure class="gallery-item" data-media="media/CVSM/XYkey.jpg" data-caption="XY Roller Machined">
+          <img src="media/CVSM/XYkey.jpg" alt="XY Roller Machined" />
+          <figcaption class="gallery-caption">XY Roller Machined</figcaption>
+        </figure>
 
-          <figure class="gallery-item" data-media="media/CVSM/discs.jpg" data-caption="Output and Stiffness Ring Machined">
-            <img src="media/CVSM/discs.jpg" alt="Output and Stiffness Ring Machined" />
-            <figcaption class="gallery-caption">Output and Stiffness Ring Machined</figcaption>
-          </figure>
+        <figure class="gallery-item" data-media="media/CVSM/discs.jpg" data-caption="Output and Stiffness Ring Machined">
+          <img src="media/CVSM/discs.jpg" alt="Output and Stiffness Ring Machined" />
+          <figcaption class="gallery-caption">Output and Stiffness Ring Machined</figcaption>
+        </figure>
 
-          <figure class="gallery-item" data-media="media/CVSM/OutputShaft.jpg" data-caption="Output Shaft Machined">
-            <img src="media/CVSM/OutputShaft.jpg" alt="Output Shaft Machined" />
-            <figcaption class="gallery-caption">Output Shaft Machined</figcaption>
-          </figure>
+        <figure class="gallery-item" data-media="media/CVSM/OutputShaft.jpg" data-caption="Output Shaft Machined">
+          <img src="media/CVSM/OutputShaft.jpg" alt="Output Shaft Machined" />
+          <figcaption class="gallery-caption">Output Shaft Machined</figcaption>
+        </figure>
 
-          <figure class="gallery-item" data-media="media/CVSM/XYkey.jpg" data-caption="XY Key Machined">
-            <img src="media/CVSM/XYkey.jpg" alt="XY Key Machined" />
-            <figcaption class="gallery-caption">XY Key Machined</figcaption>
-          </figure>
-
-          <figure class="gallery-item" data-media="media/CVSM/balltransfer.jpg" data-caption="Miniature Ball Transfer">
-            <img src="media/CVSM/balltransfer.jpg" alt="Miniature Ball Transfer" />
-            <figcaption class="gallery-caption">Miniature Ball Transfer</figcaption>
-          </figure>
-        </div>
+        <figure class="gallery-item" data-media="media/CVSM/balltransfer.jpg" data-caption="Miniature Ball Transfer">
+          <img src="media/CVSM/balltransfer.jpg" alt="Miniature Ball Transfer" />
+          <figcaption class="gallery-caption">Miniature Ball Transfer</figcaption>
+        </figure>
       </div>
     </section>
   </main>
@@ -482,6 +462,7 @@
     </div>
   </div>
 
+  <!-- ✅ #3: All gallery items still clickable + videos muted -->
   <script>
     document.addEventListener('DOMContentLoaded', function() {
       const modal = document.getElementById('media-modal');
@@ -489,7 +470,7 @@
       const modalCaption = document.querySelector('.modal-caption');
       const closeBtn = document.querySelector('.close');
       
-      // Click gallery item to open modal
+      // Click gallery item to open modal (works for ALL items)
       document.querySelectorAll('.gallery-item').forEach(item => {
         item.addEventListener('click', function() {
           const mediaSrc = this.dataset.media;
@@ -530,6 +511,5 @@
       });
     });
   </script>
-
 </body>
 </html>

@@ -128,20 +128,23 @@
 
     .motivation-grid {
       display: grid;
-      grid-template-columns: minmax(0, 1.2fr) minmax(0, 1.4fr);
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1.4fr);
       gap: 1.75rem;
       align-items: center;
     }
 
+    /* ✅ #2: Make motivation image smaller (1fr instead of 1.2fr) */
     .motivation-image {
       border-radius: 1.25rem;
       overflow: hidden;
       background: #c2c9d3;
+      max-height: 300px; /* Fixed max height option */
     }
 
     .motivation-image img {
       width: 100%;
       height: 100%;
+      max-height: 300px;
       object-fit: cover;
       display: block;
     }
@@ -182,70 +185,53 @@
       line-height: 1.8;
     }
 
-    /* ===== Horizontal gallery with auto-scroll ===== */
+    /* ===== ✅ #1: New 2-column vertical gallery (no horizontal scroll) ===== */
     .gallery-block {
-      margin-top: 0.5rem;
-    }
-
-    .gallery-strip-wrapper {
-      position: relative;
-      overflow: hidden;
-      border-radius: 1.5rem;
       background: #f3f5f8;
+      border-radius: 1.75rem;
+      padding: 1.75rem 1.9rem;
       box-shadow: 0 12px 24px rgba(15, 23, 42, 0.12);
-      padding: 1rem 0;
+      margin-bottom: 2.5rem;
     }
 
-    .gallery-strip {
-      --gap: 1rem;
-      display: flex;
-      gap: var(--gap);
-      padding-inline: 1.5rem;
-      /* horizontal scrolling */
-      overflow-x: auto;
-      scroll-behavior: smooth;
-      scrollbar-width: thin;
-      scrollbar-color: #9ca3af transparent;
-    }
-
-    .gallery-strip::-webkit-scrollbar {
-      height: 6px;
-    }
-    .gallery-strip::-webkit-scrollbar-track {
-      background: transparent;
-    }
-    .gallery-strip::-webkit-scrollbar-thumb {
-      background: #9ca3af;
-      border-radius: 999px;
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.25rem;
     }
 
     .gallery-item {
-      flex: 0 0 260px;
       border-radius: 1.25rem;
       overflow: hidden;
       background: #c2c9d3;
       box-shadow: 0 6px 14px rgba(15, 23, 42, 0.18);
       cursor: pointer;
-      transition: transform 0.2s ease;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      display: flex;
+      flex-direction: column;
     }
 
     .gallery-item:hover {
-      transform: scale(1.02);
+      transform: translateY(-2px);
+      box-shadow: 0 12px 24px rgba(15, 23, 42, 0.25);
     }
 
     .gallery-item img,
     .gallery-item video {
       width: 100%;
-      height: 180px;
+      height: 220px;
       object-fit: cover;
       display: block;
     }
 
     .gallery-caption {
-      padding: 0.55rem 0.75rem 0.75rem;
-      font-size: 0.86rem;
+      padding: 0.75rem;
+      font-size: 0.9rem;
       color: #374151;
       font-family: "Playfair Display", "Times New Roman", serif;
+      flex-grow: 1;
+      display: flex;
+      align-items: center;
     }
 
     /* Modal styles */
@@ -307,6 +293,7 @@
       .site-header { padding: 0.8rem 1.25rem; }
       .motivation-grid { grid-template-columns: 1fr; }
       .contrib-columns { grid-template-columns: 1fr; }
+      .gallery-grid { grid-template-columns: 1fr; } /* Stack on mobile */
     }
   </style>
 </head>
@@ -388,46 +375,44 @@
       </div>
     </section>
 
-    <!-- Project gallery -->
+    <!-- ✅ #1: New 2-column gallery -->
     <section class="gallery-block">
       <h3 class="section-title">Project Gallery</h3>
-      <div class="gallery-strip-wrapper">
-        <div class="gallery-strip">
-          <figure class="gallery-item" data-media="media/Capstan 5Bar/CapstanTestStandCADwithLabels.png" data-caption="Capstan CAD and Components">
-            <img src="media/Capstan 5Bar/CapstanTestStandCADwithLabels.png" alt="Capstan CAD and Components" />
-            <figcaption class="gallery-caption">Capstan CAD and Components</figcaption>
-          </figure>
+      <div class="gallery-grid">
+        <figure class="gallery-item" data-media="media/Capstan 5Bar/CapstanTestStandCADwithLabels.png" data-caption="Capstan CAD and Components">
+          <img src="media/Capstan 5Bar/CapstanTestStandCADwithLabels.png" alt="Capstan CAD and Components" />
+          <figcaption class="gallery-caption">Capstan CAD and Components</figcaption>
+        </figure>
 
-          <figure class="gallery-item" data-media="media/Capstan 5Bar/CapstanTestStandReal.jpg" data-caption="Realized Capstan Test Stand">
-            <img src="media/Capstan 5Bar/CapstanTestStandReal.jpg" alt="Realized Capstan Test Stand" />
-            <figcaption class="gallery-caption">Realized Capstan Test Stand</figcaption>
-          </figure>
+        <figure class="gallery-item" data-media="media/Capstan 5Bar/CapstanTestStandReal.jpg" data-caption="Realized Capstan Test Stand">
+          <img src="media/Capstan 5Bar/CapstanTestStandReal.jpg" alt="Realized Capstan Test Stand" />
+          <figcaption class="gallery-caption">Realized Capstan Test Stand</figcaption>
+        </figure>
 
-          <figure class="gallery-item" data-media="media/Capstan 5Bar/FiveBarCADDouble.png" data-caption="Capstan 5-bar CAD">
-            <img src="media/Capstan 5Bar/FiveBarCADDouble.png" alt="Capstan 5-bar CAD" />
-            <figcaption class="gallery-caption">Capstan 5-bar CAD</figcaption>
-          </figure>
+        <figure class="gallery-item" data-media="media/Capstan 5Bar/FiveBarCADDouble.png" data-caption="Capstan 5-bar CAD">
+          <img src="media/Capstan 5Bar/FiveBarCADDouble.png" alt="Capstan 5-bar CAD" />
+          <figcaption class="gallery-caption">Capstan 5-bar CAD</figcaption>
+        </figure>
 
-          <figure class="gallery-item" data-media="media/Capstan 5Bar/FiveBarRealTopDown.jpg" data-caption="Realized Capstan 5-bar (Top-Down View)">
-            <img src="media/Capstan 5Bar/FiveBarRealTopDown.jpg" alt="Realized Capstan 5-bar (Top-Down View)" />
-            <figcaption class="gallery-caption">Realized Capstan 5-bar (Top-Down View)</figcaption>
-          </figure>
+        <figure class="gallery-item" data-media="media/Capstan 5Bar/FiveBarRealTopDown.jpg" data-caption="Realized Capstan 5-bar (Top-Down View)">
+          <img src="media/Capstan 5Bar/FiveBarRealTopDown.jpg" alt="Realized Capstan 5-bar (Top-Down View)" />
+          <figcaption class="gallery-caption">Realized Capstan 5-bar (Top-Down View)</figcaption>
+        </figure>
 
-          <figure class="gallery-item" data-media="media/Capstan 5Bar/FiveBarRealSideView.jpg" data-caption="Realized Capstan 5-bar (Side View)">
-            <img src="media/Capstan 5Bar/FiveBarRealSideView.jpg" alt="Realized Capstan 5-bar (Side View)" />
-            <figcaption class="gallery-caption">Realized Capstan 5-bar (Side View)</figcaption>
-          </figure>
+        <figure class="gallery-item" data-media="media/Capstan 5Bar/FiveBarRealSideView.jpg" data-caption="Realized Capstan 5-bar (Side View)">
+          <img src="media/Capstan 5Bar/FiveBarRealSideView.jpg" alt="Realized Capstan 5-bar (Side View)" />
+          <figcaption class="gallery-caption">Realized Capstan 5-bar (Side View)</figcaption>
+        </figure>
 
-          <figure class="gallery-item" data-media="media/Capstan 5Bar/homing.MOV" data-caption="Homing Program Video">
-            <video src="media/Capstan 5Bar/homing.MOV" autoplay loop muted playsinline preload="metadata"></video>
-            <figcaption class="gallery-caption">Homing Program Video</figcaption>
-          </figure>
+        <figure class="gallery-item" data-media="media/Capstan 5Bar/homing.MOV" data-caption="Homing Program Video">
+          <video src="media/Capstan 5Bar/homing.MOV" autoplay loop muted playsinline preload="metadata"></video>
+          <figcaption class="gallery-caption">Homing Program Video</figcaption>
+        </figure>
 
-          <figure class="gallery-item" data-media="media/Capstan 5Bar/TorqueTesting.MOV" data-caption="Torque Testing Video">
-            <video src="media/Capstan 5Bar/TorqueTesting.MOV" autoplay loop muted playsinline preload="metadata"></video>
-            <figcaption class="gallery-caption">Torque Testing Video</figcaption>
-          </figure>
-        </div>
+        <figure class="gallery-item" data-media="media/Capstan 5Bar/TorqueTesting.MOV" data-caption="Torque Testing Video">
+          <video src="media/Capstan 5Bar/TorqueTesting.MOV" autoplay loop muted playsinline preload="metadata"></video>
+          <figcaption class="gallery-caption">Torque Testing Video</figcaption>
+        </figure>
       </div>
     </section>
   </main>
@@ -441,6 +426,7 @@
     </div>
   </div>
 
+  <!-- ✅ #3: All gallery items still clickable + videos muted -->
   <script>
     document.addEventListener('DOMContentLoaded', function() {
       const modal = document.getElementById('media-modal');
@@ -448,7 +434,7 @@
       const modalCaption = document.querySelector('.modal-caption');
       const closeBtn = document.querySelector('.close');
       
-      // Click gallery item to open modal
+      // Click gallery item to open modal (works for ALL items)
       document.querySelectorAll('.gallery-item').forEach(item => {
         item.addEventListener('click', function() {
           const mediaSrc = this.dataset.media;
@@ -489,7 +475,7 @@
       });
     });
   </script>
-
 </body>
 </html>
+
 
