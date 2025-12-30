@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>5-DOF Arduino Robot | Ben Zwiener</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <!-- Same fonts as other pages -->
+  <link
+    rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500&display=swap"
+  />
+  <link
+    rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600&display=swap"
+  />
+
+  <style>
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: #e7eaee;
+      color: #1d1f23;
+    }
+
+    /* ===== Shared header (same as index/projects) ===== */
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      background: #2e3a4a;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.9rem 3.5rem;
+      border-bottom: 1px solid #222a36;
+    }
+
+    .site-header h1 {
+      margin: 0;
+      font-family: "Poppins", system-ui, sans-serif;
+      font-size: 1.9rem;
+      font-style: italic;
+      font-weight: 600;
+      color: #f9fafb;
+    }
+
+    .site-header nav {
+      display: flex;
+      align-items: center;
+      gap: 0.85rem;
+      font-size: 1.02rem;
+    }
+
+    .nav-pill,
+    .nav-cta {
+      font-family: "Poppins", system-ui, sans-serif;
+      text-decoration: none;
+      border-radius: 999px;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.15s ease, transform 0.1s ease;
+    }
+
+    .nav-pill {
+      padding: 0.7rem 1.9rem;
+      background: #42526b;
+      color: #f9fafb;
+      border: none;
+      font-size: 1.02rem;
+    }
+    .nav-pill:hover { background: #556582; transform: translateY(-1px); }
+
+    .nav-cta {
+      padding: 0.8rem 2.3rem;
+      background: #1f7aa7;
+      color: #ffffff;
+      border: none;
+      font-size: 1.05rem;
+    }
+    .nav-cta:hover { background: #155777; transform: translateY(-1px); }
+
+    /* ===== Page container ===== */
+    .page {
+      max-width: 1100px;
+      margin: 2.5rem auto 3.5rem;
+      padding: 0 1.5rem;
+    }
+
+    /* ===== Title + dates ===== */
+    .project-header {
+      margin-bottom: 2rem;
+    }
+
+    .project-title {
+      font-family: "Poppins", system-ui, sans-serif;
+      font-size: 2.6rem;
+      margin: 0 0 0.5rem 0;
+      color: #111827;
+    }
+
+    .project-dates {
+      font-size: 0.95rem;
+      color: #4b5563;
+      letter-spacing: 0.03em;
+      text-transform: uppercase;
+    }
+
+    /* ===== Motivation / objectives ===== */
+    .section-title {
+      font-family: "Poppins", system-ui, sans-serif;
+      font-size: 1.3rem;
+      margin: 0 0 1rem 0;
+      color: #111827;
+    }
+
+    .motivation-block {
+      background: #f3f5f8;
+      border-radius: 1.75rem;
+      padding: 1.75rem 1.9rem;
+      box-shadow: 0 12px 24px rgba(15, 23, 42, 0.12);
+      margin-bottom: 2rem;
+    }
+
+    .motivation-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1.4fr);
+      gap: 1.75rem;
+      align-items: center;
+    }
+
+    .motivation-image {
+      border-radius: 1.25rem;
+      overflow: hidden;
+      background: #c2c9d3;
+      max-height: 300px;
+    }
+
+    .motivation-image img {
+      width: 100%;
+      height: 100%;
+      max-height: 300px;
+      object-fit: cover;
+      display: block;
+    }
+
+    .motivation-text p {
+      font-family: "Playfair Display", "Times New Roman", serif;
+      font-size: 1.02rem;
+      line-height: 1.8;
+      margin: 0;
+      color: #262a32;
+    }
+
+    /* ===== Contributions / outcomes ===== */
+    .contrib-block {
+      background: #f3f5f8;
+      border-radius: 1.75rem;
+      padding: 1.75rem 1.9rem;
+      box-shadow: 0 12px 24px rgba(15, 23, 42, 0.12);
+      margin-bottom: 2.5rem;
+    }
+
+    .contrib-columns {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 2rem;
+    }
+
+    .contrib-columns h3 {
+      font-family: "Poppins", system-ui, sans-serif;
+      font-size: 1.1rem;
+      margin: 0 0 0.75rem 0;
+    }
+
+    .contrib-columns ul {
+      margin: 0;
+      padding-left: 1.1rem;
+      font-size: 0.98rem;
+      line-height: 1.8;
+    }
+
+    @media (max-width: 900px) {
+      .site-header { padding: 0.8rem 1.25rem; }
+      .motivation-grid { grid-template-columns: 1fr; }
+      .contrib-columns { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <!-- Shared header -->
+  <header class="site-header">
+    <h1>Ben Zwiener</h1>
+
+    <nav>
+      <a href="index.html" class="nav-pill">Home</a>
+      <a href="projects.html" class="nav-pill">Projects</a>
+
+      <a
+        href="resume.pdf"
+        class="nav-cta"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        Resume
+      </a>
+
+      <a
+        href="https://www.linkedin.com/in/benjamin-zwiener-3621591a0"
+        class="nav-cta"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        LinkedIn
+      </a>
+    </nav>
+  </header>
+
+  <main class="page">
+    <!-- Title + dates -->
+    <section class="project-header">
+      <h2 class="project-title">5-DOF Arduino Robot</h2>
+      <p class="project-dates"> March 2022 - May 2022</p>
+    </section>
+
+    <!-- Motivation & objectives -->
+    <section class="motivation-block">
+      <h3 class="section-title">Motivation & Objectives</h3>
+      <div class="motivation-grid">
+        <div class="motivation-image">
+          <img src="media/FiveAxisRobot/FiveAxisRobot.png" alt="Five Axis Robot" />
+        </div>
+        <div class="motivation-text">
+          <p>
+            After recently getting introduced to Arduino, I set out to build an operable robot from scratch. 
+            For this project, I looked to expand my knowledge of programming, CAD, and 3D printing and learn new skills like soldering, wiring, and how to estimate the necessary joint torques depending on the robot's payload.  
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contributions & outcomes -->
+    <section class="contrib-block">
+      <div class="contrib-columns">
+        <div>
+          <h3>What I did . . .</h3>
+          <ul>
+            <li>Created an amateur robotic arm (5 DOF)</li>
+            <li>Designed with SoldiWorks and manufactured with a 3D printer</li>
+            <li>Utilized 4 servo motors and 1 stepper motor</li>
+            <li>Joint controlled with 4 potentiometers and 1 joystick</li>
+          </ul>
+        </div>
+        <div>
+          <h3>What I learned . . .</h3>
+          <ul>
+            <li>How to better plan and design prior to beginning the project (mechanically and electrically)</li>
+            <li>Consider varying voltages from different motors while drawing from one power source</li>
+            <li>>Better methods of attaching motors to linkages</li>
+            <li>How to use a 3D printer and design parts that can be easily printed</li>
+            <li>3D printed plastic parts generally shrink and don't conform to the specified dimensions</li>
+            <li>How to program motor functions in Arduino</li>
+            <li>Some motors like servos use PWM while motors like steppers require a separate driver to be controlled and protected</li>
+            <li>How to solder better
+          </ul>
+        </div>
+      </div>
+    </section>
+  </main>
+</body>
+</html>
