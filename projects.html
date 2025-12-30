@@ -132,8 +132,13 @@
       text-decoration: none;
       color: inherit;
       display: block;
-      border-radius: 1.75rem; /* match inner card for smooth outline */
+      border-radius: 1.75rem;
     }
+
+    .project-link * {
+      pointer-events: auto;  /* Ensures link gets clicks */
+    }
+
 
     .project-card {
       background: #f3f5f8;
