@@ -128,20 +128,23 @@
 
     .motivation-grid {
       display: grid;
-      grid-template-columns: minmax(0, 1.2fr) minmax(0, 1.4fr);
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1.4fr);
       gap: 1.75rem;
       align-items: center;
     }
 
+    /* ✅ #2: Make motivation image smaller */
     .motivation-image {
       border-radius: 1.25rem;
       overflow: hidden;
       background: #c2c9d3;
+      max-height: 300px;
     }
 
     .motivation-image img {
       width: 100%;
       height: 100%;
+      max-height: 300px;
       object-fit: cover;
       display: block;
     }
@@ -182,82 +185,115 @@
       line-height: 1.8;
     }
 
-    /* ===== Horizontal gallery with auto-scroll ===== */
+    /* ===== ✅ #1: New 2-column vertical gallery (no horizontal scroll) ===== */
     .gallery-block {
-      margin-top: 0.5rem;
-    }
-
-    .gallery-strip-wrapper {
-      position: relative;
-      overflow: hidden;
-      border-radius: 1.5rem;
       background: #f3f5f8;
+      border-radius: 1.75rem;
+      padding: 1.75rem 1.9rem;
       box-shadow: 0 12px 24px rgba(15, 23, 42, 0.12);
-      padding: 1rem 0;
+      margin-bottom: 2.5rem;
     }
 
-    .gallery-strip {
-      --gap: 1rem;
-      display: flex;
-      gap: var(--gap);
-      padding-inline: 1.5rem;
-      /* horizontal scrolling */
-      overflow-x: auto;
-      scroll-behavior: smooth;
-      scrollbar-width: thin;
-      scrollbar-color: #9ca3af transparent;
-    }
-
-    .gallery-strip::-webkit-scrollbar {
-      height: 6px;
-    }
-    .gallery-strip::-webkit-scrollbar-track {
-      background: transparent;
-    }
-    .gallery-strip::-webkit-scrollbar-thumb {
-      background: #9ca3af;
-      border-radius: 999px;
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.25rem;
     }
 
     .gallery-item {
-      flex: 0 0 260px;
       border-radius: 1.25rem;
       overflow: hidden;
       background: #c2c9d3;
       box-shadow: 0 6px 14px rgba(15, 23, 42, 0.18);
+      cursor: pointer;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .gallery-item:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 24px rgba(15, 23, 42, 0.25);
     }
 
     .gallery-item img,
     .gallery-item video {
       width: 100%;
-      height: 180px;
+      height: 220px;
       object-fit: cover;
       display: block;
     }
 
     .gallery-caption {
-      padding: 0.55rem 0.75rem 0.75rem;
-      font-size: 0.86rem;
+      padding: 0.75rem;
+      font-size: 0.9rem;
       color: #374151;
       font-family: "Playfair Display", "Times New Roman", serif;
+      flex-grow: 1;
+      display: flex;
+      align-items: center;
     }
 
-    /* simple auto-scroll animation (CSS only) */
-    @keyframes gallery-scroll {
-      from { transform: translateX(0); }
-      to   { transform: translateX(-50%); }
+    /* Modal styles */
+    .modal {
+      position: fixed;
+      z-index: 1000;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.9);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem;
     }
 
-    /* optional: duplicated strip for infinite effect
-       if you want true infinite marquee, adjust markup & animation further */
-    .gallery-auto {
-      animation: gallery-scroll 40s linear infinite;
+    .modal-content {
+      max-width: 90vw;
+      max-height: 90vh;
+      position: relative;
+      text-align: center;
     }
+
+    .modal-media {
+      max-width: 100%;
+      max-height: 70vh;
+    }
+
+    .modal-media img,
+    .modal-media video {
+      max-width: 100%;
+      max-height: 70vh;
+      object-fit: contain;
+    }
+
+    .modal-caption {
+      color: white;
+      font-family: "Playfair Display", serif;
+      font-size: 1.1rem;
+      margin-top: 1rem;
+      padding: 0 1rem;
+    }
+
+    .close {
+      position: absolute;
+      top: -4rem;
+      right: 0;
+      color: white;
+      font-size: 2.5rem;
+      font-weight: bold;
+      cursor: pointer;
+      line-height: 1;
+    }
+
+    .close:hover { color: #ccc; }
 
     @media (max-width: 900px) {
       .site-header { padding: 0.8rem 1.25rem; }
       .motivation-grid { grid-template-columns: 1fr; }
       .contrib-columns { grid-template-columns: 1fr; }
+      .gallery-grid { grid-template-columns: 1fr; }
     }
   </style>
 </head>
@@ -302,14 +338,13 @@
       <h3 class="section-title">Motivation & Objectives</h3>
       <div class="motivation-grid">
         <div class="motivation-image">
-          <!-- Replace with a large hero image for the project -->
           <img src="media/Inverted Pendulum/RealizedInvertedPendulum.png" alt="Physical Inverted Pendulum" />
         </div>
         <div class="motivation-text">
           <p>
-            When studying control systems and dynamics, inverted pendulums are a classic non-linear problem used to increased a student's understanding.
-            Often they are made with a pendulum attached to a cart and driven via a pulley and motor to change its postion and thus maintain balance.
-            For this project we were tasked to design, model, build, and impelemnt the physical inverted pendulum system and analyze possible control strategies.
+            When studying control systems and dynamics, inverted pendulums are a classic non-linear problem used to increase a student's understanding.
+            Often they are made with a pendulum attached to a cart and driven via a pulley and motor to change its position and thus maintain balance.
+            For this project we were tasked to design, model, build, and implement the physical inverted pendulum system and analyze possible control strategies.
           </p>
         </div>
       </div>
@@ -317,20 +352,21 @@
 
     <!-- Contributions & outcomes -->
     <section class="contrib-block">
+      <h3 class="section-title">Contributions & Outcomes</h3>
       <div class="contrib-columns">
         <div>
           <h3>Contributions</h3>
           <ul>
             <li>Supported analytical derivation with free body diagrams and linearized equations of motion converted to transfer functions</li>
             <li>Designed CAD and 3D printed components</li>
-            <li>Created root locus plots to inform approriate changes for improving the transient response</li>
+            <li>Created root locus plots to inform appropriate changes for improving the transient response</li>
             <li>Assisted in mechatronic setup</li>
           </ul>
         </div>
         <div>
           <h3>Outcomes</h3>
           <ul>
-            <li>Analytically modeled the pendulum system via free body body diagrams and a linearized system of equations based on the system's transfer functions </li>
+            <li>Analytically modeled the pendulum system via free body diagrams and a linearized system of equations based on the system's transfer functions</li>
             <li>Designed and built the Pendulum system</li>
             <li>Implemented a PID controller to balance the pendulum upright</li>
             <li>Extra Credit: Showed the system can maintain and return to its position while experiencing disturbances</li>
@@ -340,41 +376,90 @@
       </div>
     </section>
 
-    <!-- Project gallery -->
+    <!-- ✅ #1: New 2-column gallery -->
     <section class="gallery-block">
       <h3 class="section-title">Project Gallery</h3>
-      <p style="font-size:0.95rem; color:#4b5563; margin-bottom:0.75rem;">
-        Scroll horizontally or let the gallery move automatically to see key stages of the build and testing.
-      </p>
+      <div class="gallery-grid">
+        <figure class="gallery-item" data-media="media/Inverted Pendulum/component layout.png" data-caption="Inverted Pendulum Detailed Layout">
+          <img src="media/Inverted Pendulum/component layout.png" alt="Inverted Pendulum Detailed Layout" />
+          <figcaption class="gallery-caption">Inverted Pendulum Detailed Layout</figcaption>
+        </figure>
 
-      <div class="gallery-strip-wrapper">
-        <!-- The strip is horizontally scrollable by the user.
-             If you want it to auto-scroll continuously, add class "gallery-auto"
-             and duplicate the items for a seamless loop. -->
-        <div class="gallery-strip">
+        <figure class="gallery-item" data-media="media/Inverted Pendulum/invertedPendulumCAD.png" data-caption="Inverted Pendulum CAD Concept">
+          <img src="media/Inverted Pendulum/invertedPendulumCAD.png" alt="Inverted Pendulum CAD Concept" />
+          <figcaption class="gallery-caption">Inverted Pendulum CAD Concept</figcaption>
+        </figure>
 
-          <figure class="gallery-item">
-            <img src="media/Inverted Pendulum/component layout.png" alt="Inverted Pendulum Detailed Layout" />
-            <figcaption class="gallery-caption">Inverted Pendulum Detailed Layout</figcaption>
-          </figure>
+        <figure class="gallery-item" data-media="media/Inverted Pendulum/PendulumInvertsItself_clip.mp4" data-caption="Pendulum Inverts Itself">
+          <video src="media/Inverted Pendulum/PendulumInvertsItself_clip.mp4" autoplay loop muted playsinline preload="metadata"></video>
+          <figcaption class="gallery-caption">Pendulum Inverts Itself</figcaption>
+        </figure>
 
-          <figure class="gallery-item">
-            <img src="media/Inverted Pendulum/invertedPendulumCAD.png" alt="Inverted Pendulum CAD Concept" />
-            <figcaption class="gallery-caption">Inverted Pendulum CAD Concept</figcaption>
-          </figure>
-
-          <figure class="gallery-item">
-            <video src="media/Inverted Pendulum/PendulumInvertsItself_clip.mp4" autoplay loop muted playsinline></video>
-            <figcaption class="gallery-caption">Pendulum Inverts Itself</figcaption>
-          </figure>
-
-          <figure class="gallery-item">
-            <img src="media/Inverted Pendulum/RealizedInvertedPendulum.png" alt="" />
-            <figcaption class="gallery-caption">Realzied Inverted Pendulum and setup</figcaption>
-          </figure>
-        </div>
+        <figure class="gallery-item" data-media="media/Inverted Pendulum/RealizedInvertedPendulum.png" data-caption="Realized Inverted Pendulum and setup">
+          <img src="media/Inverted Pendulum/RealizedInvertedPendulum.png" alt="Realized Inverted Pendulum and setup" />
+          <figcaption class="gallery-caption">Realized Inverted Pendulum and setup</figcaption>
+        </figure>
       </div>
     </section>
   </main>
+
+  <!-- Modal overlay for expanded media -->
+  <div id="media-modal" class="modal">
+    <div class="modal-content">
+      <span class="close">&times;</span>
+      <div class="modal-media"></div>
+      <p class="modal-caption"></p>
+    </div>
+  </div>
+
+  <!-- ✅ #3: All gallery items clickable + videos muted -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const modal = document.getElementById('media-modal');
+      const modalMedia = document.querySelector('.modal-media');
+      const modalCaption = document.querySelector('.modal-caption');
+      const closeBtn = document.querySelector('.close');
+      
+      // Click gallery item to open modal (works for ALL items)
+      document.querySelectorAll('.gallery-item').forEach(item => {
+        item.addEventListener('click', function() {
+          const mediaSrc = this.dataset.media;
+          const caption = this.dataset.caption;
+          
+          // Determine if image or video
+          if (mediaSrc.endsWith('.mp4') || mediaSrc.endsWith('.mov') || mediaSrc.endsWith('.MOV')) {
+            const video = document.createElement('video');
+            video.src = mediaSrc;
+            video.controls = true;
+            video.autoplay = true;
+            video.loop = true;
+            video.muted = true;  // Force muted
+            video.style.maxHeight = '70vh';
+            video.style.width = 'auto';
+            video.style.height = 'auto';
+            
+            // Ensure it stays muted even if user interacts
+            video.addEventListener('volumechange', function() {
+              this.muted = true;
+            });
+            
+            modalMedia.innerHTML = '';
+            modalMedia.appendChild(video);
+          } else {
+            modalMedia.innerHTML = `<img src="${mediaSrc}" alt="${caption}">`;
+          }
+          
+          modalCaption.textContent = caption;
+          modal.style.display = 'flex';
+        });
+      });
+      
+      // Close modal
+      closeBtn.addEventListener('click', () => modal.style.display = 'none');
+      modal.addEventListener('click', (e) => {
+        if (e.target === modal) modal.style.display = 'none';
+      });
+    });
+  </script>
 </body>
 </html>
