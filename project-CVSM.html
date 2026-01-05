@@ -5,14 +5,10 @@
   <title>Cartesian Variable Stiffness Mechanism | Ben Zwiener</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-  <!-- Same fonts as other pages -->
+  <!-- Unified font -->
   <link
     rel="stylesheet"
-    href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500&display=swap"
-  />
-  <link
-    rel="stylesheet"
-    href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600&display=swap"
+    href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap"
   />
 
   <style>
@@ -20,69 +16,49 @@
 
     body {
       margin: 0;
-      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      font-family: "Poppins", system-ui, sans-serif;
       background: #e7eaee;
       color: #1d1f23;
     }
 
-    /* ===== Shared header (same as index/projects) ===== */
+    /* ===== Shared header ===== */
     .site-header {
       position: sticky;
       top: 0;
       z-index: 20;
-      background: #2e3a4a;
+      background: #1f1f1f;
       display: flex;
       align-items: center;
       justify-content: space-between;
       padding: 0.9rem 3.5rem;
-      border-bottom: 1px solid #222a36;
+      border-bottom: 1px solid #333;
     }
 
     .site-header h1 {
       margin: 0;
-      font-family: "Poppins", system-ui, sans-serif;
       font-size: 1.9rem;
-      font-style: italic;
       font-weight: 600;
       color: #f9fafb;
+      font-style: normal;
     }
 
     .site-header nav {
       display: flex;
       align-items: center;
-      gap: 0.85rem;
+      gap: 1rem;
       font-size: 1.02rem;
     }
 
-    .nav-pill,
-    .nav-cta {
-      font-family: "Poppins", system-ui, sans-serif;
+    .nav-link {
       text-decoration: none;
-      border-radius: 999px;
-      cursor: pointer;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      transition: background 0.15s ease, transform 0.1s ease;
-    }
-
-    .nav-pill {
-      padding: 0.7rem 1.9rem;
-      background: #42526b;
       color: #f9fafb;
-      border: none;
-      font-size: 1.02rem;
+      padding: 0.5rem 1rem;
+      transition: color 0.2s ease;
     }
-    .nav-pill:hover { background: #556582; transform: translateY(-1px); }
 
-    .nav-cta {
-      padding: 0.8rem 2.3rem;
-      background: #1f7aa7;
-      color: #ffffff;
-      border: none;
-      font-size: 1.05rem;
+    .nav-link:hover {
+      color: #1f7aa7;
     }
-    .nav-cta:hover { background: #155777; transform: translateY(-1px); }
 
     /* ===== Page container ===== */
     .page {
@@ -97,10 +73,10 @@
     }
 
     .project-title {
-      font-family: "Poppins", system-ui, sans-serif;
       font-size: 2.6rem;
       margin: 0 0 0.5rem 0;
       color: #111827;
+      font-weight: 600;
     }
 
     .project-dates {
@@ -110,14 +86,15 @@
       text-transform: uppercase;
     }
 
-    /* ===== Motivation / objectives ===== */
+    /* ===== Section titles ===== */
     .section-title {
-      font-family: "Poppins", system-ui, sans-serif;
       font-size: 1.3rem;
       margin: 0 0 1rem 0;
       color: #111827;
+      font-weight: 600;
     }
 
+    /* ===== Motivation / objectives ===== */
     .motivation-block {
       background: #f3f5f8;
       border-radius: 1.75rem;
@@ -133,7 +110,6 @@
       align-items: center;
     }
 
-    /* ✅ #2: Make motivation image smaller */
     .motivation-image {
       border-radius: 1.25rem;
       overflow: hidden;
@@ -150,7 +126,6 @@
     }
 
     .motivation-text p {
-      font-family: "Playfair Display", "Times New Roman", serif;
       font-size: 1.02rem;
       line-height: 1.8;
       margin: 0;
@@ -173,9 +148,9 @@
     }
 
     .contrib-columns h3 {
-      font-family: "Poppins", system-ui, sans-serif;
       font-size: 1.1rem;
       margin: 0 0 0.75rem 0;
+      font-weight: 500;
     }
 
     .contrib-columns ul {
@@ -185,7 +160,7 @@
       line-height: 1.8;
     }
 
-    /* ===== ✅ #1: New 2-column vertical gallery (no horizontal scroll) ===== */
+    /* ===== Gallery ===== */
     .gallery-block {
       background: #f3f5f8;
       border-radius: 1.75rem;
@@ -228,7 +203,6 @@
       padding: 0.75rem;
       font-size: 0.9rem;
       color: #374151;
-      font-family: "Playfair Display", "Times New Roman", serif;
       flex-grow: 1;
       display: flex;
       align-items: center;
@@ -270,7 +244,6 @@
 
     .modal-caption {
       color: white;
-      font-family: "Playfair Display", serif;
       font-size: 1.1rem;
       margin-top: 1rem;
       padding: 0 1rem;
@@ -293,7 +266,7 @@
       .site-header { padding: 0.8rem 1.25rem; }
       .motivation-grid { grid-template-columns: 1fr; }
       .contrib-columns { grid-template-columns: 1fr; }
-      .gallery-grid { grid-template-columns: 1fr; } /* Stack on mobile */
+      .gallery-grid { grid-template-columns: 1fr; }
     }
   </style>
 </head>
@@ -303,26 +276,10 @@
     <h1>Ben Zwiener</h1>
 
     <nav>
-      <a href="index.html" class="nav-pill">Home</a>
-      <a href="projects.html" class="nav-pill">Projects</a>
-
-      <a
-        href="resume.pdf"
-        class="nav-cta"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        Resume
-      </a>
-
-      <a
-        href="https://www.linkedin.com/in/benjamin-zwiener-3621591a0"
-        class="nav-cta"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        LinkedIn
-      </a>
+      <a href="index.html" class="nav-link">Home</a>
+      <a href="projects.html" class="nav-link">Projects</a>
+      <a href="resume.pdf" class="nav-link" target="_blank" rel="noopener noreferrer">Resume</a>
+      <a href="https://www.linkedin.com/in/benjamin-zwiener-3621591a0" class="nav-link" target="_blank" rel="noopener noreferrer">LinkedIn</a>
     </nav>
   </header>
 
@@ -366,7 +323,7 @@
           <h3>Outcomes</h3>
           <ul>
             <li>Analytically derived several stiffness models based on different VSM concepts</li>
-            <li>Verified stiffness behavior using Finite Element Analysis and performed physical testing</li>         
+            <li>Verified stiffness behavior using Finite Element Analysis and performed physical testing</li> 
             <li>Built a working prototype with independently tunable stiffnesses for both the XY and Z stages</li>
             <li>Created an open loop control program to actuate between different levels of stiffness</li>
             <li>Commissioned a UR5 robot out of the box and mounted the CVSM for facilitated testing</li>
@@ -376,7 +333,7 @@
       </div>
     </section>
 
-    <!-- ✅ #1: New 2-column gallery -->
+    <!-- Gallery -->
     <section class="gallery-block">
       <h3 class="section-title">Project Gallery</h3>
       <div class="gallery-grid">
@@ -462,54 +419,58 @@
     </div>
   </div>
 
-  <!-- ✅ #3: All gallery items still clickable + videos muted -->
+  <!-- Gallery interaction script -->
   <script>
-    document.addEventListener('DOMContentLoaded', function() {
+    document.addEventListener('DOMContentLoaded', function () {
       const modal = document.getElementById('media-modal');
       const modalMedia = document.querySelector('.modal-media');
       const modalCaption = document.querySelector('.modal-caption');
       const closeBtn = document.querySelector('.close');
-      
-      // Click gallery item to open modal (works for ALL items)
+
       document.querySelectorAll('.gallery-item').forEach(item => {
-        item.addEventListener('click', function() {
+        item.addEventListener('click', function () {
           const mediaSrc = this.dataset.media;
           const caption = this.dataset.caption;
-          
-          // Determine if image or video
-          if (mediaSrc.endsWith('.mp4') || mediaSrc.endsWith('.mov') || mediaSrc.endsWith('.MOV')) {
+
+          if (mediaSrc.match(/\.(mp4|mov|MOV)$/)) {
             const video = document.createElement('video');
             video.src = mediaSrc;
             video.controls = true;
             video.autoplay = true;
             video.loop = true;
-            video.muted = true;  // Force muted
+            video.muted = true;
             video.style.maxHeight = '70vh';
             video.style.width = 'auto';
             video.style.height = 'auto';
-            
-            // Ensure it stays muted even if user interacts
-            video.addEventListener('volumechange', function() {
+
+            video.addEventListener('volumechange', function () {
               this.muted = true;
             });
-            
+
             modalMedia.innerHTML = '';
             modalMedia.appendChild(video);
           } else {
             modalMedia.innerHTML = `<img src="${mediaSrc}" alt="${caption}">`;
           }
-          
+
           modalCaption.textContent = caption;
           modal.style.display = 'flex';
         });
       });
-      
-      // Close modal
-      closeBtn.addEventListener('click', () => modal.style.display = 'none');
+
+      closeBtn.addEventListener('click', () => {
+        modal.style.display = 'none';
+        modalMedia.innerHTML = '';
+      });
+
       modal.addEventListener('click', (e) => {
-        if (e.target === modal) modal.style.display = 'none';
+        if (e.target === modal) {
+          modal.style.display = 'none';
+          modalMedia.innerHTML = '';
+        }
       });
     });
   </script>
 </body>
 </html>
+
