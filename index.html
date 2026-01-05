@@ -116,86 +116,6 @@
       border-radius: 2rem;
     }
 
-    /* ===== Modal ===== */
-    .modal-backdrop {
-      position: fixed;
-      inset: 0;
-      background: rgba(15, 23, 42, 0.35);
-      display: none;
-      align-items: center;
-      justify-content: center;
-      z-index: 30;
-    }
-
-    .modal {
-      background: #ffffff;
-      border-radius: 1.5rem;
-      padding: 2rem 2.25rem;
-      width: 100%;
-      max-width: 420px;
-      box-shadow: 0 18px 40px rgba(15, 23, 42, 0.35);
-    }
-
-    .modal-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 1rem;
-    }
-
-    .modal-header h3 {
-      margin: 0;
-      font-size: 1.4rem;
-      color: #111827;
-      font-weight: 600;
-    }
-
-    .modal-close {
-      border: none;
-      background: transparent;
-      font-size: 1.3rem;
-      cursor: pointer;
-      line-height: 1;
-    }
-
-    .modal p {
-      margin-top: 0;
-      margin-bottom: 1rem;
-      font-size: 0.95rem;
-    }
-
-    .modal form {
-      display: flex;
-      flex-direction: column;
-      gap: 0.75rem;
-    }
-
-    .modal input,
-    .modal textarea {
-      width: 100%;
-      padding: 0.55rem;
-      border-radius: 0.35rem;
-      border: 1px solid #d1d5db;
-      font-size: 0.95rem;
-    }
-
-    .modal textarea {
-      resize: vertical;
-      min-height: 90px;
-    }
-
-    .modal button[type="submit"] {
-      align-self: flex-start;
-      margin-top: 0.25rem;
-      padding: 0.65rem 1.8rem;
-      border-radius: 999px;
-      border: none;
-      background: #1f7aa7;
-      color: #ffffff;
-      cursor: pointer;
-      font-size: 0.95rem;
-    }
-
     @media (max-width: 900px) {
       .site-header {
         padding: 0.75rem 1.25rem;
@@ -231,7 +151,6 @@
       <a href="projects.html" class="nav-link">Projects</a>
       <a href="resume.pdf" class="nav-link" target="_blank" rel="noopener noreferrer">Resume</a>
       <a href="https://www.linkedin.com/in/benjamin-zwiener-3621591a0" class="nav-link" target="_blank" rel="noopener noreferrer">LinkedIn</a>
-      <a href="#contact" class="nav-link" id="contact-open">Contact</a>
     </nav>
   </header>
 
@@ -241,10 +160,12 @@
       <div class="hero-left">
         <h2>A little about me</h2>
         <p>
-          I am a mechanical engineer recently graduated from the University of Nebraska–Lincoln, specializing in robotics, mechatronics, and mechanisms. My thesis research focused on a novel variable stiffness mechanism for industrial robotics, resulting in publications at ASME IDETC conferences and a pending U.S. patent.
+          I am a mechanical engineer recently graduated from the University of Nebraska–Lincoln, specializing in robotics, mechatronics, and mechanisms. 
+          My thesis research focused on a novel variable stiffness mechanism for industrial robotics, resulting in publications at ASME IDETC conferences and a pending U.S. patent.
         </p>
         <p>
-          I also led the design and project team for a Remote Ultrasound Robot aimed at expanding access to specialized healthcare in remote communities. During my internship at Relativity Space, I designed a modular gearbox from scratch, performed both hand calculations and FEA, and validated the design through testing to inform future improvements.
+          I also led the design and project team for a Remote Ultrasound Robot aimed at expanding access to specialized healthcare in remote communities. 
+          During my internship at Relativity Space, I designed a modular gearbox from scratch, performed both hand calculations and FEA, and validated the design through testing to inform future improvements.
         </p>
       </div>
 
@@ -255,47 +176,5 @@
       </div>
     </section>
   </main>
-
-  <!-- Contact modal -->
-  <div class="modal-backdrop" id="contact-modal">
-    <div class="modal">
-      <div class="modal-header">
-        <h3>Contact Ben</h3>
-        <button class="modal-close" id="contact-close" aria-label="Close contact form">
-          &times;
-        </button>
-      </div>
-      <p>
-        Fill this out to send a quick message. You can also email me directly at
-        <a href="mailto:blzwiener@gmail.com">blzwiener@gmail.com</a>.
-      </p>
-      <form>
-        <input type="email" name="email" placeholder="Your email" required />
-        <textarea name="message" placeholder="Hi Ben! My name is..." required></textarea>
-        <button type="submit">Send</button>
-      </form>
-    </div>
-  </div>
-
-  <script>
-    const openBtn = document.getElementById("contact-open");
-    const closeBtn = document.getElementById("contact-close");
-    const modal = document.getElementById("contact-modal");
-
-    openBtn.addEventListener("click", () => {
-      modal.style.display = "flex";
-    });
-
-    closeBtn.addEventListener("click", () => {
-      modal.style.display = "none";
-    });
-
-    modal.addEventListener("click", (e) => {
-      if (e.target === modal) {
-        modal.style.display = "none";
-      }
-    });
-  </script>
 </body>
 </html>
-

@@ -89,7 +89,20 @@
       display: flex;
       flex-direction: column;
       gap: 2.5rem;
-      margin-bottom: 2.5rem;
+    }
+
+    /* Featured section spacing - normal gap after last card */
+    .project-list > *:last-child.project-link {
+      margin-bottom: 1.5rem;
+    }
+
+    /* "Other Past Projects" h2 - large top margin, small bottom margin */
+    .other-projects-header {
+      margin-top: 4rem;
+      margin-bottom: 1.75rem;
+      font-size: 2.4rem;
+      color: #111827;
+      font-weight: 600;
     }
 
     /* clickable card wrapper */
@@ -176,11 +189,6 @@
       text-decoration: underline;
     }
 
-    /* Extra spacing before the second H2 ("Other Past Projects") */
-    .project-list > h2 {
-      margin-top: 3.5rem;
-    }
-
     @media (max-width: 800px) {
       .site-header {
         padding: 0.8rem 1.25rem;
@@ -193,6 +201,11 @@
       .project-content {
         grid-template-columns: 1fr;
       }
+
+      .other-projects-header {
+        margin-top: 3rem;
+        margin-bottom: 1.25rem;
+      }
     }
   </style>
 </head>
@@ -204,7 +217,6 @@
       <a href="index.html" class="nav-link">Home</a>
       <a href="resume.pdf" class="nav-link" target="_blank" rel="noopener noreferrer">Resume</a>
       <a href="https://www.linkedin.com/in/benjamin-zwiener-3621591a0" class="nav-link" target="_blank" rel="noopener noreferrer">LinkedIn</a>
-      <a href="index.html#contact" class="nav-link">Contact</a>
     </nav>
   </header>
 
@@ -216,7 +228,6 @@
     </p>
 
     <section class="project-list">
-
       <!-- Project 1 -->
       <a class="project-link" href="project-CapstanDrivenRoboticManipulator.html">
         <article class="project-card">
@@ -322,8 +333,8 @@
         </article>
       </a>
 
-      <!-- Second section header with extra spacing from CSS above -->
-      <h2>Other Past Projects</h2>
+      <!-- "Other Past Projects" header - custom spacing -->
+      <h2 class="other-projects-header">Other Past Projects</h2>
 
       <!-- Project 6 -->
       <a class="project-link" href="project-RubixCubeSolver.html">
@@ -389,8 +400,8 @@
           </div>
         </article>
       </a>
-
     </section>
   </main>
 </body>
 </html>
+
