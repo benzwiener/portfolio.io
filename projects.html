@@ -5,23 +5,20 @@
   <title>Ben Zwiener | Projects</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-  <!-- Same fonts as index -->
+  <!-- Unified font -->
   <link
     rel="stylesheet"
-    href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500&display=swap"
-  />
-  <link
-    rel="stylesheet"
-    href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600&display=swap"
+    href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap"
   />
 
   <style>
-    * { box-sizing: border-box; }
+    * {
+      box-sizing: border-box;
+    }
 
     body {
       margin: 0;
-      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
-        sans-serif;
+      font-family: "Poppins", system-ui, sans-serif;
       background: #e7eaee;
       color: #1d1f23;
     }
@@ -31,70 +28,39 @@
       position: sticky;
       top: 0;
       z-index: 20;
-      background: #2e3a4a;
+      background: #1f1f1f; /* professional dark gray */
       display: flex;
       align-items: center;
       justify-content: space-between;
       padding: 0.9rem 3.5rem;
-      border-bottom: 1px solid #222a36;
+      border-bottom: 1px solid #333;
     }
 
     .site-header h1 {
       margin: 0;
-      font-family: "Poppins", system-ui, sans-serif;
       font-size: 1.9rem;
-      font-style: italic;
       font-weight: 600;
       color: #f9fafb;
+      font-style: normal; /* unitalicized name */
     }
 
     .site-header nav {
       display: flex;
       align-items: center;
-      gap: 0.85rem;
+      gap: 1rem;
       font-size: 1.02rem;
     }
 
-    .nav-pill {
-      font-family: "Poppins", system-ui, sans-serif;
+    /* simplified nav links (no ovals) */
+    .nav-link {
       text-decoration: none;
-      padding: 0.7rem 1.9rem;
-      border-radius: 999px;
-      background: #42526b;
       color: #f9fafb;
-      border: none;
-      font-size: 1.02rem;
-      cursor: pointer;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      transition: background 0.15s ease, transform 0.1s ease;
+      padding: 0.5rem 1rem;
+      transition: color 0.2s ease;
     }
 
-    .nav-pill:hover {
-      background: #556582;
-      transform: translateY(-1px);
-    }
-
-    .nav-cta {
-      font-family: "Poppins", system-ui, sans-serif;
-      text-decoration: none;
-      padding: 0.8rem 2.3rem;
-      border-radius: 999px;
-      background: #1f7aa7;
-      color: #ffffff;
-      border: none;
-      font-size: 1.05rem;
-      cursor: pointer;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      transition: background 0.15s ease, transform 0.1s ease;
-    }
-
-    .nav-cta:hover {
-      background: #155777;
-      transform: translateY(-1px);
+    .nav-link:hover {
+      color: #1f7aa7;
     }
 
     /* ===== Projects page layout ===== */
@@ -108,11 +74,10 @@
       font-size: 2.4rem;
       margin: 0 0 1.25rem 0;
       color: #111827;
-      font-family: "Poppins", system-ui, sans-serif;
+      font-weight: 600;
     }
 
     .projects-intro {
-      font-family: "Playfair Display", "Times New Roman", serif;
       font-size: 1.02rem;
       line-height: 1.7;
       color: #262a32;
@@ -136,21 +101,21 @@
     }
 
     .project-link * {
-      pointer-events: auto;  /* Ensures link gets clicks */
+      pointer-events: auto;  /* ensure content still clickable */
     }
-
 
     .project-card {
       background: #f3f5f8;
       border-radius: 1.75rem;
       padding: 1.5rem 1.75rem;
       box-shadow: 0 12px 24px rgba(15, 23, 42, 0.12);
-      transition: transform 0.12s ease, box-shadow 0.12s ease,
-                  background 0.12s ease;
+      transition:
+        transform 0.12s ease,
+        box-shadow 0.12s ease,
+        background 0.12s ease;
       position: relative;
     }
 
-    /* hover/focus states so it feels like a button */
     .project-link:hover .project-card,
     .project-link:focus-visible .project-card {
       transform: translateY(-2px);
@@ -162,7 +127,7 @@
       font-size: 1.5rem;
       margin: 0 0 1rem 0;
       color: #111827;
-      font-family: "Poppins", system-ui, sans-serif;
+      font-weight: 600;
     }
 
     .project-content {
@@ -191,7 +156,6 @@
       font-size: 0.98rem;
       line-height: 1.7;
       color: #333741;
-      font-family: "Playfair Display", "Times New Roman", serif;
     }
 
     .project-meta {
@@ -204,22 +168,31 @@
       text-decoration: none;
       color: #1f7aa7;
       margin-right: 0.5rem;
+      position: relative;
+      z-index: 2;
     }
 
     .project-links a:hover {
       text-decoration: underline;
     }
 
-    /* keep inner links clickable without triggering whole-card navigation */
-    .project-links a {
-      position: relative;
-      z-index: 2;
+    /* Extra spacing before the second H2 ("Other Past Projects") */
+    .project-list > h2 {
+      margin-top: 3.5rem;
     }
 
     @media (max-width: 800px) {
-      .site-header { padding: 0.8rem 1.25rem; }
-      .projects-main { margin-top: 2rem; }
-      .project-content { grid-template-columns: 1fr; }
+      .site-header {
+        padding: 0.8rem 1.25rem;
+      }
+
+      .projects-main {
+        margin-top: 2rem;
+      }
+
+      .project-content {
+        grid-template-columns: 1fr;
+      }
     }
   </style>
 </head>
@@ -228,36 +201,17 @@
     <h1>Ben Zwiener</h1>
 
     <nav>
-      <a href="index.html" class="nav-pill">Home</a>
-
-      <a
-        href="resume.pdf"
-        class="nav-cta"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        Resume
-      </a>
-
-      <a
-        href="https://www.linkedin.com/in/benjamin-zwiener-3621591a0"
-        class="nav-cta"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        LinkedIn
-      </a>
-
-      <a href="index.html#contact" class="nav-cta">
-        Contact
-      </a>
+      <a href="index.html" class="nav-link">Home</a>
+      <a href="resume.pdf" class="nav-link" target="_blank" rel="noopener noreferrer">Resume</a>
+      <a href="https://www.linkedin.com/in/benjamin-zwiener-3621591a0" class="nav-link" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+      <a href="index.html#contact" class="nav-link">Contact</a>
     </nav>
   </header>
 
   <main class="projects-main">
     <h2>Highlighted Projects</h2>
     <p class="projects-intro">
-      Below are a few of the engineering and robotics projects that reflect my work and interests. 
+      Below are a few of the engineering and robotics projects that reflect my work and interests.
       Projects labeled "I" and "G" reflect individual or group efforts, respectively.
     </p>
 
@@ -277,7 +231,7 @@
                 This project examines the design and utility of capstan reducers in robotic applications and demonstrates them in a 5‑bar manipulator.
               </p>
               <p class="project-meta">
-                <strong>Skills:</strong> SolidWorks, 3D printing, Arduino, MATLAB, wiring & soldering
+                <strong>Skills:</strong> SolidWorks, 3D printing, Arduino, MATLAB, wiring &amp; soldering
               </p>
             </div>
           </div>
@@ -315,9 +269,9 @@
             </div>
             <div class="project-text">
               <p>
-                 Under-resourced remote areas have limited access to skilled diagnostic ultrasound examinations.
-                 However, to accurately diagnose the most common birth defect CHD (Congenital Heart Disease) and other heart complications, technical expertise is often required.
-                 To address this we sought to create a teleoperable robot capable of replicating the high dexterity motions necessary for pediatric diagnostic ultrasound in remote communities.
+                Under-resourced remote areas have limited access to skilled diagnostic ultrasound examinations.
+                However, to accurately diagnose the most common birth defect CHD (Congenital Heart Disease) and other heart complications, technical expertise is often required.
+                To address this we sought to create a teleoperable robot capable of replicating the high dexterity motions necessary for pediatric diagnostic ultrasound in remote communities.
               </p>
               <p class="project-meta">
                 <strong>Skills:</strong> Mechanism design, mechatronics, control, system integration
@@ -368,72 +322,73 @@
         </article>
       </a>
 
+      <!-- Second section header with extra spacing from CSS above -->
       <h2>Other Past Projects</h2>
 
       <!-- Project 6 -->
-        <a class="project-link" href="project-RubixCubeSolver.html">
-          <article class="project-card">
-            <h3 class="project-title">Rubik's Cube Solver (I)</h3>
-            <div class="project-content">
-              <div class="project-media">
-                <img src="media/Rubix Cube Solver/rubixCubeCAD.png" alt="Rubik's Cube Solver CAD design" />
-              </div>
-              <div class="project-text">
-                <p>
-                  The Rubik's Cube is an iconic three-dimensional puzzle invented in 1974 but became well-known within pop culture during the 1980s. 
-                  While the inventor Erno Rubik intended its use to teach students about building 3D objects, he quickly discovered its difficulty, taking him nearly a month to solve it.
-                  After learning how to solve a Rubik's Cube and seeing others build automated mechanisms capable of completing the various algorithms, this project set out to build a similar machine. 
-                  While the project was not fully completed, it provided several valuable lessons outlined below and remains a candidate for future continuation.
-                </p>
-                <p class="project-meta">
-                  <strong>Skills:</strong> [Your skills here]
-                </p>
-              </div>
+      <a class="project-link" href="project-RubixCubeSolver.html">
+        <article class="project-card">
+          <h3 class="project-title">Rubik's Cube Solver (I)</h3>
+          <div class="project-content">
+            <div class="project-media">
+              <img src="media/Rubix Cube Solver/rubixCubeCAD.png" alt="Rubik's Cube Solver CAD design" />
             </div>
-          </article>
-        </a>
+            <div class="project-text">
+              <p>
+                The Rubik's Cube is an iconic three-dimensional puzzle invented in 1974 but became well-known within pop culture during the 1980s.
+                While the inventor Erno Rubik intended its use to teach students about building 3D objects, he quickly discovered its difficulty, taking him nearly a month to solve it.
+                After learning how to solve a Rubik's Cube and seeing others build automated mechanisms capable of completing the various algorithms, this project set out to build a similar machine.
+                While the project was not fully completed, it provided several valuable lessons outlined below and remains a candidate for future continuation.
+              </p>
+              <p class="project-meta">
+                <strong>Skills:</strong> [Your skills here]
+              </p>
+            </div>
+          </div>
+        </article>
+      </a>
 
       <!-- Project 7 -->
-        <a class="project-link" href="project-LunarAnchoringDevice.html">
-          <article class="project-card">
-            <h3 class="project-title">Lunar Anchoring Device (G)</h3>
-            <div class="project-content">
-              <div class="project-media">
-                <img src="media/Lunar Anchoring Device/lunarDevice1.png" alt="Lunar Anchoring Device1" />
-              </div>
-              <div class="project-text">
-                <p>
-                  The NASA Micro-g NExT program offers challenges for undergraduate students to design and manufacture a product to be tested by NASA. 
-                  Our challenge was to fabricate a mechanism that can ultimately anchor to the surface of the moon while being lightweight, easy to handle, and other requirements.
-                </p>
-                <p class="project-meta">
-                  <strong>Skills:</strong> [Your skills here]
-                </p>
-              </div>
+      <a class="project-link" href="project-LunarAnchoringDevice.html">
+        <article class="project-card">
+          <h3 class="project-title">Lunar Anchoring Device (G)</h3>
+          <div class="project-content">
+            <div class="project-media">
+              <img src="media/Lunar Anchoring Device/lunarDevice1.png" alt="Lunar Anchoring Device1" />
             </div>
-          </article>
-        </a>
+            <div class="project-text">
+              <p>
+                The NASA Micro-g NExT program offers challenges for undergraduate students to design and manufacture a product to be tested by NASA.
+                Our challenge was to fabricate a mechanism that can ultimately anchor to the surface of the moon while being lightweight, easy to handle, and other requirements.
+              </p>
+              <p class="project-meta">
+                <strong>Skills:</strong> [Your skills here]
+              </p>
+            </div>
+          </div>
+        </article>
+      </a>
 
       <!-- Project 8 -->
-        <a class="project-link" href="project-FiveAxisRobot.html">
-          <article class="project-card">
-            <h3 class="project-title">5-DOF Arduino Robot (I)</h3>
-            <div class="project-content">
-              <div class="project-media">
-                <img src="media/FiveAxisRobot/FiveAxisRobot.png" alt="Five Axis Robot" />
-              </div>
-              <div class="project-text">
-                <p>
-                  After recently getting introduced to Arduino, I set out to build an operable robot from scratch. 
-                  For this project, I looked to expand my knowledge of programming, CAD, and 3D printing and learn new skills like soldering, wiring, and how to estimate the necessary joint torques depending on the robot's payload. 
-                </p>
-                <p class="project-meta">
-                  <strong>Skills:</strong> [Your skills here]
-                </p>
-              </div>
+      <a class="project-link" href="project-FiveAxisRobot.html">
+        <article class="project-card">
+          <h3 class="project-title">5-DOF Arduino Robot (I)</h3>
+          <div class="project-content">
+            <div class="project-media">
+              <img src="media/FiveAxisRobot/FiveAxisRobot.png" alt="Five Axis Robot" />
             </div>
-          </article>
-        </a>
+            <div class="project-text">
+              <p>
+                After recently getting introduced to Arduino, I set out to build an operable robot from scratch.
+                For this project, I looked to expand my knowledge of programming, CAD, and 3D printing and learn new skills like soldering, wiring, and how to estimate the necessary joint torques depending on the robot's payload.
+              </p>
+              <p class="project-meta">
+                <strong>Skills:</strong> [Your skills here]
+              </p>
+            </div>
+          </div>
+        </article>
+      </a>
 
     </section>
   </main>

@@ -2,17 +2,13 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Rubix Cube Solver | Ben Zwiener</title>
+  <title>Rubik's Cube Solver | Ben Zwiener</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-  <!-- Same fonts as other pages -->
+  <!-- Unified font -->
   <link
     rel="stylesheet"
-    href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500&display=swap"
-  />
-  <link
-    rel="stylesheet"
-    href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600&display=swap"
+    href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap"
   />
 
   <style>
@@ -20,69 +16,49 @@
 
     body {
       margin: 0;
-      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      font-family: "Poppins", system-ui, sans-serif;
       background: #e7eaee;
       color: #1d1f23;
     }
 
-    /* ===== Shared header (same as index/projects) ===== */
+    /* ===== Shared header ===== */
     .site-header {
       position: sticky;
       top: 0;
       z-index: 20;
-      background: #2e3a4a;
+      background: #1f1f1f;
       display: flex;
       align-items: center;
       justify-content: space-between;
       padding: 0.9rem 3.5rem;
-      border-bottom: 1px solid #222a36;
+      border-bottom: 1px solid #333;
     }
 
     .site-header h1 {
       margin: 0;
-      font-family: "Poppins", system-ui, sans-serif;
       font-size: 1.9rem;
-      font-style: italic;
       font-weight: 600;
       color: #f9fafb;
+      font-style: normal;
     }
 
     .site-header nav {
       display: flex;
       align-items: center;
-      gap: 0.85rem;
+      gap: 1rem;
       font-size: 1.02rem;
     }
 
-    .nav-pill,
-    .nav-cta {
-      font-family: "Poppins", system-ui, sans-serif;
+    .nav-link {
       text-decoration: none;
-      border-radius: 999px;
-      cursor: pointer;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      transition: background 0.15s ease, transform 0.1s ease;
-    }
-
-    .nav-pill {
-      padding: 0.7rem 1.9rem;
-      background: #42526b;
       color: #f9fafb;
-      border: none;
-      font-size: 1.02rem;
+      padding: 0.5rem 1rem;
+      transition: color 0.2s ease;
     }
-    .nav-pill:hover { background: #556582; transform: translateY(-1px); }
 
-    .nav-cta {
-      padding: 0.8rem 2.3rem;
-      background: #1f7aa7;
-      color: #ffffff;
-      border: none;
-      font-size: 1.05rem;
+    .nav-link:hover {
+      color: #1f7aa7;
     }
-    .nav-cta:hover { background: #155777; transform: translateY(-1px); }
 
     /* ===== Page container ===== */
     .page {
@@ -97,10 +73,10 @@
     }
 
     .project-title {
-      font-family: "Poppins", system-ui, sans-serif;
       font-size: 2.6rem;
       margin: 0 0 0.5rem 0;
       color: #111827;
+      font-weight: 600;
     }
 
     .project-dates {
@@ -110,14 +86,15 @@
       text-transform: uppercase;
     }
 
-    /* ===== Motivation / objectives ===== */
+    /* ===== Section titles ===== */
     .section-title {
-      font-family: "Poppins", system-ui, sans-serif;
       font-size: 1.3rem;
       margin: 0 0 1rem 0;
       color: #111827;
+      font-weight: 600;
     }
 
+    /* ===== Motivation / objectives ===== */
     .motivation-block {
       background: #f3f5f8;
       border-radius: 1.75rem;
@@ -149,7 +126,6 @@
     }
 
     .motivation-text p {
-      font-family: "Playfair Display", "Times New Roman", serif;
       font-size: 1.02rem;
       line-height: 1.8;
       margin: 0;
@@ -172,9 +148,9 @@
     }
 
     .contrib-columns h3 {
-      font-family: "Poppins", system-ui, sans-serif;
       font-size: 1.1rem;
       margin: 0 0 0.75rem 0;
+      font-weight: 500;
     }
 
     .contrib-columns ul {
@@ -197,26 +173,10 @@
     <h1>Ben Zwiener</h1>
 
     <nav>
-      <a href="index.html" class="nav-pill">Home</a>
-      <a href="projects.html" class="nav-pill">Projects</a>
-
-      <a
-        href="resume.pdf"
-        class="nav-cta"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        Resume
-      </a>
-
-      <a
-        href="https://www.linkedin.com/in/benjamin-zwiener-3621591a0"
-        class="nav-cta"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        LinkedIn
-      </a>
+      <a href="index.html" class="nav-link">Home</a>
+      <a href="projects.html" class="nav-link">Projects</a>
+      <a href="resume.pdf" class="nav-link" target="_blank" rel="noopener noreferrer">Resume</a>
+      <a href="https://www.linkedin.com/in/benjamin-zwiener-3621591a0" class="nav-link" target="_blank" rel="noopener noreferrer">LinkedIn</a>
     </nav>
   </header>
 
@@ -236,9 +196,9 @@
         </div>
         <div class="motivation-text">
           <p>
-            The Rubik's Cube is an iconic three-dimensional puzzle invented in 1974 but became well-known within pop culture during the 1980s. 
+            The Rubik's Cube is an iconic three-dimensional puzzle invented in 1974 but became well-known within pop culture during the 1980s.
             While the inventor Erno Rubik intended its use to teach students about building 3D objects, he quickly discovered its difficulty, taking him nearly a month to solve it.
-            After learning how to solve a Rubik's Cube and seeing others build automated mechanisms capable of completing the various algorithms, this project set out to build a similar machine. 
+            After learning how to solve a Rubik's Cube and seeing others build automated mechanisms capable of completing the various algorithms, this project set out to build a similar machine.
             While the project was not fully completed, it provided several valuable lessons outlined below and remains a candidate for future continuation.
           </p>
         </div>
@@ -254,7 +214,7 @@
             <li>Developed a program that checks hundreds of possible Rubik's Cube combinations and, based on camera sensor data, determines the next actuation</li>
             <li>Built a rough prototype to determine optimal camera positions and design improvements</li>
             <li>3D printed most linkages and parts</li>
-            <li>Planned a final design using 6 stepper motors attached to the cube’s center pieces via 3D-printed fixtures</li>
+            <li>Planned a final design using 6 stepper motors attached to the cube's center pieces via 3D-printed fixtures</li>
           </ul>
         </div>
         <div>
@@ -264,7 +224,7 @@
             <li>Improved coding skills and the importance of writing internal comments in code</li>
             <li>How camera sensors work and how to interface with the Pixy camera sensor</li>
             <li>The value of creating flow/coding diagrams before implementation</li>
-            <li>That it is okay to build on existing work (using published algorithms would have saved significant time)</li> 
+            <li>That it is okay to build on existing work (using published algorithms would have saved significant time)</li>
           </ul>
         </div>
       </div>
